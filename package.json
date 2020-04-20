@@ -12,16 +12,16 @@
     "dist": "pkg . --out-path ./dist"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.3",
+    "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "hbs": "~4.0.1",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
-    "tplink-smarthome-api": "0.22.0",
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0",
+    "hbs": "^4.1.1",
+    "http-errors": "^1.7.3",
     "moment": "2.22.0",
-    "express-ws": "3.0.0",
-    "shelljs": "0.8.3"
+    "morgan": "^1.10.0",
+    "shelljs": "0.8.3",
+    "tplink-smarthome-api": "0.22.0"
   },
   "devDependencies": {
     "pkg": "4.3.1"
