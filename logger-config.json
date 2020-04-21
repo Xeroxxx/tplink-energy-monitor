@@ -1,5 +1,5 @@
 {
-  "logDirPath": ".",
+  "logDirPath": "/opt/tplink-monitor/data",
   "logIntervalSeconds": 60,
   "maxLogEntries": 1440
 }
