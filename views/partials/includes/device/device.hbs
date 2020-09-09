@@ -43,13 +43,17 @@
     </div>
 
     <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
-
+        {{> common/unittile
+                title="Total today"
+                tileId="total-day"
+                unit="kWh"
+        }}
     </div>
 
     <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
         {{> common/unittile
-                title="Total today"
-                tileId="total-day"
+                title="Daily avg"
+                tileId="avg-day"
                 unit="kWh"
         }}
     </div>
