@@ -1,4 +1,4 @@
-FROM arm32v7/node:8.11-slim
+FROM arm32v7/node:alpine
 COPY qemu-arm-static /usr/bin
 WORKDIR /opt/tplink-monitor
 COPY . .
