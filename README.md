@@ -7,7 +7,7 @@ A web based monitoring dashboard displaying energy usage data and statistics for
 Written in Node.js + Express, and fully responsive so works well on mobile devices.
 
 <p align="center">
-  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png">
+  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="800" width="600">
 </p>
 
 # Features
@@ -26,17 +26,22 @@ You can use any of the following methods to get the project running:
 The easiest way to run the project is to download one of the packaged executables from the [releases page](https://github.com/jamesbarnett91/tplink-monitor/releases). These are zip files containing a single executable file and some config. Just download the relevant file for your OS (Windows, Linux and MacOS available), extract the zip somewhere and double click executable. Then go to `localhost:3000` in your browser to access the dashboard.
 
 ### Docker
-Alternatively, you can pull the `jbarnett/tplink-energy-monitor` image and run that.
+Alternatively, you can pull the `xeroxxx/tplink-energy-monitor` image and run that.
 Note that because the server needs access to your local network to scan for TP-Link devices, you must run the image using [host networking](https://docs.docker.com/network/host/) e.g.:
 ```
-$ docker run -d --network host jbarnett/tplink-energy-monitor
+$ docker run -d --network host xeroxxx/tplink-energy-monitor
 ```
+### Docker Persitant Data
+```
+$ docker run -d --network host -v <localfolder>:/opt/tplink-monitor/data xeroxxx/tplink-energy-monitor
+```
+
 
 ### Node + NPM
 
 To run directly via NPM:
 ```sh
-$ git clone https://github.com/jamesbarnett91/tplink-energy-monitor && cd tplink-energy-monitor
+$ git clone https://github.com/xeroxxx/tplink-energy-monitor && cd tplink-energy-monitor
 $ npm install
 $ npm start
 ```
@@ -46,7 +51,7 @@ By default this app will log the current power usage of each plug every minute, 
 ```
 {
   // Directory path specifying where log files should be stored. It will be created if it doesn't already exist.
-  "logDirPath": "path/to/logs",
+  "logDirPath": "/opt/tplink-monitor/data",
 
   // The number of seconds between each log entry
   "logIntervalSeconds": 60,
