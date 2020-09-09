@@ -84,13 +84,14 @@ A note for Windows users: There seems to be an issue with the UDP broadcast the 
 If you hit this issue you can try disabling the VirtualBox adapter in `Control Panel > Network and Internet > Network Connections` and see if that solves the problem.
 
 # TODOs
-- [x] Show historical data
-- [x] Build dists
-- [x] Docker image
-- [x] Support switching between multiple plugs
-- [x] Switch to websockets
-- [x] Configurable realtime usage logging
-- [x] Toggle on/off state
+- [x] Show historical data (Done)
+- [x] Build dists (Done)
+- [x] Docker image (Done)
+- [x] Support switching between multiple plugs (Done)
+- [x] Switch to websockets (Done)
+- [x] Configurable realtime usage logging (Done)
+- [x] Toggle on/off state (Done)
+- [x] Show cumulative energy usage (day/month/year) on device (Done)
 - [ ] Show cumulative energy usage form all devices
-- [ ] Rescan for devices on the fly
+- [ ] Rescan for devices on the fly (Restart Container for now)
 - [ ] Add daily cost metrics
