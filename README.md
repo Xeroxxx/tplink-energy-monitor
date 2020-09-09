@@ -6,7 +6,7 @@ A web based monitoring dashboard displaying energy usage data and statistics for
 Written in Node.js + Express, and fully responsive so works well on mobile devices.
 
 <p align="center">
-  <img alt="Screenshot" src="https://i.imgur.com/cNqXYU4.png" height="540" width="960">
+  <img alt="Screenshot" src="https://i.imgur.com/cNqXYU4.png" height="521" width="960">
 </p>
 
 # Development
