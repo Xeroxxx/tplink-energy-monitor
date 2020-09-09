@@ -16,6 +16,7 @@ Written in Node.js + Express, and fully responsive so works well on mobile devic
 - Recent power usage trend chart.
 - Configurable power usage history logger.
 - Plug on/off state and uptime.
+- Toggle on/off state
 - Daily & monthly energy usage totals and averages.
 - Historical daily and monthly energy usage charts.
 
@@ -89,6 +90,7 @@ If you hit this issue you can try disabling the VirtualBox adapter in `Control P
 - [x] Support switching between multiple plugs
 - [x] Switch to websockets
 - [x] Configurable realtime usage logging
+- [x] Toggle on/off state
 - [ ] Show cumulative energy usage form all devices
 - [ ] Rescan for devices on the fly
 - [ ] Add daily cost metrics
