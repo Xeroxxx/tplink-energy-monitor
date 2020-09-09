@@ -1,11 +1,12 @@
 {
   "name": "tplink-monitor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An energy monitoring dashboard for TP-Link smart plugs",
-  "repository": "https://github.com/jamesbarnett91/tplink-monitor",
+  "repository": "https://github.com/xeroxxx/tplink-monitor",
   "license": "GPL-3.0",
   "author": {
-    "name": "James Barnett"
+    "name": "James Barnett",
+    "name": "Xeroxxx"
   },
   "scripts": {
     "start": "node ./app.js",
