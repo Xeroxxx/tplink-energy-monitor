@@ -5,15 +5,15 @@ A web based monitoring dashboard displaying energy usage data and statistics for
 
 Written in Node.js + Express, and fully responsive so works well on mobile devices.
 
+<p align="center">
+  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="600" width="800">
+</p>
+
 # Development
 
 Originally programmed by James Barnett
 
 Current development by Xeroxxx, nbyx, SebastianSiebert
-
-<p align="center">
-  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="600" width="800">
-</p>
 
 # Features
 - Automatically scans for TP-Link smart plug devices on your local network on server start.
