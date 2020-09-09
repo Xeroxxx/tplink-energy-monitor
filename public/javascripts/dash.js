@@ -72,6 +72,7 @@ var dash = {
       }
       else if (message.dataType === 'loggedData') {
         dash.loadLogEntries(message.data);
+        dash.loadLastSession(message.data);
       }
     }
 
@@ -96,8 +97,8 @@ var dash = {
       },
       staticZones: [
         { strokeStyle: "#30B32D", min: 0, max: 500 },
-        { strokeStyle: "#FFDD00", min: 500, max: 1500 },
-        { strokeStyle: "#F03E3E", min: 1500, max: 3000 }
+        { strokeStyle: "#FFDD00", min: 500, max: 2400 },
+        { strokeStyle: "#F03E3E", min: 2400, max: 3000 }
       ]
     };
     var target = document.getElementById('rtu-gauge');
@@ -157,7 +158,7 @@ var dash = {
       type: 'bar',
       data: {
         datasets: [{
-          label: "Energy (kWH)",
+          label: "Energy (kWh)",
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgb(255, 99, 132)',
           data: []
@@ -188,7 +189,7 @@ var dash = {
       type: 'bar',
       data: {
         datasets: [{
-          label: "Energy (kWH)",
+          label: "Energy (kWh)",
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgb(255, 99, 132)',
           data: []
@@ -282,8 +283,42 @@ var dash = {
     dash.usageLogChart.update();
   },
 
-  realtimeTrendChartOnRefresh: function (chart) {
-    chart.data.datasets.forEach(function (dataset) {
+  loadLastSession: function(logEntries) {
+    var threshold = 5
+    var startIndex = 0
+    for (i=logEntries.length-1; i>0; i--) {
+      if (logEntries[i].pw > threshold) {
+        startIndex = i
+        break
+      }
+    }
+    if (startIndex > 0) {
+      var endIndex = -1
+      for (i=startIndex-1;i>=0; i--) {
+        if (logEntries[i].pw < threshold || i==0) {
+          endIndex = i
+          break
+        }
+      }
+      if (endIndex >= 0) {
+        var lastSessionkWh = 0
+        if (startIndex = logEntries.length-1) {
+          startIndex--
+        }
+        for (i=endIndex; i<startIndex; i++) {
+          var entry = logEntries[i]
+          var power = entry.pw
+          var time = logEntries[i+1].ts - entry.ts
+          var kWh = power * time / 3600000000
+          lastSessionkWh += kWh
+        }
+      }
+      $("#lastsession").text((endIndex==0 ? ">" : "") + lastSessionkWh.toFixed(1))
+    }
+  },
+
+  realtimeTrendChartOnRefresh: function(chart) {
+    chart.data.datasets.forEach(function(dataset) {
       dataset.data.push({
         x: Date.now(),
         y: dash.realtimeTrendLastSample
@@ -320,8 +355,8 @@ var dash = {
       var day = moment([entry.year, entry.month - 1, entry.day]);
 
       dash.dailyUsageChart.data.labels.push(day.format('MMM D'));
-      dash.dailyUsageChart.data.datasets.forEach(function (dataset) {
-        dataset.data.push(('energy_wh' in entry) ? (entry.energy_wh / 1000) : entry.energy);
+      dash.dailyUsageChart.data.datasets.forEach(function(dataset) {
+        dataset.data.push(dash.energyEntryInkWh(entry));
       });
     });
 
@@ -335,12 +370,13 @@ var dash = {
       return d.day === moment().date() && d.month === (moment().month() + 1) && d.year === moment().year()
     });
 
-    var energy = ('energy_wh' in dailyTotal) ? (dailyTotal.energy_wh / 1000) : dailyTotal.energy
+    var energy = dash.energyEntryInkWh(dailyTotal)
     $("#total-day").text(energy.toFixed(2));
 
-    var total = usageData.reduce(function (t, d) { return t + (('energy_wh' in d) ? (d.energy_wh / 1000) : d.energy) }, 0);
-    var avg = total / usageData.length;
+    var total = usageData.reduce(function(t, d) {return t + dash.energyEntryInkWh(d)}, 0);
+    var avg = total/usageData.length;
 
+	$("#30total").text(total.toFixed(0))
     $("#avg-day").text(avg.toFixed(2));
 
   },
@@ -358,8 +394,8 @@ var dash = {
       var month = moment().month(entry.month - 1);
 
       dash.monthlyUsageChart.data.labels.push(month.format('MMM'));
-      dash.monthlyUsageChart.data.datasets.forEach(function (dataset) {
-        dataset.data.push(('energy_wh' in entry) ? (entry.energy_wh / 1000) : entry.energy);
+      dash.monthlyUsageChart.data.datasets.forEach(function(dataset) {
+        dataset.data.push(dash.energyEntryInkWh(entry));
       });
     });
 
@@ -372,13 +408,21 @@ var dash = {
     var monthlyTotal = usageData.find(function (m) {
       return m.month === (moment().month() + 1) && m.year === moment().year()
     });
-    var energy = ('energy_wh' in monthlyTotal) ? (monthlyTotal.energy_wh / 1000) : monthlyTotal.energy
+    var energy = dash.energyEntryInkWh(monthlyTotal)
     $("#total-month").text(energy.toFixed(2));
 
-    var total = usageData.reduce(function (t, m) { return t + (('energy_wh' in m) ? (m.energy_wh / 1000) : m.energy) }, 0);
-    var avg = total / usageData.length;
+    // don't use latest (current) month in the average and don't use months with zero usage
+    var nonZeroCompleteMonths = usageData.slice(0,usageData.length-1).filter( u => dash.energyEntryInkWh(u) > 0)
+    var total = nonZeroCompleteMonths.reduce(function(t, m) {return t + dash.energyEntryInkWh(m)}, 0);
+    var avg = nonZeroCompleteMonths.length == 0 ? 0 : total/nonZeroCompleteMonths.length;
 
     $("#avg-month").text(avg.toFixed(2));
+	var allTotal = total + dash.energyEntryInkWh(usageData[usageData.length-1])
+	$("#monthstotal").text(allTotal.toFixed(0))
+  },
+
+  energyEntryInkWh: function (entry) {
+    return ('energy_wh' in entry) ? (entry.energy_wh/1000) : entry.energy;
   },
 
   refreshPowerState: function (powerState) {
