@@ -1,35 +1,3 @@
-<div class="page-header">
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="device-list-small">
-                <ul class="list-inline">
-                    {{#each devices}}
-                        <li class="{{this.deviceId}}">
-                            <a title="Device Id: {{this.deviceId}}" href="/{{this.deviceId}}">
-                                <i class="fa fa-plug"></i>
-                                {{this.alias}}
-                            </a>
-                        </li>
-                    {{else}}
-                        <li>
-                            <a href="/">
-                                <i class="fa fa-info"></i>
-                                no devices discovered yet
-                            </a>
-                        </li>
-                    {{/each}}
-                </ul>
-            </div>
-            <h1>
-                <i class="fa fa-plug"></i> {{device.alias}}
-            </h1>
-        </div>
-        <div class="col-sm-4">
-            <div id="connection-error" class="alert alert-danger" style="display:none">Connection lost. Attempting to re-establish...</div>
-        </div>
-    </div>
-</div>
-
 <div class="row">
 
     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -37,7 +5,10 @@
     </div>
 
     <div class="col-md-8 col-sm-8 col-xs-12">
-        {{> common/rttchart title="Realtime Trend"}}
+        {{> common/chart
+            title="Realtime Trend"
+            chartId="rtt-chart"
+        }}
     </div>
 
 </div>
