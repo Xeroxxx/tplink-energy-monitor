@@ -1,4 +1,5 @@
 FROM arm32v7/node:8.11-slim
+COPY qemu-arm-static /usr/bin
 WORKDIR /opt/tplink-monitor
 COPY . .
 RUN npm install

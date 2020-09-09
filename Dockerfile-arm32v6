@@ -1,4 +1,5 @@
 FROM hypriot/rpi-node:8.1-slim
+COPY qemu-arm-static /usr/bin
 WORKDIR /opt/tplink-monitor
 COPY . .
 RUN npm install
