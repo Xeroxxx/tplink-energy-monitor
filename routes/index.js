@@ -3,7 +3,7 @@ const router = express.Router();
 
 const deviceManager = require('../services/device-manager');
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
 
   let devices = sortDevices(deviceManager.getAllDevices());
 
@@ -12,16 +12,16 @@ router.get('/', function(req, res, next) {
 
     res.redirect('/' + deviceId);
   } else {
-    res.render('index', {});
+    res.render('error', {});
   }
 
 });
 
-router.get('/:deviceId', function(req, res, next) {
+router.get('/:deviceId', function(req, res) {
 
   let deviceId = req.params.deviceId;
 
-  res.render('index', {
+  res.render('device-view', {
     device: deviceManager.getDevice(deviceId),
     devices: sortDevices(deviceManager.getAllDevices())
   });
