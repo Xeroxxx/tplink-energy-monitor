@@ -18,14 +18,17 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:deviceId', function(req, res) {
-
   let deviceId = req.params.deviceId;
+  deviceId = deviceManager.getDevice(deviceId);
 
-  res.render('device-view', {
-    device: deviceManager.getDevice(deviceId),
-    devices: sortDevices(deviceManager.getAllDevices())
-  });
-
+  if (deviceId) {
+    res.render('device-view', {
+      device: deviceId,
+      devices: sortDevices(deviceManager.getAllDevices())
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 function sortDevices(devices) {
