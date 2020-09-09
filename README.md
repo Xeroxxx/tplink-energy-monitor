@@ -7,7 +7,7 @@ A web based monitoring dashboard displaying energy usage data and statistics for
 Written in Node.js + Express, and fully responsive so works well on mobile devices.
 
 <p align="center">
-  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="800" width="600">
+  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="600" width="800">
 </p>
 
 # Features
