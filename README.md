@@ -32,7 +32,7 @@ Note that because the server needs access to your local network to scan for TP-L
 ```
 $ docker run -d --network host xeroxxx/tplink-energy-monitor
 ```
-### Docker Persitant Data
+### Docker Persistant Data
 ```
 $ docker run -d --network host -v <localfolder>:/opt/tplink-monitor/data xeroxxx/tplink-energy-monitor
 ```
