@@ -11,7 +11,7 @@ Written in Node.js + Express, and fully responsive so works well on mobile devic
 
 # Development
 
-Originally programmed by James Barnett
+Originally programmed by James Barnett - https://github.com/jamesbarnett91/tplink-energy-monitor
 
 Current development by Xeroxxx, nbyx, SebastianSiebert
 
