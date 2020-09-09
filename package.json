@@ -13,18 +13,18 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
-    "debug": "~2.6.9",
+    "debug": "~4.1.1",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
     "hbs": "^4.1.1",
-    "http-errors": "^1.7.3",
-    "moment": "2.22.0",
+    "http-errors": "^1.8.0",
+    "moment": "2.27.0",
     "morgan": "^1.10.0",
-    "shelljs": "0.8.3",
-    "tplink-smarthome-api": "0.22.0"
+    "shelljs": "0.8.4",
+    "tplink-smarthome-api": "3.0.0-beta.0"
   },
   "devDependencies": {
-    "pkg": "4.3.1"
+    "pkg": "4.4.9"
   },
   "bin": {
     "tplink-monitor": "./app.js"

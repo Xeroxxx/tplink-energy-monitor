@@ -60,3 +60,4 @@ typings/
 dist/
 .scannerwork/
 *-log.json
+package-lock.json
