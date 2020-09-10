@@ -1,0 +1,38 @@
+<div class="x_panel tile">
+    <div class="x_title">
+        <h2>
+            <strong>
+                {{#if title}}
+                    {{title}}
+                {{else}}
+                    TITLE MISSING
+                {{/if}}
+            </strong>
+        </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="row">
+            <h1 class="text-center">
+                <strong id="rtu-power">- W</strong>
+            </h1>
+        </div>
+        <div class="row text-center">
+            <div>
+                <canvas id="rtu-gauge"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-6 text-center">
+                <h1>
+                    <strong id="rtu-current">- A</strong>
+                </h1>
+            </div>
+            <div class="col-md-6 col-xs-6 text-center">
+                <h1>
+                    <strong id="rtu-voltage">- V</strong>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>

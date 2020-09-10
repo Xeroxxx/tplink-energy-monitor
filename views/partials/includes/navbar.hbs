@@ -1,0 +1,32 @@
+<div>
+    <div class="navbar nav_title" style="border: 0;">
+        <a href="/" class="site_title">
+            <span>Energy Monitor</span>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+        <div class="menu_section">
+            <h3>Devices</h3>
+            <ul class="nav side-menu">
+                {{#each devices}}
+                    <li class="{{this.deviceId}}">
+                        <a title="Display: {{this.name}}" href="/{{this.deviceId}}">
+                            <i class="fa fa-plug"></i>
+                            {{this.alias}}
+                        </a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a href='/'>
+                            <i class="fa fa-info"></i>
+                            no devices discovered yet
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

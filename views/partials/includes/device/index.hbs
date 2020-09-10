@@ -1,0 +1,101 @@
+<div class="row">
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+       {{> common/gauge title="Realtime Usage"}}
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        {{> common/chart
+            title="Realtime Trend"
+            chartId="rtt-chart"
+        }}
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        {{> common/chart
+            title="Logged Usage"
+            showLast=true
+            lastId="lastsession"
+            unit="kWh"
+            chartId="logged-usage-chart"
+        }}
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+       {{> common/tile
+            title="Plug state"
+            tileId="power-state"
+       }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+        {{> common/tile
+                title="Uptime"
+                tileId="uptime"
+        }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+        {{> common/tile
+                title="Total today"
+                tileId="total-day"
+                unit="kWh"
+        }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+        {{> common/tile
+                title="Daily avg"
+                tileId="avg-day"
+                unit="kWh"
+        }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+        {{> common/tile
+                title="Monthly average"
+                tileId="avg-month"
+                unit="kWh"
+        }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4 col-xl-2">
+        {{> common/tile
+                title="Total this month"
+                tileId="total-month"
+                unit="kWh"
+        }}
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        {{> common/chart
+            title="Last 30 days"
+            showTotal=true
+            totalAmount="30total"
+            unit="kWh"
+            chartId="du-chart"
+        }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        {{> common/chart
+                title="Last 12 months"
+                showTotal=true
+                totalAmount="monthstotal"
+                unit="kWh"
+                chartId="mu-chart"
+        }}
+    </div>
+
+</div>

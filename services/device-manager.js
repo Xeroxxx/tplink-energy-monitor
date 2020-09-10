@@ -35,10 +35,10 @@ function registerPlug(plug) {
 
 module.exports.getDevice = function(deviceId) {
 
-  return devices.find(d => d.deviceId == deviceId);
+  return devices.find(d => d.deviceId === deviceId);
 
-}
+};
 
 module.exports.getAllDevices = function() {
   return devices;
-}
+};

@@ -180,3 +180,4 @@ dist/
 *-log.json
 package-lock.json
 /tp-link-energy-monitor.iml
+/.idea/jsLibraryMappings.xml

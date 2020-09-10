@@ -4,7 +4,7 @@
 }
 
 footer ul {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .page-header {
@@ -79,7 +79,7 @@ footer ul {
 }
 
 @media (min-width: 1635px) {
-  .col-xl-2,{
+  .col-xl-2 {
     float: left;
   }
   .col-xl-2 {
