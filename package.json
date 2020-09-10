@@ -5,7 +5,12 @@
   "repository": "https://github.com/xeroxxx/tplink-monitor",
   "license": "GPL-3.0",
   "author": {
-    "name": "Xeroxxx"
+    "name": "James Barnett"
+  },
+  "contributors": {
+    "name": "Xeroxxx",
+    "name": "nbxy",
+    "name": "SebastianSiebert"
   },
   "scripts": {
     "start": "node ./app.js",
