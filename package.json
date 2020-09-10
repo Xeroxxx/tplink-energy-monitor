@@ -32,8 +32,8 @@
   "pkg": {
     "scripts": "node_modules/hbs/lib/hbs.js",
     "assets": [
-      "views/*",
-      "public/**/*"
+      "src/views/*",
+      "src/public/**/*"
     ]
   }
 }
