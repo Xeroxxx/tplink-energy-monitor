@@ -13,7 +13,7 @@
     "name": "SebastianSiebert"
   },
   "scripts": {
-    "start": "node ./app.js",
+    "start": "node ./src/app.js",
     "dist": "pkg . --out-path ./dist"
   },
   "dependencies": {
@@ -32,13 +32,13 @@
     "pkg": "4.4.9"
   },
   "bin": {
-    "tplink-monitor": "./app.js"
+    "tplink-monitor": "./src/app.js"
   },
   "pkg": {
     "scripts": "node_modules/hbs/lib/hbs.js",
     "assets": [
-      "views/*",
-      "public/**/*"
+      "src/views/*",
+      "src/public/**/*"
     ]
   }
 }
