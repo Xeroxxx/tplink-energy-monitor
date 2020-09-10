@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 
     res.redirect('/' + deviceId);
   } else {
-    res.render('error', {});
+    res.render('device-view', {});
   }
 
 });
