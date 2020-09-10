@@ -38,6 +38,10 @@ footer ul {
   border-color: #ebccd1;
 }
 
+.pointable {
+  cursor: pointer;
+}
+
 .list-inline > .active {
   font-weight: bold;
 }
