@@ -1,0 +1,20 @@
+<div class="x_panel small tile">
+    <div class="x_title">
+        <h2>
+            <strong>
+                {{#if title}}
+                    {{title}}
+                {{else}}
+                    TITLE MISSING
+                {{/if}}
+            </strong>
+        </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content small">
+        <div class="currency-input">
+        <input id={{tileId}} type="text" class={{class}} placeholder={{placeholder}} />
+        <span class="currency-symbol">€</span>
+        </div>
+    </div>
+</div>
