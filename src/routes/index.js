@@ -4,17 +4,17 @@ const router = express.Router();
 const deviceManager = require('../services/device-manager');
 
 router.get('/', function(req, res) {
-
   let devices = sortDevices(deviceManager.getAllDevices());
+  res.render('home', {
+    devices
+  });
+});
 
-  if (devices && devices.length > 0) {
-    let deviceId = devices[0].deviceId;
-
-    res.redirect('/' + deviceId);
-  } else {
-    res.render('device-view', {});
-  }
-
+router.get('/settings', function(req, res) {
+  res.render('settings', {
+    deviceManager,
+    devices: sortDevices(deviceManager.getAllDevices())
+  });
 });
 
 router.get('/:deviceId', function(req, res) {
@@ -30,6 +30,7 @@ router.get('/:deviceId', function(req, res) {
     res.redirect('/');
   }
 });
+
 
 function sortDevices(devices) {
   return devices.slice().sort((a, b) => {

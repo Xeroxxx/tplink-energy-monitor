@@ -2,7 +2,7 @@ const { Client } = require('tplink-smarthome-api');
 const dataLogger = require('./data-logger');
 const interfaces = require('os').networkInterfaces();
 
-var devices = [];
+const devices = [];
 
 function startDiscovery(bindAddress) {
   console.log('Starting discovery on interface: ' + bindAddress);
@@ -25,8 +25,10 @@ function registerPlug(plug) {
   
   if (plug.supportsEmeter) {
     console.log('Found device with energy monitor support: ' + plug.alias + ' [' + plug.deviceId + ']');
-    devices.push(plug);
-    dataLogger.startLogging(plug);
+    if(!devices.includes(plug)) {
+      devices.push(plug);
+      dataLogger.startLogging(plug);
+    }
   } else {
     console.log('Skipping device: ' + plug.alias + ' [' + plug.deviceId + ']. Energy monitoring not supported.');
   }
