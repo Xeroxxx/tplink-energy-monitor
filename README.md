@@ -34,9 +34,6 @@ Current development by Xeroxxx, nbyx, SebastianSiebert
 # Setup
 You can use any of the following methods to get the project running:
 
-### Packaged executable
-The easiest way to run the project is to download one of the packaged executables from the [releases page](https://github.com/Xeroxxx/tplink-energy-monitor/releases). These are zip files containing a single executable file and some config. Just download the relevant file for your OS (Windows, Linux and MacOS available), extract the zip somewhere and double click executable. Then go to `localhost:3000` in your browser to access the dashboard.
-
 ### Docker
 Alternatively, you can pull the `xeroxxx/tplink-energy-monitor` image and run that.
 Note that because the server needs access to your local network to scan for TP-Link devices, you must run the image using [host networking](https://docs.docker.com/network/host/) e.g.:
