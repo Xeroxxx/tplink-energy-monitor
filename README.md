@@ -1,3 +1,9 @@
+# Supported tags for Docker Images
+
+[latest, latest-arm32v6, latest-arm32v7, latest-arm64v8](https://hub.docker.com/r/xeroxxx/tplink-energy-monitor/tags) || [Branch - Master](https://github.com/xeroxxx/tplink-energy-monitor/tree/master)
+
+[dev, dev-arm32v6, dev-arm32v7, dev-arm64v8](https://hub.docker.com/r/xeroxxx/tplink-energy-monitor/tags) || [Branch - Dev](https://github.com/Xeroxxx/tplink-energy-monitor/tree/dev)
+
 # TPLink Energy Monitor
 [![Build Status](https://travis-ci.org/Xeroxxx/tplink-energy-monitor.svg?branch=master)](https://travis-ci.org/xeroxxx/tplink-energy-monitor)
 
@@ -6,7 +12,7 @@ A web based monitoring dashboard displaying energy usage data and statistics for
 Written in Node.js + Express, and fully responsive so works well on mobile devices.
 
 <p align="center">
-  <img alt="Screenshot" src="https://jamesbarnett.io/files/tplink-monitor/screenshots/em-res.png" height="600" width="800">
+  <img alt="Screenshot" src="https://i.imgur.com/cNqXYU4.png" height="521" width="960">
 </p>
 
 # Development

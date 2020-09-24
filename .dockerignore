@@ -1,0 +1,9 @@
+# Dockerfiles
+Dockerfile*
+
+# Travis & Git
+.travis.yml
+.gitignore
+
+# README
+README*.md

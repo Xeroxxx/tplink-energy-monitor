@@ -12,20 +12,20 @@ var dash = {
   usageLogChart: null,
 
   init: function (deviceId) {
-    this.deviceId = deviceId;
+    dash.deviceId = deviceId;
 
     if (this.deviceId) {
       $('.' + deviceId).addClass('active');
     }
 
-    this.initRealtimeGauge();
-    this.initRealtimeTrendChart();
-    this.initDailyUsageChart();
-    this.initMonthlyUsageChart();
-    this.initUsageLog();
+    dash.initRealtimeGauge();
+    dash.initRealtimeTrendChart();
+    dash.initDailyUsageChart();
+    dash.initMonthlyUsageChart();
+    dash.initUsageLog();
 
-    this.initWsConnection();
-    this.initTogglePowerState();
+    dash.initWsConnection();
+    dash.initTogglePowerState();
   },
 
   initWsConnection: function () {

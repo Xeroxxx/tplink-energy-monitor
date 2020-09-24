@@ -1,0 +1,26 @@
+{{#> layouts/base}}
+    {{#*inline "sidebar-menu"}}
+        {{> includes/navbar}}
+    {{/inline}}
+
+    {{#*inline "header-content"}}
+        {{> includes/device/header}}
+    {{/inline}}
+
+    {{#*inline "main-content"}}
+        {{> includes/device/index}}
+    {{/inline}}
+
+    {{#*inline "footer-content"}}
+        {{> includes/device/footer}}
+    {{/inline}}
+
+    {{#*inline "scripts-block"}}
+        <script src="/javascripts/dash.js"></script>
+        <script>
+            $(document).ready(function () {
+                dash.init( '{{device.deviceId}}' );
+            });
+        </script>
+    {{/inline}}
+{{/layouts/base}}

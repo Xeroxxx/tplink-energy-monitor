@@ -5,11 +5,15 @@
   "repository": "https://github.com/xeroxxx/tplink-monitor",
   "license": "GPL-3.0",
   "author": {
-    "name": "James Barnett",
-    "name": "Xeroxxx"
+    "name": "James Barnett"
+  },
+  "contributors": {
+    "name": "Xeroxxx",
+    "name": "nbyx",
+    "name": "SebastianSiebert"
   },
   "scripts": {
-    "start": "node ./app.js",
+    "start": "node ./src/app.js",
     "dist": "pkg . --out-path ./dist"
   },
   "dependencies": {
@@ -28,13 +32,13 @@
     "pkg": "4.4.9"
   },
   "bin": {
-    "tplink-monitor": "./app.js"
+    "tplink-monitor": "./src/app.js"
   },
   "pkg": {
     "scripts": "node_modules/hbs/lib/hbs.js",
     "assets": [
-      "views/*",
-      "public/**/*"
+      "src/views/*",
+      "src/public/**/*"
     ]
   }
 }
