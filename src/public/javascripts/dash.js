@@ -427,10 +427,10 @@ var dash = {
 
   refreshPowerState: function (powerState) {
     if (powerState.isOn) {
-      $("#power-state").text("ON").attr("class", "label label-success");
+      $("#power-state").text("ON").attr("class", "label label-success pointable");
     }
     else {
-      $("#power-state").text("OFF").attr("class", "label label-danger");
+      $("#power-state").text("OFF").attr("class", "label label-danger pointable");
     }
 
     if (powerState.uptime === 0) {
