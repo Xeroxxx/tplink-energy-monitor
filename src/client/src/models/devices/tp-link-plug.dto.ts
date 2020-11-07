@@ -6,7 +6,6 @@ export type TPLinkPlug = {
     alias: string;
     type: TpLinkDeviceTypes;
     model: string;
-    macAddress: string;
     deviceName: string;
     relayState: boolean;
     hwId: string;

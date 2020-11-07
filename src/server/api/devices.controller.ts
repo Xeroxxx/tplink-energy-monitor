@@ -15,9 +15,21 @@ export default class DevicesController {
     }
 
     @Get('')
-    private sayHello(req: Request, res: Response) {
+    private getDevices(req: Request, res: Response) {
         try {
             return res.status(StatusCodes.OK).json(this.devicesService.getAll());
+        } catch (err) {
+            Logger.Err(err, true);
+            return res.status(StatusCodes.BAD_REQUEST).json({
+                error: err.message,
+            });
+        }
+    }
+
+    @Get(':id')
+    private getDevice(req: Request, res: Response) {
+        try {
+            return res.status(StatusCodes.OK).json(this.devicesService.getDeviceById(req.params.id));
         } catch (err) {
             Logger.Err(err, true);
             return res.status(StatusCodes.BAD_REQUEST).json({
