@@ -181,3 +181,4 @@ dist/
 /.idea/jsLibraryMappings.xml
 /build/
 /.idea/
+/src/client/.idea/
