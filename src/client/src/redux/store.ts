@@ -3,10 +3,20 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'react-router-redux';
 import { History } from 'history';
+import deviceReducer, { initialDeviceState } from './devices/reducer/devices.reducer';
+import { DeviceState } from './devices/devices-state.type';
 
-type ApplicationState = {};
+export type ApplicationState = {
+    devices: DeviceState;
+};
 
-const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({});
+export const initialAppState: ApplicationState = {
+    devices: initialDeviceState,
+};
+
+const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
+    devices: deviceReducer,
+});
 
 export default function configureStore(history: History, initialState: ApplicationState): Store<ApplicationState> {
     const composeEnhancers = composeWithDevTools({});

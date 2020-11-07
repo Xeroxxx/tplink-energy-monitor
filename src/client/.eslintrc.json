@@ -52,6 +52,10 @@
         "react/jsx-indent": "off",
         "import/prefer-default-export": "off",
         "react/jsx-one-expression-per-line": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": 2,
+        "@typescript-eslint/no-shadow": 2,
+        "no-shadow": "off"
     }
 }
