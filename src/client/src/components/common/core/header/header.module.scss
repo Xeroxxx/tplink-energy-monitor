@@ -1,0 +1,9 @@
+@import 'src/styles/colors';
+@import 'src/styles/sizes';
+
+.header {
+  height: $header-height;
+  width: 100%;
+  background: $header-background;
+  border-bottom: 1px solid $card-border;
+}

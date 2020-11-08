@@ -56,6 +56,15 @@
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": 2,
         "@typescript-eslint/no-shadow": 2,
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "arrow-body-style": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "react/button-has-type": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-indent-props": "off",
+        "operator-linebreak": "off",
+        "implicit-arrow-linebreak": "off",
+        "function-paren-newline": "off"
     }
 }

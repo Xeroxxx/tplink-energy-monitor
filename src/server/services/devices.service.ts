@@ -34,8 +34,13 @@ export default class DevicesService {
         if (device.type === TpLinkDeviceTypes.SMARTPLUGSWITCH) {
             const plug = device as Plug;
             const info = await plug.getSysInfo();
+            const newDevice = mapToFullTPLinkPlug(plug, info);
 
-            this.devices.push(mapToFullTPLinkPlug(plug, info));
+            if (this.devices.find((dev) => dev.id === newDevice.id)) {
+                return;
+            }
+
+            this.devices.push(newDevice);
             Logger.Info(`Discovered device: ${plug.id} with alias: ${plug.alias}`);
         }
     }

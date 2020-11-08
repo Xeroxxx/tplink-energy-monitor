@@ -1,0 +1,22 @@
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  @extend .flex;
+  flex-direction: column;
+}
+.flex-row {
+  @extend .flex;
+  flex-direction: row;
+}
+
+.flex-center {
+  @extend .flex;
+  justify-content: center;
+}
+
+.flex-sb {
+  @extend .flex;
+  justify-content: space-between;
+}

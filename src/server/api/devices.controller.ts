@@ -26,9 +26,10 @@ export default class DevicesController {
         }
     }
 
-    @Get(':id')
+    @Get('/:id')
     private getDevice(req: Request, res: Response) {
         try {
+            Logger.Info(req.params.id);
             return res.status(StatusCodes.OK).json(this.devicesService.getDeviceById(req.params.id));
         } catch (err) {
             Logger.Err(err, true);

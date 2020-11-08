@@ -1,0 +1,26 @@
+@import 'src/styles/colors';
+@import 'src/styles/sizes';
+
+.app {
+
+}
+
+.mainContent,
+.routerContent {
+  height: calc(100% - #{$header-height});
+  width: 100%;
+  background: $background-color;
+}
+
+.routerContent {
+  margin-top: calc(#{$header-height} - 5px);
+}
+
+.contentRight {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
