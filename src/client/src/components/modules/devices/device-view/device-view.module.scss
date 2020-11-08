@@ -1,0 +1,29 @@
+@import 'src/styles/colors';
+
+.powerOn {
+  svg {
+    color: $power-on-color;
+  }
+}
+
+.powerOff {
+  svg {
+    color: $power-off-color;
+  }
+}
+
+.powerCard {
+  margin-left: 20px;
+  min-width: 300px;
+
+  h1 {
+    cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  small {
+    padding-left: 5px;
+    text-transform: uppercase;
+  }
+}

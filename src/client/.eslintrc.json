@@ -65,6 +65,7 @@
         "react/jsx-indent-props": "off",
         "operator-linebreak": "off",
         "implicit-arrow-linebreak": "off",
-        "function-paren-newline": "off"
+        "function-paren-newline": "off",
+        "import/named": "off"
     }
 }

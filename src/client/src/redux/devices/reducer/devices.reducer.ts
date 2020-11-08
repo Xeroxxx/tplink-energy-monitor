@@ -1,5 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
-import { DeviceAction, DeviceActionNames, DeviceState } from '../devices-state.type';
+import { DevicesAction, DevicesActionNames, DeviceState } from '../devices-state.type';
 import { TPLinkPlug } from '../../../models/devices/tp-link-plug.dto';
 
 export const initialDeviceState: DeviceState = {
@@ -8,24 +8,24 @@ export const initialDeviceState: DeviceState = {
 };
 
 const deviceReducer: Reducer<DeviceState> = (state: DeviceState = initialDeviceState, appAction: AnyAction) => {
-    const action = appAction as DeviceAction<unknown>;
+    const action = appAction as DevicesAction<unknown>;
 
     switch (action.type) {
-        case DeviceActionNames.DEVICES_LOADING:
+        case DevicesActionNames.DEVICES_LOADING:
             return {
                 ...state,
                 status: 'LOADING',
             };
-        case DeviceActionNames.DEVICES_ERROR:
+        case DevicesActionNames.DEVICES_ERROR:
             return {
                 ...state,
                 status: 'ERROR',
             };
-        case DeviceActionNames.DEVICES_GET_ALL_OK:
+        case DevicesActionNames.DEVICES_GET_ALL_OK:
             return {
                 ...state,
                 status: 'OK',
-                devices: (action as DeviceAction<TPLinkPlug[]>).payload,
+                devices: (action as DevicesAction<TPLinkPlug[]>).payload,
             };
         default:
             return state;

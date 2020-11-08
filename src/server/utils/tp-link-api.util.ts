@@ -6,7 +6,7 @@ type DeviceDiscoveryCallback = (device: AnyDevice) => void;
 
 export const getAllDevices = (discoveryCallback: DeviceDiscoveryCallback): void => {
     const client = new Client();
-
+    console.log('yay');
     client.startDiscovery().on('device-new', discoveryCallback);
 };
 

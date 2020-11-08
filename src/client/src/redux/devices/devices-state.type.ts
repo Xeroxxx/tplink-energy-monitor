@@ -8,13 +8,13 @@ export type DeviceState = {
     errorStatus?: number;
 };
 
-export enum DeviceActionNames {
+export enum DevicesActionNames {
     DEVICES_LOADING = 'DEVICES_LOADING',
     DEVICES_GET_ALL_OK = 'DEVICES_GET_ALL_OK',
     DEVICES_ERROR = 'DEVICES_ERROR',
 }
 
-export type DeviceAction<T> = {
-    type: DeviceActionNames;
+export type DevicesAction<T> = {
+    type: DevicesActionNames;
     payload: T;
 };
