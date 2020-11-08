@@ -8,8 +8,8 @@ import { Card } from '../../../common/card/card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
-import { LoadingSpinner } from '../../../common/loading-spinner/loading-spinner';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
+import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -36,33 +36,30 @@ export const DeviceView: React.FC = () => {
             dispatch(getDeviceInfo(id));
         }
     }, [deviceState, id]);
+    const pollCallback = () => {
+        dispatch(getDeviceInfo(id));
+    };
+    useRecursiveTimeout(pollCallback, 3000);
 
     return (
-        <div>
-            {deviceState.status === 'PENDING' || (deviceState.status === 'LOADING' && <LoadingSpinner />)}
-            {deviceState.status === 'OK' && (
-                <div className="flex-col">
-                    <h1 className="flex-center">{currentDevice?.alias}</h1>
-                    <div className="flex-row">
-                        <Card className={styles.powerCard}>
-                            <div className="flex-col">
-                                <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>
-                                    <FontAwesomeIcon icon={faPowerOff} />
-                                </h1>
-                                <small>{deviceState.device?.isActive ? 'on' : 'off'}</small>
-                            </div>
-                        </Card>
-                        <Card className={styles.powerCard}>
-                            <div className="flex-col">
-                                <h1>
-                                    {deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}
-                                </h1>
-                                <small className="flex-center">uptime</small>
-                            </div>
-                        </Card>
+        <div className="flex-col">
+            <h1 className="flex-center">{currentDevice?.alias}</h1>
+            <div className="flex-row">
+                <Card className={styles.powerCard}>
+                    <div className="flex-col">
+                        <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>
+                            <FontAwesomeIcon icon={faPowerOff} />
+                        </h1>
+                        <small>{deviceState.device?.isActive ? 'on' : 'off'}</small>
                     </div>
-                </div>
-            )}
+                </Card>
+                <Card className={styles.powerCard}>
+                    <div className="flex-col">
+                        <h1>{deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}</h1>
+                        <small className="flex-center">uptime</small>
+                    </div>
+                </Card>
+            </div>
         </div>
     );
 };
