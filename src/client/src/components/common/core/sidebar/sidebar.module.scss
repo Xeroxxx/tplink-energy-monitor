@@ -2,7 +2,7 @@
 @import 'src/styles/sizes';
 
 .sidebar {
-  height: 100%;
+  height: calc(100% + 4px);;
   max-width: 220px;
   background: $sidebar-brown;
   color: $default-text-color;
