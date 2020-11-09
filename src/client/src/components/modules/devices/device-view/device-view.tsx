@@ -49,7 +49,7 @@ export const DeviceView: React.FC = () => {
     return (
         <div className="flex-col">
             <h1 className="flex-center">{currentDevice?.alias}</h1>
-            <div className="flex-row">
+            <div className="flex-row flex-wrap">
                 <Card className={styles.powerCard}>
                     <div className="flex-col">
                         <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>

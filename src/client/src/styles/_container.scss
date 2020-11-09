@@ -11,6 +11,10 @@
   flex-direction: row;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-center {
   @extend .flex;
   justify-content: center;
