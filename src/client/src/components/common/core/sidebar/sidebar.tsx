@@ -63,7 +63,6 @@ export const Sidebar: React.FC = () => {
                 <small className={styles.subtitle}>Energy Monitor</small>
             </div>
             <div className={styles.mainNavigation}>
-                <div className={styles.sidebarHeader}>Main</div>
                 <NavBar className={styles.navbar} items={items} />
             </div>
             {deviceItems && (
