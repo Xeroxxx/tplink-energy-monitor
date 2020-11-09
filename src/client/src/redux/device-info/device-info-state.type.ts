@@ -3,6 +3,7 @@ import { TpLinkPlugInfoDto } from '../../models/devices/tp-link-plug-info.dto';
 
 export type DeviceInfoState = {
     status: StateStatus;
+    syncActive: boolean;
     device?: TpLinkPlugInfoDto;
     errorMessage?: string;
     errorStatus?: number;
@@ -10,6 +11,7 @@ export type DeviceInfoState = {
 
 export enum DeviceActionNames {
     DEVICE_LOADING = 'DEVICE_LOADING',
+    DEVICE_SYNC_STATUS_OK = 'DEVICE_SYNC_STATUS_OK',
     DEVICE_GET_OK = 'DEVICE_GET_OK',
     DEVICE_ERROR = 'DEVICE_ERROR',
 }

@@ -66,6 +66,8 @@
         "operator-linebreak": "off",
         "implicit-arrow-linebreak": "off",
         "function-paren-newline": "off",
-        "import/named": "off"
+        "import/named": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off"
     }
 }

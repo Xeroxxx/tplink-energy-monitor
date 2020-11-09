@@ -39,7 +39,9 @@ export const DeviceView: React.FC = () => {
     }, [deviceState, id]);
 
     const pollCallback = () => {
-        dispatch(getDeviceInfo(id));
+        if (deviceState.syncActive) {
+            dispatch(getDeviceInfo(id));
+        }
     };
 
     useRecursiveTimeout(pollCallback, 3000);

@@ -4,6 +4,7 @@ import { TpLinkPlugInfoDto } from '../../../models/devices/tp-link-plug-info.dto
 
 export const initialDeviceInfoState: DeviceInfoState = {
     status: 'PENDING',
+    syncActive: true,
 };
 
 const deviceInfoReducer: Reducer<DeviceInfoState> = (
@@ -28,6 +29,11 @@ const deviceInfoReducer: Reducer<DeviceInfoState> = (
                 ...state,
                 status: 'OK',
                 device: (action as DeviceAction<TpLinkPlugInfoDto>).payload,
+            };
+        case DeviceActionNames.DEVICE_SYNC_STATUS_OK:
+            return {
+                ...state,
+                syncActive: (action as DeviceAction<boolean>).payload,
             };
         default:
             return state;
