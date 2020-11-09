@@ -10,6 +10,7 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
+import { getThisMonthPowerUsage, getTodaysPowerUsage } from '../../../../utils/power-utils/power.utils';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -36,9 +37,11 @@ export const DeviceView: React.FC = () => {
             dispatch(getDeviceInfo(id));
         }
     }, [deviceState, id]);
+
     const pollCallback = () => {
         dispatch(getDeviceInfo(id));
     };
+
     useRecursiveTimeout(pollCallback, 3000);
 
     return (
@@ -57,6 +60,24 @@ export const DeviceView: React.FC = () => {
                     <div className="flex-col">
                         <h1>{deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}</h1>
                         <small className="flex-center">uptime</small>
+                    </div>
+                </Card>
+                <Card className={styles.powerCard}>
+                    <div className="flex-col">
+                        <h1>
+                            {deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'}
+                        </h1>
+                        <small className="flex-center">Total today</small>
+                    </div>
+                </Card>
+                <Card className={styles.powerCard}>
+                    <div className="flex-col">
+                        <h1>
+                            {deviceState.device?.dailyUsage
+                                ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
+                                : '-'}
+                        </h1>
+                        <small className="flex-center">Total this month</small>
                     </div>
                 </Card>
             </div>
