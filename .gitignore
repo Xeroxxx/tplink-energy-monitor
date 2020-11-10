@@ -182,3 +182,12 @@ dist/
 /build/
 /.idea/
 /src/client/.idea/
+/src/client/.idea/codeStyles/
+/src/client/.idea/inspectionProfiles/
+/src/client/.idea/jsLinters/
+/src/client/.idea/.gitignore
+/src/client/.idea/client.iml
+/src/client/.idea/misc.xml
+/src/client/.idea/modules.xml
+/src/client/.idea/vcs.xml
+/src/client/.idea/workspace.xml
