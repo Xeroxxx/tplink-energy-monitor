@@ -13,6 +13,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "types": [
       "node"
     ],
@@ -25,6 +26,7 @@
   ],
   "exclude": [
     "./src/**/*.test.ts",
-    "./src/client/"
+    "./src/client/",
+    "node_modules"
   ]
 }

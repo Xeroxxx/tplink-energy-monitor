@@ -1,5 +1,7 @@
 # Dockerfiles
 Dockerfile*
+node_modules
+src/client/node_modules
 
 # Travis & Git
 .travis.yml

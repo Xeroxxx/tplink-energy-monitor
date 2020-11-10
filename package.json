@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd src/client && npm install",
     "start": "NODE_ENV=production node start.js",
     "start:dev": "nodemon --config \"./util/nodemon.json\"/",
     "start:ui": "cd src/client && npm start",
