@@ -11,6 +11,7 @@ import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 import { getThisMonthPowerUsage, getTodaysPowerUsage } from '../../../../utils/power-utils/power.utils';
+import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -53,7 +54,14 @@ export const DeviceView: React.FC = () => {
                 <Card className={styles.powerCard}>
                     <div className="flex-col">
                         <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>
-                            <FontAwesomeIcon icon={faPowerOff} />
+                            <FontAwesomeIcon
+                                icon={faPowerOff}
+                                onClick={() =>
+                                    dispatch(
+                                        toggleDevicePowerState(deviceState.device!.id, !deviceState.device!.isActive),
+                                    )
+                                }
+                            />
                         </h1>
                         <small>{deviceState.device?.isActive ? 'on' : 'off'}</small>
                     </div>

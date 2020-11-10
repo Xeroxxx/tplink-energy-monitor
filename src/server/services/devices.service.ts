@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { getAllDevices, getDailyDeviceUsage } from '../utils/tp-link-api.util';
+import { getAllDevices, getDailyDeviceUsage, setPowerState } from '../utils/tp-link-api.util';
 import { Plug } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
 import { TpLinkDeviceTypes } from '../types/devices/device-type.enum';
@@ -7,7 +7,7 @@ import { Logger } from '@overnightjs/logger';
 import { FullTPLinkPlug, TPLinkPlug } from '../models/devices/tp-link-plug.dto';
 import { mapFullTPLinkPlugToTPLinkPlug, mapToFullTPLinkPlug } from '../models/mapper/map-to-tp-link-plug.mapper';
 import { mapSysinfoToTPLinkPlugInfo } from '../models/mapper/map-sysinfo-to-tp-link-plug-info.mapper';
-import { DeviceEnergyOverview, TpLinkPlugInfoDto } from '../models/devices/tp-link-plug-info.dto';
+import { ChangePowerStateDto, DeviceEnergyOverview, TpLinkPlugInfoDto } from '../models/devices/tp-link-plug-info.dto';
 
 @Service()
 export default class DevicesService {
@@ -35,6 +35,19 @@ export default class DevicesService {
         return plug.getInfo().then((info) => {
             return mapSysinfoToTPLinkPlugInfo(info, Boolean(info.sysInfo.relay_state), tpDevice.id, dailyUsage);
         });
+    }
+
+    public async setPowerState(id: string, changePowerStateDto: ChangePowerStateDto): Promise<void> {
+        if (id !== changePowerStateDto.id) {
+            throw new Error('Invalid id');
+        }
+        const tpDevice = this.devices.find((device) => device.id === id);
+
+        if (!tpDevice) {
+            throw new Error('Invalid Id');
+        }
+
+        await setPowerState(tpDevice, changePowerStateDto.powerState);
     }
 
     private async AddToDevices(device: AnyDevice): Promise<void> {

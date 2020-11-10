@@ -23,3 +23,8 @@ export type TpLinkPlugInfoDto = {
     uptime: number;
     dailyUsage: DeviceEnergyOverview;
 };
+
+export type ChangePowerStateDto = {
+    id: string;
+    powerState: boolean;
+};

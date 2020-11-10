@@ -1,0 +1,34 @@
+import { ThunkAction } from 'redux-thunk';
+import { ApplicationState } from '../../store';
+import { Action } from 'redux';
+import { deviceLoading } from './loading.action';
+import { deviceErrorAction } from './error.action';
+import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
+import { ChangePowerStateDto } from '../../../models/devices/tp-link-plug-info.dto';
+import { put } from '../../../utils/http.utils';
+
+export const toggleDevicePowerState = (
+    id: string,
+    newPowerState: boolean,
+): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
+    try {
+        dispatch(deviceLoading());
+        const devices = await setPowerState(id, newPowerState);
+        dispatch(devices);
+    } catch (error) {
+        dispatch(deviceErrorAction(error));
+    }
+};
+
+const setPowerState = async (id: string, newPowerState: boolean): Promise<DeviceAction<undefined>> => {
+    const powerStateChangeDto = {
+        id,
+        powerState: newPowerState,
+    };
+
+    await put<ChangePowerStateDto>(`/api/device/${id}/power-state`, powerStateChangeDto);
+
+    return {
+        type: DeviceActionNames.DEVICE_SET_POWER_STATE_OK,
+    } as DeviceAction<undefined>;
+};

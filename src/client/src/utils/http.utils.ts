@@ -20,3 +20,23 @@ export const get = async <T>(url: string, customHeaders: CustomHeader = {}): Pro
 
     return response.json();
 };
+
+export const put = async <T, R = T>(url: string, data: T, customHeaders: CustomHeader = {}): Promise<R> => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            ...customHeaders,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+        throw new HttpFetchError(response.statusText, response.status);
+    }
+
+    return response.json();
+};
