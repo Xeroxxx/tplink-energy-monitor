@@ -8,3 +8,21 @@
   padding: 40px 20px;
   background: $card-background;
 }
+
+
+.powerCard {
+  margin-left: 20px;
+  min-width: 300px;
+
+  h1 {
+    cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 5px;
+    align-self: center;
+  }
+
+  small {
+    padding-left: 5px;
+    text-transform: uppercase;
+  }
+}

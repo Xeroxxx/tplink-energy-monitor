@@ -28,7 +28,7 @@ export const Dashboard: React.FC = () => {
                 <h2>Dashboard</h2>
             </div>
             <div className={styles.infoBar}>
-                <Card className={styles.deviceCount}>
+                <Card type="power-card" className={styles.deviceCount}>
                     <div className={`${styles.deviceCountContent} flex-col`}>
                         <h1 className="flex-center">{deviceCount}</h1>
                         <small>Device count</small>

@@ -3,17 +3,14 @@ import { useHistory, useParams } from 'react-router-dom';
 import { ApplicationState } from '../../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDeviceInfo } from '../../../../redux/device-info/actions/get-device-info.action';
-import styles from './device-view.module.scss';
-import { Card } from '../../../common/layout/card/card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 import { getThisMonthPowerUsage, getTodaysPowerUsage } from '../../../../utils/power-utils/power.utils';
-import { ModalView } from '../../../common/layout/modal/modal';
-import { Button } from '../../../common/controls/button/button';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
+import { DeviceToggle } from './components/device-toggle/device-toggle';
+import { TextCard } from '../../../common/layout/card/text-card/text-card';
+import { PowerOffModal } from './components/power-off-modal/power-off-modal';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -68,63 +65,33 @@ export const DeviceView: React.FC = () => {
         <div className="flex-col">
             <h1 className="flex-center">{currentDevice?.alias}</h1>
             <div className="flex-row flex-wrap">
-                <Card className={styles.powerCard}>
-                    <div className="flex-col">
-                        <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>
-                            <FontAwesomeIcon icon={faPowerOff} onClick={handlePowerToggleClicked} />
-                        </h1>
-                        <small>{deviceState.device?.isActive ? 'on' : 'off'}</small>
-                    </div>
-                </Card>
-                <Card className={styles.powerCard}>
-                    <div className="flex-col">
-                        <h1>{deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}</h1>
-                        <small className="flex-center">uptime</small>
-                    </div>
-                </Card>
-                <Card className={styles.powerCard}>
-                    <div className="flex-col">
-                        <h1>
-                            {deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'}
-                        </h1>
-                        <small className="flex-center">Total today</small>
-                    </div>
-                </Card>
-                <Card className={styles.powerCard}>
-                    <div className="flex-col">
-                        <h1>
-                            {deviceState.device?.dailyUsage
-                                ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
-                                : '-'}
-                        </h1>
-                        <small className="flex-center">Total this month</small>
-                    </div>
-                </Card>
+                <DeviceToggle
+                    isActive={deviceState.device?.isActive!}
+                    handlePowerToggleClicked={handlePowerToggleClicked}
+                />
+                <TextCard
+                    headline={deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}
+                    subtitle="uptime"
+                />
+                <TextCard
+                    headline={
+                        deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'
+                    }
+                    subtitle="Total today"
+                />
+                <TextCard
+                    headline={
+                        deviceState.device?.dailyUsage ? getThisMonthPowerUsage(deviceState.device?.dailyUsage) : '-'
+                    }
+                    subtitle="Total this month"
+                />
             </div>
-            <ModalView show={powerToggleClicked}>
-                <div className={`${styles.powerOffHeadline} flex-col`}>
-                    <h2>Power off</h2>
-                    <div className={styles.powerOffText}>
-                        Are you sure that you want to power off &apos;{currentDevice?.alias}&apos; ?
-                    </div>
-                    <div className="flex-end">
-                        <div className={styles.powerOffAcceptButton}>
-                            <Button
-                                buttonStyle="primary"
-                                buttonLabel="Accept"
-                                type="button"
-                                onClick={handlePowerToggleModalAccept}
-                            />
-                        </div>
-                        <Button
-                            buttonStyle="secondary"
-                            buttonLabel="Decline"
-                            type="button"
-                            onClick={() => setPowerToggleClicked(false)}
-                        />
-                    </div>
-                </div>
-            </ModalView>
+            <PowerOffModal
+                powerToggleClicked={powerToggleClicked}
+                deviceAlias={currentDevice?.alias!}
+                handlePowerToggleModalAccept={handlePowerToggleModalAccept}
+                handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
+            />
         </div>
     );
 };
