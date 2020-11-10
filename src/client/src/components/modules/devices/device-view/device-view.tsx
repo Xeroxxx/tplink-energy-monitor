@@ -4,13 +4,15 @@ import { ApplicationState } from '../../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDeviceInfo } from '../../../../redux/device-info/actions/get-device-info.action';
 import styles from './device-view.module.scss';
-import { Card } from '../../../common/card/card';
+import { Card } from '../../../common/layout/card/card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 import { getThisMonthPowerUsage, getTodaysPowerUsage } from '../../../../utils/power-utils/power.utils';
+import { ModalView } from '../../../common/layout/modal/modal';
+import { Button } from '../../../common/controls/button/button';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 
 type DeviceViewRouteParams = {
@@ -22,6 +24,7 @@ export const DeviceView: React.FC = () => {
     const deviceState = useSelector((appState: ApplicationState) => appState.deviceInfo);
     const devicesState = useSelector((appState: ApplicationState) => appState.devices);
     const [currentDevice, setCurrentDevice] = React.useState<TPLinkPlug>();
+    const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -43,11 +46,20 @@ export const DeviceView: React.FC = () => {
         if (deviceState.syncActive) {
             dispatch(getDeviceInfo(id));
         }
-    }, [id]);
+    }, [id, deviceState.syncActive]);
 
     const handlePowerToggleClicked = () => {
+        if (deviceState.device?.isActive) {
+            setPowerToggleClicked(true);
+        } else {
+            handlePowerToggleModalAccept();
+        }
+    };
+
+    const handlePowerToggleModalAccept = () => {
         dispatch(toggleDevicePowerState(deviceState.device!.id, !deviceState.device!.isActive));
         dispatch(getDeviceInfo(id));
+        setPowerToggleClicked(false);
     };
 
     useRecursiveTimeout(pollCallback, 3000);
@@ -89,6 +101,30 @@ export const DeviceView: React.FC = () => {
                     </div>
                 </Card>
             </div>
+            <ModalView show={powerToggleClicked}>
+                <div className={`${styles.powerOffHeadline} flex-col`}>
+                    <h2>Power off</h2>
+                    <div className={styles.powerOffText}>
+                        Are you sure that you want to power off &apos;{currentDevice?.alias}&apos; ?
+                    </div>
+                    <div className="flex-end">
+                        <div className={styles.powerOffAcceptButton}>
+                            <Button
+                                buttonStyle="primary"
+                                buttonLabel="Accept"
+                                type="button"
+                                onClick={handlePowerToggleModalAccept}
+                            />
+                        </div>
+                        <Button
+                            buttonStyle="secondary"
+                            buttonLabel="Decline"
+                            type="button"
+                            onClick={() => setPowerToggleClicked(false)}
+                        />
+                    </div>
+                </div>
+            </ModalView>
         </div>
     );
 };

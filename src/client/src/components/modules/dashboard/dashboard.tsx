@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../../../redux/store';
 import { getAllDevices } from '../../../redux/devices/actions/get-devices.action';
-import { Card } from '../../common/card/card';
+import { Card } from '../../common/layout/card/card';
 import styles from './dashboard.module.scss';
 
 export const Dashboard: React.FC = () => {
