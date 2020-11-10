@@ -39,10 +39,15 @@ export const DeviceView: React.FC = () => {
         }
     }, [deviceState, id]);
 
-    const pollCallback = () => {
+    const pollCallback = React.useCallback(() => {
         if (deviceState.syncActive) {
             dispatch(getDeviceInfo(id));
         }
+    }, [id]);
+
+    const handlePowerToggleClicked = () => {
+        dispatch(toggleDevicePowerState(deviceState.device!.id, !deviceState.device!.isActive));
+        dispatch(getDeviceInfo(id));
     };
 
     useRecursiveTimeout(pollCallback, 3000);
@@ -54,14 +59,7 @@ export const DeviceView: React.FC = () => {
                 <Card className={styles.powerCard}>
                     <div className="flex-col">
                         <h1 className={deviceState.device?.isActive ? styles.powerOn : styles.powerOff}>
-                            <FontAwesomeIcon
-                                icon={faPowerOff}
-                                onClick={() =>
-                                    dispatch(
-                                        toggleDevicePowerState(deviceState.device!.id, !deviceState.device!.isActive),
-                                    )
-                                }
-                            />
+                            <FontAwesomeIcon icon={faPowerOff} onClick={handlePowerToggleClicked} />
                         </h1>
                         <small>{deviceState.device?.isActive ? 'on' : 'off'}</small>
                     </div>
