@@ -4,7 +4,7 @@ import { Button } from '../../../../../common/controls/button/button';
 import { ModalView } from '../../../../../common/layout/modal/modal';
 
 type PowerOffModalProps = {
-    powerToggleClicked: boolean;
+    showModal: boolean;
     deviceAlias: string;
     handlePowerToggleModalAccept: () => void;
     handlePowerToggleModalDeclineClicked: () => void;
@@ -12,7 +12,7 @@ type PowerOffModalProps = {
 
 export const PowerOffModal: React.FC<PowerOffModalProps> = (props: PowerOffModalProps) => {
     return (
-        <ModalView show={props.powerToggleClicked}>
+        <ModalView show={props.showModal}>
             <div className={`${styles.powerOffHeadline} flex-col`}>
                 <h2>Power off</h2>
                 <div className={styles.powerOffText}>

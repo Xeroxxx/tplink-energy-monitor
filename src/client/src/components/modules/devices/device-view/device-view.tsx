@@ -87,7 +87,7 @@ export const DeviceView: React.FC = () => {
                 />
             </div>
             <PowerOffModal
-                powerToggleClicked={powerToggleClicked}
+                showModal={powerToggleClicked}
                 deviceAlias={currentDevice?.alias!}
                 handlePowerToggleModalAccept={handlePowerToggleModalAccept}
                 handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
