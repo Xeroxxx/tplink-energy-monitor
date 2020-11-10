@@ -14,7 +14,7 @@ RUN cp -R node_modules prod_node_modules
 RUN npm install
 RUN npm install typescript -g
 COPY tsconfig.json .
-COPY src/ /opt/tplink-monitor/src/
+COPY ./src/ /opt/tplink-monitor/src/
 RUN tsc
 RUN cd /opt/tplink-monitor/src/client/ && npm run build
 RUN mv /opt/tplink-monitor/src/client/build/ /opt/tplink-monitor/build/client/
