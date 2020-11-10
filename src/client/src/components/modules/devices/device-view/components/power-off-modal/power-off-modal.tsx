@@ -31,7 +31,7 @@ export const PowerOffModal: React.FC<PowerOffModalProps> = (props: PowerOffModal
                         buttonStyle="secondary"
                         buttonLabel="Decline"
                         type="button"
-                        onClick={() => props.handlePowerToggleModalDeclineClicked}
+                        onClick={props.handlePowerToggleModalDeclineClicked}
                     />
                 </div>
             </div>
