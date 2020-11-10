@@ -8,6 +8,7 @@ COPY package.json .
 # --- Dependency image ---
 # install node prod modules etc.
 FROM base AS dependencies
+WORKDIR /opt/tplink-monitor
 RUN npm set progress=false && npm config set depth 0
 RUN npm install --only=production
 RUN cp -R node_modules prod_node_modules
