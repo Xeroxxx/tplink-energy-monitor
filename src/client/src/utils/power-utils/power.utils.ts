@@ -8,13 +8,13 @@ export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string => {
         (value) => value.month === currentMonth && value.year === now.getFullYear() && value.day === now.getDate(),
     );
 
-    return `${todaysUsage ? wattHoursTokiloWattHours(todaysUsage.energyWh) : '-'} kWh`;
+    return `${todaysUsage ? transformMilliValueToFixed(todaysUsage.energyWh) : '-'} kWh`;
 };
 
 export const getThisMonthPowerUsage = (energy: DeviceEnergyOverview): string => {
     const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
 
-    return `${usageThisMonth ? wattHoursTokiloWattHours(usageThisMonth) : '-'} kWh`;
+    return `${usageThisMonth ? transformMilliValueToFixed(usageThisMonth) : '-'} kWh`;
 };
 
-export const wattHoursTokiloWattHours = (watthours: number) => (watthours / 1000).toFixed(2);
+export const transformMilliValueToFixed = (watthours: number) => (watthours / 1000).toFixed(2);

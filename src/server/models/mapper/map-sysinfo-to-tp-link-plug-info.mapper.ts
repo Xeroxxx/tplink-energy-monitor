@@ -1,4 +1,4 @@
-import { DeviceEnergyOverview, TpLinkPlugInfoDto } from '../devices/tp-link-plug-info.dto';
+import { DeviceEnergyOverview, DeviceRealtimeData, TpLinkPlugInfoDto } from '../devices/tp-link-plug-info.dto';
 
 type PlugInfo = {
     sysInfo: Record<string, unknown>;
@@ -18,6 +18,7 @@ export const mapSysinfoToTPLinkPlugInfo = (
     isActive: boolean,
     id: string,
     dailyUsage: DeviceEnergyOverview,
+    realTime: DeviceRealtimeData,
 ): TpLinkPlugInfoDto => ({
     id,
     powerOverview: {
@@ -34,4 +35,5 @@ export const mapSysinfoToTPLinkPlugInfo = (
     isActive,
     uptime: sysInfo.sysInfo.on_time as number,
     dailyUsage,
+    realTime,
 });

@@ -1,0 +1,34 @@
+.gauge {
+  position: relative;
+}
+
+.decorationString {
+  font-weight: bold;
+  position: absolute;
+  font-size: 1.3em;
+}
+
+.leftString {
+  @extend .decorationString;
+  top: 120px;
+  left: -5px;
+}
+
+.rightString {
+  @extend .decorationString;
+  top: 120px;
+  left: 245px;
+}
+
+.topString {
+  @extend .decorationString;
+  top: -25px;
+  left: 120px;
+}
+
+.label {
+  position: absolute;
+  top: 150px;
+  left: 90px;
+  text-transform: uppercase;
+}

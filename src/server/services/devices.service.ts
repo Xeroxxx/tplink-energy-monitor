@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { getAllDevices, getDailyDeviceUsage, setPowerState } from '../utils/tp-link-api.util';
+import { getAllDevices, getDailyDeviceUsage, getRealtimeData, setPowerState } from '../utils/tp-link-api.util';
 import { Plug } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
 import { TpLinkDeviceTypes } from '../types/devices/device-type.enum';
@@ -31,9 +31,15 @@ export default class DevicesService {
 
         const plug: Plug = tpDevice.deviceHandle;
         const dailyUsage: DeviceEnergyOverview = await getDailyDeviceUsage(tpDevice);
-
+        const realtimeData = await getRealtimeData(tpDevice);
         return plug.getInfo().then((info) => {
-            return mapSysinfoToTPLinkPlugInfo(info, Boolean(info.sysInfo.relay_state), tpDevice.id, dailyUsage);
+            return mapSysinfoToTPLinkPlugInfo(
+                info,
+                Boolean(info.sysInfo.relay_state),
+                tpDevice.id,
+                dailyUsage,
+                realtimeData,
+            );
         });
     }
 

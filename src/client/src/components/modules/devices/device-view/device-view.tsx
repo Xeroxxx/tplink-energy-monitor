@@ -6,11 +6,17 @@ import { getDeviceInfo } from '../../../../redux/device-info/actions/get-device-
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
-import { getThisMonthPowerUsage, getTodaysPowerUsage } from '../../../../utils/power-utils/power.utils';
+import {
+    getThisMonthPowerUsage,
+    getTodaysPowerUsage,
+    transformMilliValueToFixed,
+} from '../../../../utils/power-utils/power.utils';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
 import { TextCard } from '../../../common/layout/card/text-card/text-card';
 import { PowerOffModal } from './components/power-off-modal/power-off-modal';
+import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
+import styles from './device-view.module.scss';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -65,6 +71,16 @@ export const DeviceView: React.FC = () => {
         <div className="flex-col">
             <h1 className="flex-center">{currentDevice?.alias}</h1>
             <div className="flex-row flex-wrap">
+                <div className={styles.realtime}>
+                    <GaugeCard
+                        id="power-gauge"
+                        percent={deviceState.device?.power! / 3000}
+                        leftString={`${transformMilliValueToFixed(deviceState.device?.realTime.currentMa!)} A`}
+                        topString={`${deviceState.device?.realTime.power!.toFixed(0)} W`}
+                        rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
+                        label="Realtime Usage"
+                    />
+                </div>
                 <DeviceToggle
                     isActive={deviceState.device?.isActive!}
                     handlePowerToggleClicked={handlePowerToggleClicked}
