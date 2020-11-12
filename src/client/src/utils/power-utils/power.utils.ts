@@ -18,3 +18,15 @@ export const getThisMonthPowerUsage = (energy: DeviceEnergyOverview): string => 
 };
 
 export const transformMilliValueToFixed = (watthours: number) => (watthours / 1000).toFixed(2);
+
+export const transformRealtimePower = (watt: number): string => {
+    if (!watt) {
+        return '';
+    }
+
+    if (watt > 1000) {
+        return `${(watt / 1000).toFixed(0)} kW`;
+    }
+
+    return `${watt.toFixed(0)} W`;
+};

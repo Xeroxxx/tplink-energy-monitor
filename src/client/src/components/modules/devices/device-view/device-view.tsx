@@ -10,6 +10,7 @@ import {
     getThisMonthPowerUsage,
     getTodaysPowerUsage,
     transformMilliValueToFixed,
+    transformRealtimePower,
 } from '../../../../utils/power-utils/power.utils';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
@@ -76,7 +77,7 @@ export const DeviceView: React.FC = () => {
                         id="power-gauge"
                         percent={deviceState.device?.power! / 3000}
                         leftString={`${transformMilliValueToFixed(deviceState.device?.realTime.currentMa!)} A`}
-                        topString={`${deviceState.device?.realTime.power!.toFixed(0)} W`}
+                        topString={transformRealtimePower(deviceState.device?.realTime.power!)}
                         rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
                         label="Realtime Usage"
                     />
