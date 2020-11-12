@@ -25,7 +25,7 @@ export const GaugeComponent: React.FC<GaugeComponentProps> = (props: GaugeCompon
             />
             {props.topString && <span className={styles.topString}>{props.topString}</span>}
             {props.rightString && <span className={styles.rightString}>{props.rightString}</span>}
-            {props.label && <span className={styles.label}>{props.label}</span>}
+            {props.label && <small className={styles.label}>{props.label}</small>}
         </div>
     );
 };
