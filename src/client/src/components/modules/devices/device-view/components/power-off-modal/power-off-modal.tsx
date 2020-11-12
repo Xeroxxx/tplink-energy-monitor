@@ -21,14 +21,14 @@ export const PowerOffModal: React.FC<PowerOffModalProps> = (props: PowerOffModal
                 <div className="flex-end">
                     <div className={styles.powerOffAcceptButton}>
                         <Button
-                            buttonStyle="primary"
+                            buttonStyle="secondary"
                             buttonLabel="Accept"
                             type="button"
                             onClick={props.handlePowerToggleModalAccept}
                         />
                     </div>
                     <Button
-                        buttonStyle="secondary"
+                        buttonStyle="primary"
                         buttonLabel="Decline"
                         type="button"
                         onClick={props.handlePowerToggleModalDeclineClicked}
