@@ -14,13 +14,13 @@ LICENSE changed to MIT License as no code of the previous project is reused.
 - [x] Docker image x86_64 (Done)
 - [x] Support switching between multiple plugs (Done)
 - [x] Toggle on/off state (Done)
-- [x] Rescan for devices on the fly
+- [x] Rescan for devices on the fly (Done)
 - [x] Rewrite Frontend and switch to ReactJS
 - [ ] Rewrite Backend
 - [ ] Show cumulative energy usage (day/month/year) on device
 - [ ] Show historical data
 - [ ] Show cumulative energy usage form all devices
-- [ ] Rescan for devices on the fly (Restart Container for now)
+- [ ] Device Grouping (e.g. Living Room, Kitchen, ...)
 - [ ] Add daily cost metrics
 - [ ] Configurable realtime usage logging
 
