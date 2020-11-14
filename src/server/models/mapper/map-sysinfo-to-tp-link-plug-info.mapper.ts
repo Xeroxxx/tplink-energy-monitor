@@ -19,6 +19,7 @@ export const mapSysinfoToTPLinkPlugInfo = (
     id: string,
     dailyUsage: DeviceEnergyOverview,
     realTime: DeviceRealtimeData,
+    last30Days: DeviceEnergyOverview,
 ): TpLinkPlugInfoDto => ({
     id,
     powerOverview: {
@@ -36,4 +37,5 @@ export const mapSysinfoToTPLinkPlugInfo = (
     uptime: sysInfo.sysInfo.on_time as number,
     dailyUsage,
     realTime,
+    last30Days,
 });

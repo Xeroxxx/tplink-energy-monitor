@@ -37,6 +37,7 @@ export type TpLinkPlugInfoDto = {
     uptime: number;
     dailyUsage: DeviceEnergyOverview;
     realTime: DeviceRealtimeData;
+    last30Days: DeviceEnergyOverview;
 };
 
 export type ChangePowerStateDto = {

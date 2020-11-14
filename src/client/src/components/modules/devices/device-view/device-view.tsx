@@ -9,6 +9,7 @@ import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.
 import {
     getThisMonthPowerUsage,
     getTodaysPowerUsage,
+    getTotalLast30Days,
     transformMilliValueToFixed,
     transformRealtimePower,
 } from '../../../../utils/power-utils/power.utils';
@@ -20,6 +21,12 @@ import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 import styles from './device-view.module.scss';
 import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
 import { DeviceViewFooter } from './components/footer/device-view-footer';
+import { BarChart } from '../../../common/layout/bar-chart/bar-chart';
+// eslint-disable-next-line max-len
+import {
+    mapDeviceEnergyOverviewToCharLabels,
+    mapDeviceEnergyOverviewToChartData,
+} from '../../../../models/mapper/map-device-energy-overview-to-chart-data.mapper';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -72,62 +79,82 @@ export const DeviceView: React.FC = () => {
 
     return (
         <>
-            <div className="flex-col">
-                <h1 className="flex-center">{currentDevice?.alias}</h1>
-                <div className="flex-row flex-wrap">
-                    <div className={styles.realtime}>
-                        <GaugeCard
-                            id="power-gauge"
-                            percent={deviceState.device?.power! / 3000}
-                            leftString={`${transformMilliValueToFixed(deviceState.device?.realTime.currentMa!)} A`}
-                            topString={transformRealtimePower(deviceState.device?.realTime.power!)}
-                            rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
-                            label="Realtime Usage"
-                        />
-                        <TimeLineChart
-                            currentValue={deviceState.device?.realTime.power || 0}
-                            syncActive={deviceState.syncActive}
-                            height={200}
-                            width={665}
+            {deviceState.status !== 'PENDING' && (
+                <>
+                    <div className="flex-col">
+                        <h1 className="flex-center">{currentDevice?.alias}</h1>
+                        <div className="flex-row flex-wrap">
+                            <div className={styles.realtime}>
+                                <GaugeCard
+                                    id="power-gauge"
+                                    percent={deviceState.device?.power! / 3000}
+                                    leftString={`${transformMilliValueToFixed(
+                                        deviceState.device?.realTime.currentMa!,
+                                    )} A`}
+                                    topString={transformRealtimePower(deviceState.device?.realTime.power!)}
+                                    rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
+                                    label="Realtime Usage"
+                                />
+                                <TimeLineChart
+                                    currentValue={deviceState.device?.realTime.power || 0}
+                                    syncActive={deviceState.syncActive}
+                                    height={200}
+                                    width={665}
+                                />
+                            </div>
+                            <DeviceToggle
+                                isActive={deviceState.device?.isActive!}
+                                handlePowerToggleClicked={handlePowerToggleClicked}
+                            />
+                            <TextCard
+                                headline={
+                                    deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'
+                                }
+                                subtitle="uptime"
+                            />
+                            <TextCard
+                                headline={
+                                    deviceState.device?.dailyUsage
+                                        ? getTodaysPowerUsage(deviceState.device?.dailyUsage)
+                                        : '-'
+                                }
+                                subtitle="Total today"
+                            />
+                            <TextCard
+                                headline={
+                                    deviceState.device?.dailyUsage
+                                        ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
+                                        : '-'
+                                }
+                                subtitle="Total this month"
+                            />
+                        </div>
+                        <div>
+                            <BarChart
+                                width={665}
+                                height={200}
+                                data={mapDeviceEnergyOverviewToChartData(deviceState.device?.last30Days!)}
+                                labels={mapDeviceEnergyOverviewToCharLabels(deviceState.device?.last30Days!)}
+                                title="Energy (kWh)"
+                                cardLabel={`Last 30 days total ${getTotalLast30Days(deviceState.device?.last30Days!)}`}
+                            />
+                        </div>
+                        <PowerOffModal
+                            showModal={powerToggleClicked}
+                            deviceAlias={currentDevice?.alias!}
+                            handlePowerToggleModalAccept={handlePowerToggleModalAccept}
+                            handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
                         />
                     </div>
-                    <DeviceToggle
-                        isActive={deviceState.device?.isActive!}
-                        handlePowerToggleClicked={handlePowerToggleClicked}
+                    <DeviceViewFooter
+                        deviceName={currentDevice?.alias || ''}
+                        hwVersion={currentDevice?.hwVersion || ''}
+                        hostIP={currentDevice?.host || ''}
+                        modelName={currentDevice?.model || ''}
+                        swVersion={currentDevice?.swVersion || ''}
                     />
-                    <TextCard
-                        headline={deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}
-                        subtitle="uptime"
-                    />
-                    <TextCard
-                        headline={
-                            deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'
-                        }
-                        subtitle="Total today"
-                    />
-                    <TextCard
-                        headline={
-                            deviceState.device?.dailyUsage
-                                ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
-                                : '-'
-                        }
-                        subtitle="Total this month"
-                    />
-                </div>
-                <PowerOffModal
-                    showModal={powerToggleClicked}
-                    deviceAlias={currentDevice?.alias!}
-                    handlePowerToggleModalAccept={handlePowerToggleModalAccept}
-                    handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
-                />
-            </div>
-            <DeviceViewFooter
-                deviceName={currentDevice?.alias || ''}
-                hwVersion={currentDevice?.hwVersion || ''}
-                hostIP={currentDevice?.host || ''}
-                modelName={currentDevice?.model || ''}
-                swVersion={currentDevice?.swVersion || ''}
-            />
+                </>
+            )}
         </>
     );
 };
