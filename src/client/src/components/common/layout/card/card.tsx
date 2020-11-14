@@ -6,7 +6,7 @@ const cn = require('classnames');
 
 type CardProps = {
     className?: string;
-    type: 'power-card' | 'gauge-card';
+    type: 'power-card' | 'gauge-card' | 'chart-card';
 };
 
 export const Card: React.FC<PropsWithChildren<CardProps>> = (props: PropsWithChildren<CardProps>) => {
@@ -15,6 +15,7 @@ export const Card: React.FC<PropsWithChildren<CardProps>> = (props: PropsWithChi
             className={cn({
                 [`${styles.powerCard}`]: props.type === 'power-card',
                 [`${styles.gaugeCard}`]: props.type === 'gauge-card',
+                [`${styles.chartCard}`]: props.type === 'chart-card',
                 'flex-row flex-center': true,
                 [`${props.className}`]: !!props.className,
                 [`${styles.card}`]: true,

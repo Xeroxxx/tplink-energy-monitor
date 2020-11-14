@@ -19,7 +19,7 @@ export const GaugeCard: React.FC<GaugeCardProps> = (props: GaugeCardProps) => {
                 <GaugeComponent
                     id={props.id}
                     className={props.className}
-                    percent={props.percent}
+                    percent={props.percent || 0}
                     leftString={props.leftString}
                     topString={props.topString}
                     rightString={props.rightString}

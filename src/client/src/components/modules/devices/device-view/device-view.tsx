@@ -18,6 +18,7 @@ import { TextCard } from '../../../common/layout/card/text-card/text-card';
 import { PowerOffModal } from './components/power-off-modal/power-off-modal';
 import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 import styles from './device-view.module.scss';
+import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -80,6 +81,12 @@ export const DeviceView: React.FC = () => {
                         topString={transformRealtimePower(deviceState.device?.realTime.power!)}
                         rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
                         label="Realtime Usage"
+                    />
+                    <TimeLineChart
+                        currentValue={deviceState.device?.realTime.power || 0}
+                        syncActive={deviceState.syncActive}
+                        height={200}
+                        width={600}
                     />
                 </div>
                 <DeviceToggle
