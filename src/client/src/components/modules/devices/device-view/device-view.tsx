@@ -86,7 +86,7 @@ export const DeviceView: React.FC = () => {
                         currentValue={deviceState.device?.realTime.power || 0}
                         syncActive={deviceState.syncActive}
                         height={200}
-                        width={600}
+                        width={665}
                     />
                 </div>
                 <DeviceToggle
