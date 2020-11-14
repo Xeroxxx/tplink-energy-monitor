@@ -10,11 +10,13 @@ export type TPLinkPlug = {
     deviceName: string;
     relayState: boolean;
     hwId: string;
+    host: string;
+    swVersion: string;
+    hwVersion: string;
 };
 
 export type FullTPLinkPlug = {
     deviceHandle: Plug;
-    host: string;
     port: number;
     macAddress: string;
 } & TPLinkPlug;

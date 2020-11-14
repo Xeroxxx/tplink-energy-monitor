@@ -15,6 +15,8 @@ export const mapToFullTPLinkPlug = (device: Plug, info: PlugSysinfo): FullTPLink
     host: device.host,
     port: device.port,
     deviceHandle: device,
+    swVersion: info.sw_ver,
+    hwVersion: info.hw_ver,
 });
 
 export const mapFullTPLinkPlugToTPLinkPlug = (plug: FullTPLinkPlug): TPLinkPlug => ({
@@ -26,4 +28,7 @@ export const mapFullTPLinkPlugToTPLinkPlug = (plug: FullTPLinkPlug): TPLinkPlug 
     name: plug.name,
     relayState: plug.relayState,
     type: plug.type,
+    host: plug.host,
+    hwVersion: plug.hwVersion,
+    swVersion: plug.swVersion,
 });

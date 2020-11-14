@@ -2,11 +2,11 @@
 @import 'src/styles/sizes';
 
 .sidebar {
-  height: calc(100% + 4px);;
+  height: 100%;
   max-width: 220px;
   background: $sidebar-brown;
   color: $default-text-color;
-  padding-bottom: 40px;
+  padding-bottom: 44px;
 }
 
 .navbar {

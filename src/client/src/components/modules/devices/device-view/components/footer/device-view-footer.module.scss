@@ -1,0 +1,19 @@
+.footer {
+  background: #FFF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.label {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.value {
+  margin-right: 20px;
+}

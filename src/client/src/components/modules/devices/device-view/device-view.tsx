@@ -19,6 +19,7 @@ import { PowerOffModal } from './components/power-off-modal/power-off-modal';
 import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 import styles from './device-view.module.scss';
 import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
+import { DeviceViewFooter } from './components/footer/device-view-footer';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -70,52 +71,63 @@ export const DeviceView: React.FC = () => {
     useRecursiveTimeout(pollCallback, 3000);
 
     return (
-        <div className="flex-col">
-            <h1 className="flex-center">{currentDevice?.alias}</h1>
-            <div className="flex-row flex-wrap">
-                <div className={styles.realtime}>
-                    <GaugeCard
-                        id="power-gauge"
-                        percent={deviceState.device?.power! / 3000}
-                        leftString={`${transformMilliValueToFixed(deviceState.device?.realTime.currentMa!)} A`}
-                        topString={transformRealtimePower(deviceState.device?.realTime.power!)}
-                        rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
-                        label="Realtime Usage"
+        <>
+            <div className="flex-col">
+                <h1 className="flex-center">{currentDevice?.alias}</h1>
+                <div className="flex-row flex-wrap">
+                    <div className={styles.realtime}>
+                        <GaugeCard
+                            id="power-gauge"
+                            percent={deviceState.device?.power! / 3000}
+                            leftString={`${transformMilliValueToFixed(deviceState.device?.realTime.currentMa!)} A`}
+                            topString={transformRealtimePower(deviceState.device?.realTime.power!)}
+                            rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
+                            label="Realtime Usage"
+                        />
+                        <TimeLineChart
+                            currentValue={deviceState.device?.realTime.power || 0}
+                            syncActive={deviceState.syncActive}
+                            height={200}
+                            width={665}
+                        />
+                    </div>
+                    <DeviceToggle
+                        isActive={deviceState.device?.isActive!}
+                        handlePowerToggleClicked={handlePowerToggleClicked}
                     />
-                    <TimeLineChart
-                        currentValue={deviceState.device?.realTime.power || 0}
-                        syncActive={deviceState.syncActive}
-                        height={200}
-                        width={665}
+                    <TextCard
+                        headline={deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}
+                        subtitle="uptime"
+                    />
+                    <TextCard
+                        headline={
+                            deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'
+                        }
+                        subtitle="Total today"
+                    />
+                    <TextCard
+                        headline={
+                            deviceState.device?.dailyUsage
+                                ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
+                                : '-'
+                        }
+                        subtitle="Total this month"
                     />
                 </div>
-                <DeviceToggle
-                    isActive={deviceState.device?.isActive!}
-                    handlePowerToggleClicked={handlePowerToggleClicked}
-                />
-                <TextCard
-                    headline={deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'}
-                    subtitle="uptime"
-                />
-                <TextCard
-                    headline={
-                        deviceState.device?.dailyUsage ? getTodaysPowerUsage(deviceState.device?.dailyUsage) : '-'
-                    }
-                    subtitle="Total today"
-                />
-                <TextCard
-                    headline={
-                        deviceState.device?.dailyUsage ? getThisMonthPowerUsage(deviceState.device?.dailyUsage) : '-'
-                    }
-                    subtitle="Total this month"
+                <PowerOffModal
+                    showModal={powerToggleClicked}
+                    deviceAlias={currentDevice?.alias!}
+                    handlePowerToggleModalAccept={handlePowerToggleModalAccept}
+                    handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
                 />
             </div>
-            <PowerOffModal
-                showModal={powerToggleClicked}
-                deviceAlias={currentDevice?.alias!}
-                handlePowerToggleModalAccept={handlePowerToggleModalAccept}
-                handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
+            <DeviceViewFooter
+                deviceName={currentDevice?.alias || ''}
+                hwVersion={currentDevice?.hwVersion || ''}
+                hostIP={currentDevice?.host || ''}
+                modelName={currentDevice?.model || ''}
+                swVersion={currentDevice?.swVersion || ''}
             />
-        </div>
+        </>
     );
 };
