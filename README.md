@@ -23,5 +23,6 @@ LICENSE changed to MIT License as no code of the previous project is reused.
 - [ ] Device Grouping (e.g. Living Room, Kitchen, ...)
 - [ ] Add daily cost metrics
 - [ ] Configurable realtime usage logging
+- [ ] Changeable card order in device view
 
 Feature request? https://github.com/Xeroxxx/tplink-energy-monitor/issues
