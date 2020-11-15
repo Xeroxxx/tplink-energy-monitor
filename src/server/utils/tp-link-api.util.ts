@@ -33,22 +33,28 @@ export const getDailyDeviceUsage = async (device: FullTPLinkPlug): Promise<Devic
     );
 };
 
+export const getDaysInMonth = (month: number, year: number): number => new Date(year, month, 0).getDate();
+
 const fillFor30Days = (usages: TpLinkEnergyOverview, priorDate: Date): TpLinkEnergyOverview => {
     if (usages.length < 30) {
-        const daysToFill = 30 - usages.length;
-        const filledArray: TpLinkEnergyOverview = new Array(daysToFill)
-            .fill({})
-            .map((value, index) => {
-                return {
-                    month: priorDate.getMonth() + 1,
-                    year: priorDate.getFullYear(),
-                    energy_wh: 0,
-                    day: priorDate.getDate() + index,
-                };
-            })
-            .concat(usages);
+        return new Array(30).fill({}).map((value, index) => {
+            const daysInMonth = getDaysInMonth(priorDate.getMonth() + 1, priorDate.getFullYear());
+            const day = ((priorDate.getDate() + index) % daysInMonth) + 1;
+            const month =
+                priorDate.getDate() + index + 1 > daysInMonth ? priorDate.getMonth() + 2 : priorDate.getMonth() + 1;
 
-        return filledArray;
+            const usageIndex = usages.findIndex((usage) => usage.day === day && usage.month === month);
+
+            if (usageIndex !== -1) {
+                return usages[usageIndex];
+            }
+            return {
+                month,
+                year: priorDate.getFullYear(),
+                energy_wh: 0,
+                day,
+            };
+        });
     }
 
     return usages;
@@ -69,9 +75,7 @@ export const getLast30DaysUsage = async (device: FullTPLinkPlug): Promise<Device
 
             const neededDaysFor30Days = 30 - dailyThisMonth.length;
 
-            const priorDate = new Date(
-                new Date().setDate(now.getDate() - dailyThisMonth.length - neededDaysFor30Days + 1),
-            );
+            const priorDate = new Date(new Date().setDate(now.getDate() - dailyThisMonth.length - neededDaysFor30Days));
 
             const lastMonthUsage = await plug.emeter
                 .getDayStats(now.getFullYear(), currentMonth - 1)
