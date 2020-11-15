@@ -1,4 +1,4 @@
-import { DeviceEnergyOverview } from '../../models/devices/tp-link-plug-info.dto';
+import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '../../models/devices/tp-link-plug-info.dto';
 
 export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string => {
     const now = new Date(Date.now());
@@ -32,5 +32,28 @@ export const transformRealtimePower = (watt: number): string => {
     return `${watt.toFixed(0)} W`;
 };
 
+export const getRealtimeAmperage = (value: number | undefined): number => {
+    if (!value) {
+        return 0;
+    }
+
+    return value / 1000;
+};
+
 export const getTotalLast30Days = (last30Days: DeviceEnergyOverview): string =>
     `${(last30Days?.reduce((acc, curr) => acc + curr.energyWh, 0) / 1000).toFixed(2) || '0'} kWh`;
+
+const getTotalLast30DaysAsNumber = (last30Days: DeviceEnergyOverview): number =>
+    last30Days?.reduce((acc, curr) => acc + curr.energyWh, 0) / 1000 || 0;
+
+export const getTotalLast12Month = (last12Month: DeviceMonthlyEnergyOverview): string =>
+    `${(last12Month?.reduce((acc, curr) => acc + curr.energyWh, 0) / 1000).toFixed(2) || '0'} kWh`;
+
+export const getTotalLast12MonthAsNumber = (last12Month: DeviceMonthlyEnergyOverview): number =>
+    last12Month?.reduce((acc, curr) => acc + curr.energyWh, 0) / 1000 || 0;
+
+export const getDailyAverage = (last30Days: DeviceEnergyOverview): string =>
+    (getTotalLast30DaysAsNumber(last30Days) / 30).toFixed(2);
+
+export const getMonthlyAverage = (last12Month: DeviceMonthlyEnergyOverview): string =>
+    (getTotalLast12MonthAsNumber(last12Month) / 12).toFixed(2);

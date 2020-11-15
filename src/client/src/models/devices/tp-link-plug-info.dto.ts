@@ -5,6 +5,12 @@ export type DeviceEnergyOverview = Array<{
     energyWh: number;
 }>;
 
+export type DeviceMonthlyEnergyOverview = Array<{
+    year: number;
+    month: number;
+    energyWh: number;
+}>;
+
 type PowerOverview = {
     VoltageInMV: number;
     currentMA: number;
@@ -36,7 +42,6 @@ export type TpLinkPlugInfoDto = {
     uptime: number;
     dailyUsage: DeviceEnergyOverview;
     realTime: DeviceRealtimeData;
-    last30Days: DeviceEnergyOverview;
 };
 
 export type ChangePowerStateDto = {

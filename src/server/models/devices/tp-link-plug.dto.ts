@@ -1,5 +1,6 @@
 import { TpLinkDeviceTypes } from '../../types/devices/device-type.enum';
 import { Plug } from 'tplink-smarthome-api';
+import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from './tp-link-plug-info.dto';
 
 export type TPLinkPlug = {
     id: string;
@@ -13,6 +14,8 @@ export type TPLinkPlug = {
     host: string;
     swVersion: string;
     hwVersion: string;
+    last30Days: DeviceEnergyOverview;
+    last12Month: DeviceMonthlyEnergyOverview;
 };
 
 export type FullTPLinkPlug = {

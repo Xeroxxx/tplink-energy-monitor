@@ -8,6 +8,7 @@ type LineChartProps = {
     syncActive: boolean;
     width: number;
     height: number;
+    title: string;
 };
 
 export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) => {
@@ -15,6 +16,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
         width: 600,
         height: 200,
     });
+    const [chartTitle, setChartTile] = React.useState<string>('');
     const rtChatOnRefresh = React.useCallback(
         (chart: any) => {
             if (props.syncActive) {
@@ -42,7 +44,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
         () => ({
             title: {
                 display: true,
-                text: 'Realtime Power (W)',
+                text: chartTitle,
             },
             legend: {
                 display: false,
@@ -72,7 +74,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
                 intersect: false,
             },
         }),
-        [props.currentValue],
+        [props],
     );
 
     React.useEffect(() => {
@@ -80,6 +82,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
             width: props.width,
             height: props.height,
         });
+        setChartTile(props.title);
     }, []);
 
     return (

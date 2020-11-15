@@ -2,6 +2,7 @@ import { Service } from 'typedi';
 import {
     getAllDevices,
     getDailyDeviceUsage,
+    getLast12MonthUsage,
     getLast30DaysUsage,
     getRealtimeData,
     setPowerState,
@@ -13,7 +14,12 @@ import { Logger } from '@overnightjs/logger';
 import { FullTPLinkPlug, TPLinkPlug } from '../models/devices/tp-link-plug.dto';
 import { mapFullTPLinkPlugToTPLinkPlug, mapToFullTPLinkPlug } from '../models/mapper/map-to-tp-link-plug.mapper';
 import { mapSysinfoToTPLinkPlugInfo } from '../models/mapper/map-sysinfo-to-tp-link-plug-info.mapper';
-import { ChangePowerStateDto, DeviceEnergyOverview, TpLinkPlugInfoDto } from '../models/devices/tp-link-plug-info.dto';
+import {
+    ChangePowerStateDto,
+    DeviceEnergyOverview,
+    DeviceMonthlyEnergyOverview,
+    TpLinkPlugInfoDto,
+} from '../models/devices/tp-link-plug-info.dto';
 
 @Service()
 export default class DevicesService {
@@ -37,7 +43,6 @@ export default class DevicesService {
 
         const plug: Plug = tpDevice.deviceHandle;
         const dailyUsage: DeviceEnergyOverview = await getDailyDeviceUsage(tpDevice);
-        const last30Days: DeviceEnergyOverview = await getLast30DaysUsage(tpDevice);
 
         const realtimeData = await getRealtimeData(tpDevice);
 
@@ -48,7 +53,6 @@ export default class DevicesService {
                 tpDevice.id,
                 dailyUsage,
                 realtimeData,
-                last30Days,
             );
         });
     }
@@ -75,6 +79,9 @@ export default class DevicesService {
             if (this.devices.find((dev) => dev.id === newDevice.id)) {
                 return;
             }
+
+            newDevice.last30Days = await getLast30DaysUsage(newDevice);
+            newDevice.last12Month = await getLast12MonthUsage(newDevice);
 
             this.devices.push(newDevice);
             Logger.Info(`Discovered device: ${plug.id} with alias: ${plug.alias}`);

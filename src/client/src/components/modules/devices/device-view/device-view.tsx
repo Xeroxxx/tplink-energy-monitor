@@ -7,8 +7,12 @@ import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
 import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 import {
+    getDailyAverage,
+    getMonthlyAverage,
+    getRealtimeAmperage,
     getThisMonthPowerUsage,
     getTodaysPowerUsage,
+    getTotalLast12Month,
     getTotalLast30Days,
     transformMilliValueToFixed,
     transformRealtimePower,
@@ -26,6 +30,8 @@ import { BarChart } from '../../../common/layout/bar-chart/bar-chart';
 import {
     mapDeviceEnergyOverviewToCharLabels,
     mapDeviceEnergyOverviewToChartData,
+    mapDeviceMonthlyEnergyOverviewToCharLabels,
+    mapDeviceMonthlyEnergyOverviewToChartData,
 } from '../../../../models/mapper/map-device-energy-overview-to-chart-data.mapper';
 
 type DeviceViewRouteParams = {
@@ -81,7 +87,7 @@ export const DeviceView: React.FC = () => {
         <>
             {deviceState.status !== 'PENDING' && (
                 <>
-                    <div className="flex-col">
+                    <div className={`flex-col ${styles.deviceView}`}>
                         <h1 className="flex-center">{currentDevice?.alias}</h1>
                         <div className="flex-row flex-wrap">
                             <div className={styles.realtime}>
@@ -99,7 +105,15 @@ export const DeviceView: React.FC = () => {
                                     currentValue={deviceState.device?.realTime.power || 0}
                                     syncActive={deviceState.syncActive}
                                     height={200}
-                                    width={665}
+                                    width={672}
+                                    title="Realtime Power (W)"
+                                />
+                                <TimeLineChart
+                                    currentValue={getRealtimeAmperage(deviceState.device?.realTime.currentMa)}
+                                    syncActive={deviceState.syncActive}
+                                    height={200}
+                                    width={672}
+                                    title="Realtime Amperage (A)"
                                 />
                             </div>
                             <DeviceToggle
@@ -122,21 +136,45 @@ export const DeviceView: React.FC = () => {
                             />
                             <TextCard
                                 headline={
+                                    currentDevice?.last30Days
+                                        ? `${getDailyAverage(currentDevice?.last30Days)} kWh`
+                                        : '-'
+                                }
+                                subtitle="Daily average"
+                            />
+                            <TextCard
+                                headline={
                                     deviceState.device?.dailyUsage
                                         ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
                                         : '-'
                                 }
                                 subtitle="Total this month"
                             />
+                            <TextCard
+                                headline={
+                                    currentDevice?.last12Month
+                                        ? `${getMonthlyAverage(currentDevice?.last12Month)} kWh`
+                                        : '-'
+                                }
+                                subtitle="Monthly average"
+                            />
                         </div>
-                        <div>
+                        <div className="flex-row">
                             <BarChart
-                                width={665}
+                                width={672}
                                 height={200}
-                                data={mapDeviceEnergyOverviewToChartData(deviceState.device?.last30Days!)}
-                                labels={mapDeviceEnergyOverviewToCharLabels(deviceState.device?.last30Days!)}
+                                data={mapDeviceEnergyOverviewToChartData(currentDevice?.last30Days!)}
+                                labels={mapDeviceEnergyOverviewToCharLabels(currentDevice?.last30Days!)}
                                 title="Energy (kWh)"
-                                cardLabel={`Last 30 days total ${getTotalLast30Days(deviceState.device?.last30Days!)}`}
+                                cardLabel={`Last 30 days total ${getTotalLast30Days(currentDevice?.last30Days!)}`}
+                            />
+                            <BarChart
+                                width={672}
+                                height={200}
+                                data={mapDeviceMonthlyEnergyOverviewToChartData(currentDevice?.last12Month!)}
+                                labels={mapDeviceMonthlyEnergyOverviewToCharLabels(currentDevice?.last12Month!)}
+                                title="Energy (kWh)"
+                                cardLabel={`Last 12 month total ${getTotalLast12Month(currentDevice?.last12Month!)}`}
                             />
                         </div>
                         <PowerOffModal
