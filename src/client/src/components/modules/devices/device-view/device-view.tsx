@@ -26,7 +26,6 @@ import styles from './device-view.module.scss';
 import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
 import { DeviceViewFooter } from './components/footer/device-view-footer';
 import { BarChart } from '../../../common/layout/bar-chart/bar-chart';
-// eslint-disable-next-line max-len
 import {
     mapDeviceEnergyOverviewToCharLabels,
     mapDeviceEnergyOverviewToChartData,
@@ -91,16 +90,18 @@ export const DeviceView: React.FC = () => {
                         <h1 className="flex-center">{currentDevice?.alias}</h1>
                         <div className="flex-row flex-wrap">
                             <div className={styles.realtime}>
-                                <GaugeCard
-                                    id="power-gauge"
-                                    percent={deviceState.device?.power! / 3000}
-                                    leftString={`${transformMilliValueToFixed(
-                                        deviceState.device?.realTime.currentMa!,
-                                    )} A`}
-                                    topString={transformRealtimePower(deviceState.device?.realTime.power!)}
-                                    rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
-                                    label="Realtime Usage"
-                                />
+                                <div>
+                                    <GaugeCard
+                                        id="power-gauge"
+                                        percent={deviceState.device?.power! / 3000}
+                                        leftString={`${transformMilliValueToFixed(
+                                            deviceState.device?.realTime.currentMa!,
+                                        )} A`}
+                                        topString={transformRealtimePower(deviceState.device?.realTime.power!)}
+                                        rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
+                                        label="Realtime Usage"
+                                    />
+                                </div>
                                 <TimeLineChart
                                     currentValue={deviceState.device?.realTime.power || 0}
                                     syncActive={deviceState.syncActive}

@@ -6,8 +6,15 @@
 
 .realtime {
   width: 100%;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   display: flex;
   margin-top: 40px;
+
+  @media (max-width: 2160px) {
+
+    >div:first-child {
+      width: 100%;
+    }
+  }
 }
 
