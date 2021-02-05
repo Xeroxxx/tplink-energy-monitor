@@ -5,7 +5,6 @@ import { GaugeComponent } from '../../gauge/gauge';
 type GaugeCardProps = {
     id: string;
     className?: string;
-    percent: number;
     leftString?: string;
     topString?: string;
     rightString?: string;
@@ -19,7 +18,6 @@ export const GaugeCard: React.FC<GaugeCardProps> = (props: GaugeCardProps) => {
                 <GaugeComponent
                     id={props.id}
                     className={props.className}
-                    percent={props.percent || 0}
                     leftString={props.leftString}
                     topString={props.topString}
                     rightString={props.rightString}

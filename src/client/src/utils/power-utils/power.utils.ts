@@ -22,11 +22,15 @@ export const transformMilliValue = (watthours: number): number => watthours / 10
 
 export const transformRealtimePower = (watt: number): string => {
     if (!watt) {
-        return '';
+        return '0 W';
     }
 
     if (watt > 1000) {
         return `${(watt / 1000).toFixed(0)} kW`;
+    }
+
+    if (watt < 10) {
+        return `${watt.toFixed(2)} W`;
     }
 
     return `${watt.toFixed(0)} W`;

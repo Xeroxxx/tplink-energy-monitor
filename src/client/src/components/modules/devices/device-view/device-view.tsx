@@ -93,7 +93,6 @@ export const DeviceView: React.FC = () => {
                             <div className={styles.realtime}>
                                 <GaugeCard
                                     id="power-gauge"
-                                    percent={deviceState.device?.power! / 3000}
                                     leftString={`${transformMilliValueToFixed(
                                         deviceState.device?.realTime.currentMa!,
                                     )} A`}
