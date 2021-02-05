@@ -4,6 +4,7 @@ import styles from './gauge.module.scss';
 
 type GaugeComponentProps = {
     id: string;
+    percent: number;
     className?: string;
     leftString?: string;
     topString?: string;
@@ -21,6 +22,7 @@ export const GaugeComponent: React.FC<GaugeComponentProps> = (props: GaugeCompon
                 colors={['#5BE12C', '#F5CD19', '#EA4228']}
                 textColor="#888383"
                 hideText
+                percent={props.percent}
             />
             {props.topString && <span className={styles.topString}>{props.topString}</span>}
             {props.rightString && <span className={styles.rightString}>{props.rightString}</span>}
