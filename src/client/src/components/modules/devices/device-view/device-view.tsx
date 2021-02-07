@@ -24,7 +24,6 @@ import { PowerOffModal } from './components/power-off-modal/power-off-modal';
 import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 import styles from './device-view.module.scss';
 import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
-import { DeviceViewFooter } from './components/footer/device-view-footer';
 import { BarChart } from '../../../common/layout/bar-chart/bar-chart';
 import {
     mapDeviceEnergyOverviewToCharLabels,
@@ -185,13 +184,6 @@ export const DeviceView: React.FC = () => {
                             handlePowerToggleModalDeclineClicked={() => setPowerToggleClicked(false)}
                         />
                     </div>
-                    <DeviceViewFooter
-                        deviceName={currentDevice?.alias || ''}
-                        hwVersion={currentDevice?.hwVersion || ''}
-                        hostIP={currentDevice?.host || ''}
-                        modelName={currentDevice?.model || ''}
-                        swVersion={currentDevice?.swVersion || ''}
-                    />
                 </>
             )}
         </>

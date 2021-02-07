@@ -8,10 +8,10 @@ type ModalViewProps = {
 };
 
 export const ModalView: React.FC<PropsWithChildren<ModalViewProps>> = (props: PropsWithChildren<ModalViewProps>) => {
-    return ReactDOM.createPortal(
+    return props.show ? ReactDOM.createPortal(
         <div className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}>
             <div className={`${styles.modalContent} flex-col`}>{props.children}</div>
         </div>,
         document.getElementById('root')!,
-    );
+    ) : null;
 };
