@@ -1,8 +1,9 @@
 import TpLinkServer from './server/tp-link-server';
 import * as path from 'path';
+import { Container } from 'typedi';
 
-// @ts-ignore
-global.appRoot = path.resolve(__dirname);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(global as any).appRoot = path.resolve(__dirname);
 
-const server = new TpLinkServer();
+const server = Container.get<TpLinkServer>(TpLinkServer);
 server.start(process.env.PORT || '3001');

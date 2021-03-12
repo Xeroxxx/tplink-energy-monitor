@@ -4,18 +4,27 @@ import styles from './App.module.scss';
 import { Dashboard } from './modules/dashboard/dashboard';
 import { DeviceView } from './modules/devices/device-view/device-view';
 import { ApplicationState } from '../redux/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './common/core/header/header';
 import { Sidebar } from './common/core/sidebar/sidebar';
 import { DeviceViewFooter } from './modules/devices/device-view/components/footer/device-view-footer';
+import { initApplication } from '../initApplication';
 
 export const App: React.FC = () => {
+    const dispatch = useDispatch();
+
     const deviceState = useSelector((appState: ApplicationState) => appState.deviceInfo);
     const devicesState = useSelector((appState: ApplicationState) => appState.devices);
 
     const currentDevice = React.useMemo(() => {
         return devicesState.devices.find((device) => device.id === deviceState.device?.id);
     }, [deviceState]);
+
+    const init = React.useCallback(() => {
+        initApplication(dispatch);
+    }, []);
+
+    React.useEffect(() => init(), []);
 
     return (
         <div className={`${styles.mainContent} flex-row`}>

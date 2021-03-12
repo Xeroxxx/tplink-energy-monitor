@@ -15,7 +15,7 @@ export default class DevicesController {
     }
 
     @Get('')
-    private getAll(req: Request, res: Response) {
+    private getAll(_req: Request, res: Response) {
         try {
             return res.status(StatusCodes.OK).json(this.devicesService.getAll());
         } catch (err) {
@@ -24,12 +24,5 @@ export default class DevicesController {
                 error: err.message,
             });
         }
-    }
-
-    @Get('discover')
-    private discoverAll(req: Request, res: Response) {
-        this.devicesService.discoverAll();
-
-        return res.sendStatus(StatusCodes.OK);
     }
 }

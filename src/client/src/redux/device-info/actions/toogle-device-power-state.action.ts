@@ -29,6 +29,6 @@ const setPowerState = async (id: string, newPowerState: boolean): Promise<Device
     await put<ChangePowerStateDto>(`/api/device/${id}/power-state`, powerStateChangeDto);
 
     return {
-        type: DeviceActionNames.DEVICE_SET_POWER_STATE_OK,
+        type: DeviceActionNames.DEVICE_GET_OK,
     } as DeviceAction<undefined>;
 };

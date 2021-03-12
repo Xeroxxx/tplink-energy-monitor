@@ -14,19 +14,14 @@ import { Logger } from '@overnightjs/logger';
 import { FullTPLinkPlug, TPLinkPlug } from '../models/devices/tp-link-plug.dto';
 import { mapFullTPLinkPlugToTPLinkPlug, mapToFullTPLinkPlug } from '../models/mapper/map-to-tp-link-plug.mapper';
 import { mapSysinfoToTPLinkPlugInfo } from '../models/mapper/map-sysinfo-to-tp-link-plug-info.mapper';
-import {
-    ChangePowerStateDto,
-    DeviceEnergyOverview,
-    DeviceMonthlyEnergyOverview,
-    TpLinkPlugInfoDto,
-} from '../models/devices/tp-link-plug-info.dto';
+import { ChangePowerStateDto, DeviceEnergyOverview, TpLinkPlugInfoDto } from '../models/devices/tp-link-plug-info.dto';
 
 @Service()
 export default class DevicesService {
     private devices: FullTPLinkPlug[] = [];
 
-    public discoverAll(): void {
-        getAllDevices(this.AddToDevices.bind(this));
+    constructor() {
+        this.discoverAll();
     }
 
     public getAll(): TPLinkPlug[] {
@@ -86,5 +81,9 @@ export default class DevicesService {
             this.devices.push(newDevice);
             Logger.Info(`Discovered device: ${plug.id} with alias: ${plug.alias}`);
         }
+    }
+
+    private discoverAll(): void {
+        getAllDevices(this.AddToDevices.bind(this));
     }
 }

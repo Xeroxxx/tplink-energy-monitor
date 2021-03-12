@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import { App } from './components/App';
 import reportWebVitals from './reportWebVitals';
-import { initApplication } from './initApplication';
 import configureStore, { initialAppState } from './redux/store';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
-
-initApplication();
 
 const history = createBrowserHistory();
 const store = configureStore(history, initialAppState);

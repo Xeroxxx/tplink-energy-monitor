@@ -16,6 +16,7 @@
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.8",
     "@types/react-gauge-chart": "^0.2.0",
+    "@types/socket.io-client": "^1.4.35",
     "chart.js": "^2.8.0",
     "chartjs-plugin-streaming": "^1.8.0",
     "classnames": "^2.2.6",
@@ -33,6 +34,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^3.1.1",
     "typeface-roboto": "^1.1.13",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
@@ -69,6 +71,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "http-proxy-middleware": "^1.0.6",
     "prettier": "^2.1.2"
   }
 }

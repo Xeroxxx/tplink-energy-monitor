@@ -35,10 +35,8 @@ const deviceInfoReducer: Reducer<DeviceInfoState> = (
                 ...state,
                 syncActive: (action as DeviceAction<boolean>).payload,
             };
-        case DeviceActionNames.DEVICE_SET_POWER_STATE_OK:
-            return {
-                ...state,
-            };
+        case DeviceActionNames.DEVICE_RESET:
+            return initialDeviceInfoState;
         default:
             return state;
     }

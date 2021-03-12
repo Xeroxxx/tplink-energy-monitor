@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { ApplicationState } from '../../../../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDeviceInfo } from '../../../../redux/device-info/actions/get-device-info.action';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
-import { TPLinkPlug } from '../../../../models/devices/tp-link-plug.dto';
-import useRecursiveTimeout from '../../../../custom-hooks/use-recursive-timeout.hook';
 import {
     getDailyAverage,
     getMonthlyAverage,
@@ -31,6 +27,10 @@ import {
     mapDeviceMonthlyEnergyOverviewToCharLabels,
     mapDeviceMonthlyEnergyOverviewToChartData,
 } from '../../../../models/mapper/map-device-energy-overview-to-chart-data.mapper';
+import { SocketConnection } from '../../../../utils/socket-utils/socket-connection.util';
+import { resetDeviceView } from '../../../../redux/device-info/actions/reset-device.view.action';
+import { LoadingSpinner } from '../../../common/layout/loading-spinner/loading-spinner';
+import { useDevices } from '../../../../custom-hooks/use-devices.hook';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -38,52 +38,52 @@ type DeviceViewRouteParams = {
 
 export const DeviceView: React.FC = () => {
     const { id } = useParams<DeviceViewRouteParams>();
-    const deviceState = useSelector((appState: ApplicationState) => appState.deviceInfo);
-    const devicesState = useSelector((appState: ApplicationState) => appState.devices);
-    const [currentDevice, setCurrentDevice] = React.useState<TPLinkPlug>();
+    const { currentDevice, isDeviceActive, syncActive, loading } = useDevices(id);
+
     const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
     const dispatch = useDispatch();
-    const history = useHistory();
 
-    React.useEffect(() => {
-        if (devicesState.status === 'PENDING') {
-            history.push('/');
-        } else if (devicesState.status === 'OK' && devicesState.devices) {
-            setCurrentDevice(devicesState.devices.find((dev) => dev.id === id));
-        }
-    }, [devicesState, deviceState, id]);
-
-    React.useEffect(() => {
-        if (deviceState.status === 'PENDING' || (deviceState.status === 'OK' && deviceState.device?.id !== id)) {
-            dispatch(getDeviceInfo(id));
-        }
-    }, [deviceState, id]);
-
-    const pollCallback = React.useCallback(() => {
-        if (deviceState.syncActive) {
-            dispatch(getDeviceInfo(id));
-        }
-    }, [id, deviceState.syncActive]);
-
-    const handlePowerToggleClicked = () => {
-        if (deviceState.device?.isActive) {
+    const handlePowerToggleClicked = React.useCallback(() => {
+        if (isDeviceActive) {
             setPowerToggleClicked(true);
         } else {
             handlePowerToggleModalAccept();
         }
-    };
+    }, [isDeviceActive, powerToggleClicked]);
 
-    const handlePowerToggleModalAccept = () => {
-        dispatch(toggleDevicePowerState(deviceState.device!.id, !deviceState.device!.isActive));
-        dispatch(getDeviceInfo(id));
+    const handlePowerToggleModalAccept = React.useCallback(() => {
+        dispatch(toggleDevicePowerState(currentDevice!.id!, isDeviceActive));
         setPowerToggleClicked(false);
-    };
+    }, [currentDevice]);
 
-    useRecursiveTimeout(pollCallback, 3000);
+    const getDeviceInfo = React.useCallback(() => {
+        const socket = SocketConnection.getInstance();
+        dispatch(resetDeviceView());
+        if (id !== currentDevice?.id) {
+            if (currentDevice) {
+                socket.emit('stop-device-info', id);
+            }
+            socket.emit('device-info', id);
+        }
+    }, [id, syncActive]);
+
+    React.useEffect(() => {
+        getDeviceInfo();
+
+        return () => SocketConnection.getInstance().emit('device-info', id, false);
+    }, [id]);
+
+    React.useEffect(() => {
+        const socket = SocketConnection.getInstance();
+        return () => socket.emit('stop-device-info', id);
+    }, []);
 
     return (
         <>
-            {deviceState.status !== 'PENDING' && (
+            {(loading || !currentDevice) && (
+                <LoadingSpinner />
+            )}
+            {(!loading && currentDevice) && (
                 <>
                     <div className={`flex-col ${styles.deviceView}`}>
                         <h1 className="flex-center">{currentDevice?.alias}</h1>
@@ -92,44 +92,44 @@ export const DeviceView: React.FC = () => {
                                 <div>
                                     <GaugeCard
                                         id="power-gauge"
-                                        percent={deviceState.device?.power! / 3000}
+                                        percent={currentDevice!.realTime.power / 3000}
                                         leftString={`${transformMilliValueToFixed(
-                                            deviceState.device?.realTime.currentMa!,
+                                            currentDevice!.realTime.currentMa!,
                                         )} A`}
-                                        topString={transformRealtimePower(deviceState.device?.realTime.power!)}
-                                        rightString={`${deviceState.device?.realTime.voltage!.toFixed(0)} V`}
+                                        topString={transformRealtimePower(currentDevice!.realTime.power!)}
+                                        rightString={`${currentDevice!.realTime.voltage!.toFixed(0)} V`}
                                         label="Realtime Usage"
                                     />
                                 </div>
                                 <TimeLineChart
-                                    currentValue={deviceState.device?.realTime.power || 0}
-                                    syncActive={deviceState.syncActive}
+                                    currentValue={currentDevice!.realTime.power || 0}
+                                    syncActive={syncActive}
                                     height={200}
                                     width={672}
                                     title="Realtime Power (W)"
                                 />
                                 <TimeLineChart
-                                    currentValue={getRealtimeAmperage(deviceState.device?.realTime.currentMa)}
-                                    syncActive={deviceState.syncActive}
+                                    currentValue={getRealtimeAmperage(currentDevice!.realTime.currentMa)}
+                                    syncActive={syncActive}
                                     height={200}
                                     width={672}
                                     title="Realtime Amperage (A)"
                                 />
                             </div>
                             <DeviceToggle
-                                isActive={deviceState.device?.isActive!}
+                                isActive={isDeviceActive}
                                 handlePowerToggleClicked={handlePowerToggleClicked}
                             />
                             <TextCard
                                 headline={
-                                    deviceState.device?.uptime ? secondsToTimespan(deviceState.device?.uptime) : '-'
+                                   currentDevice!.uptime ? secondsToTimespan(currentDevice!.uptime) : '-'
                                 }
                                 subtitle="uptime"
                             />
                             <TextCard
                                 headline={
-                                    deviceState.device?.dailyUsage
-                                        ? getTodaysPowerUsage(deviceState.device?.dailyUsage)
+                                    currentDevice!.dailyUsage
+                                        ? getTodaysPowerUsage(currentDevice!.dailyUsage)
                                         : '-'
                                 }
                                 subtitle="Total today"
@@ -137,23 +137,23 @@ export const DeviceView: React.FC = () => {
                             <TextCard
                                 headline={
                                     currentDevice?.last30Days
-                                        ? `${getDailyAverage(currentDevice?.last30Days)} kWh`
+                                        ? `${getDailyAverage(currentDevice!.last30Days)} kWh`
                                         : '-'
                                 }
                                 subtitle="Daily average"
                             />
                             <TextCard
                                 headline={
-                                    deviceState.device?.dailyUsage
-                                        ? getThisMonthPowerUsage(deviceState.device?.dailyUsage)
+                                    currentDevice!.dailyUsage
+                                        ? getThisMonthPowerUsage(currentDevice!.dailyUsage)
                                         : '-'
                                 }
                                 subtitle="Total this month"
                             />
                             <TextCard
                                 headline={
-                                    currentDevice?.last12Month
-                                        ? `${getMonthlyAverage(currentDevice?.last12Month)} kWh`
+                                    currentDevice!.last12Month
+                                        ? `${getMonthlyAverage(currentDevice!.last12Month)} kWh`
                                         : '-'
                                 }
                                 subtitle="Monthly average"

@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 
     return (
         <div className={`${styles.header} flex-end`}>
-            <SyncStatus syncActive={syncActive} onSyncClick={onSyncClick} />
+            <SyncStatus syncActive={!!syncActive} onSyncClick={onSyncClick} />
         </div>
     );
 };

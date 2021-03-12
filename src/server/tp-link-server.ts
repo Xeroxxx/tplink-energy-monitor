@@ -8,23 +8,26 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as controllers from './api';
 import { errorHandler } from './middleware/error.middleware';
+import { Service } from 'typedi';
+import SocketService from './services/socket.service';
+import * as http from 'http';
 
 type TpLinkController = { [key: string]: Controller };
 
 const appControllers = { ...controllers } as TpLinkController;
 
+@Service()
 class TpLinkServer extends Server {
     private readonly SERVER_START_MSG = 'TP-Link server started on port: ';
 
     private readonly DEV_MSG = 'Express Server is running in development mode.';
 
-    constructor() {
+    constructor(private socketService: SocketService) {
         super(true);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(errorHandler);
         this.app.use(morgan('combined'));
-
         this.setupControllers();
 
         if (process.env.NODE_ENV !== 'production') {
@@ -47,6 +50,7 @@ class TpLinkServer extends Server {
     }
 
     private serveFrontend(): void {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { appRoot } = global as any;
         const dir = path.join(appRoot, 'client/');
 
@@ -59,9 +63,11 @@ class TpLinkServer extends Server {
     }
 
     public start(port: string): void {
-        this.app.listen(port, () => {
+        const server: http.Server = this.app.listen(port, () => {
             Logger.Imp(this.SERVER_START_MSG + port);
         });
+
+        this.socketService.startServer(server);
     }
 }
 
