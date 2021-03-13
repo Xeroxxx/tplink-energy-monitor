@@ -28,28 +28,34 @@ export default class SocketConnection {
             let currentId = '';
 
             socket.on('device-info', async (id: string) => {
-                if (currentId && currentId !== id) {
+                Logger.Info(`Starting device info: ${id}`);
+                if (currentId !== id) {
                     socket.emit('device-info', await this.deviceService.getDeviceById(id));
-                    Logger.Info(`Starting device info: ${id}`);
-
-                    clearInterval(interval);
-                    interval = setInterval(
-                        async () => socket.emit('device-info', await this.deviceService.getDeviceById(currentId)),
-                        this.UPDATE_INTERVAL,
-                    );
-                    Logger.Info(`Started device info: ${id}`);
                 }
+
                 currentId = id;
+                interval = this.createSyncInterval(interval, socket, currentId);
+
+                Logger.Info(`Started device info: ${id}`);
             });
 
             socket.on('stop-device-info', (id: string) => {
                 if (currentId === id) {
                     Logger.Info(`Stopping device info: ${id}`);
                     clearInterval(interval);
+                    Logger.Info(`Stopped device info: ${id}`);
                 }
             });
         });
         Logger.Info('Socket connection initialized');
+    }
+
+    private createSyncInterval(interval: NodeJS.Timeout, socket: Socket, currentId: string) {
+        clearInterval(interval);
+        return setInterval(
+            async () => socket.emit('device-info', await this.deviceService.getDeviceById(currentId)),
+            this.UPDATE_INTERVAL,
+        );
     }
 
     public onAny(event: SocketEventNames, dataFn: () => void): void {
