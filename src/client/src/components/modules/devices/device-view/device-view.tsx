@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import {
@@ -45,6 +45,7 @@ export const DeviceView: React.FC = () => {
     const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
     const [error, setError] = React.useState<boolean>(false);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handlePowerToggleClicked = React.useCallback(() => {
         if (isDeviceActive) {
@@ -64,6 +65,12 @@ export const DeviceView: React.FC = () => {
             setError(false);
         }
     }, [loading, currentDevice]);
+
+    React.useEffect(() => {
+        if (error) {
+            history.push('/');
+        }
+    }, [error]);
 
     return (
         <>
