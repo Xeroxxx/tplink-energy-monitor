@@ -6,6 +6,7 @@
   width: 100%;
   height: 100%;
   background: $modal-backdrop-color;
+  z-index: 99;
 }
 
 .visible {
@@ -14,6 +15,16 @@
 
 .hidden {
   display: none;
+}
+
+.modalCloseRequest {
+  div:first-child {
+    margin: 10px;
+  }
+
+  > * {
+    align-self: center;
+  }
 }
 
 .modalContent {
@@ -26,4 +37,12 @@
   left: 50%;
   transform: translate(-50%,-50%);
   border-radius: 4px;
+
+  &.noBackground {
+    background: transparent;
+
+    > * {
+      align-self: center;
+    }
+  }
 }

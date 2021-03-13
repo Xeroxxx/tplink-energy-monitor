@@ -31,6 +31,7 @@ import { SocketConnection } from '../../../../utils/socket-utils/socket-connecti
 import { resetDeviceView } from '../../../../redux/device-info/actions/reset-device.view.action';
 import { LoadingSpinner } from '../../../common/layout/loading-spinner/loading-spinner';
 import { useDevices } from '../../../../custom-hooks/use-devices.hook';
+import { ModalView } from '../../../common/layout/modal/modal';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -41,6 +42,7 @@ export const DeviceView: React.FC = () => {
     const { currentDevice, isDeviceActive, syncActive, loading } = useDevices(id);
 
     const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
+    const [error, setError] = React.useState<boolean>(false);
     const dispatch = useDispatch();
 
     const handlePowerToggleClicked = React.useCallback(() => {
@@ -78,10 +80,22 @@ export const DeviceView: React.FC = () => {
         return () => socket.emit('stop-device-info', id);
     }, []);
 
+    React.useEffect(() => {
+        if ((!loading && currentDevice)) {
+            setError(false);
+        }
+    }, [loading, currentDevice]);
+
     return (
         <>
-            {(loading || !currentDevice) && (
-                <LoadingSpinner />
+            {((loading || !currentDevice) && !error) && (
+                <ModalView
+                    hideBackground
+                    show={loading}
+                    onCloseRequest={() => setError(true)}
+                >
+                    <LoadingSpinner />
+                </ModalView>
             )}
             {(!loading && currentDevice) && (
                 <>
