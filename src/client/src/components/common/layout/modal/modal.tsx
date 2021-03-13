@@ -23,18 +23,16 @@ export const ModalView: React.FC<PropsWithChildren<ModalViewProps>> = (props: Pr
         <div className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}>
             <div className={`${styles.modalContent} flex-col${props.hideBackground ? ` ${styles.noBackground}` : ''}`}>
                 {props.children}
-                {props.hideBackground && loadingError && (
+                {props.onCloseRequest && props.hideBackground && loadingError && (
                     <div className={`${styles.modalCloseRequest} flex-col flex-center`}>
-                        {props.onCloseRequest && (
-                            <div>
-                                <Button
-                                    onClick={props.onCloseRequest!}
-                                    buttonLabel="Close"
-                                    buttonStyle="secondary"
-                                    type="button"
-                                />
-                            </div>
-                        )}
+                        <div>
+                            <Button
+                                onClick={props.onCloseRequest}
+                                buttonLabel="Close"
+                                buttonStyle="secondary"
+                                type="button"
+                            />
+                        </div>
                     </div>
                 )}
             </div>
@@ -45,6 +43,4 @@ export const ModalView: React.FC<PropsWithChildren<ModalViewProps>> = (props: Pr
 
 ModalView.defaultProps = {
     hideBackground: false,
-    onCloseRequest: () => {
-    },
 };
