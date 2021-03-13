@@ -29,13 +29,15 @@ export default class SocketConnection {
 
             socket.on('device-info', async (id: string) => {
                 if (currentId && currentId !== id) {
-                    socket.emit('device-info', await this.deviceService.getDeviceById(currentId));
+                    socket.emit('device-info', await this.deviceService.getDeviceById(id));
                     Logger.Info(`Starting device info: ${id}`);
+
                     clearInterval(interval);
                     interval = setInterval(
                         async () => socket.emit('device-info', await this.deviceService.getDeviceById(currentId)),
                         this.UPDATE_INTERVAL,
                     );
+                    Logger.Info(`Started device info: ${id}`);
                 }
                 currentId = id;
             });
