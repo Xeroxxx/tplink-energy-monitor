@@ -4,7 +4,7 @@ import * as React from 'react';
 import { TPLinkPlug } from '../../models/devices/tp-link-plug.dto';
 import { TpLinkPlugInfoDto } from '../../models/devices/tp-link-plug-info.dto';
 
-export const useDevices = (id: string) => {
+export const useDevices = (id?: string) => {
     const [currentDevice, setCurrentDevice] = React.useState<TPLinkPlug & TpLinkPlugInfoDto>();
 
     const deviceState = useSelector((appState: ApplicationState) => appState.deviceInfo);
@@ -12,14 +12,16 @@ export const useDevices = (id: string) => {
 
     React.useEffect(() => {
         if (devicesState.status === 'OK' && devicesState.devices && deviceState.status === 'OK' && deviceState.device) {
-            const device = devicesState.devices.find((dev) => dev.id === id)!;
+            const deviceId = id ?? deviceState.device.id;
+            const device = devicesState.devices.find((dev) => dev.id === deviceId)!;
             const deviceInfo = deviceState.device;
+
             setCurrentDevice({
                 ...device,
                 ...deviceInfo,
             });
         }
-    }, [devicesState, deviceState, id]);
+    }, [devicesState, deviceState]);
 
     return {
         currentDevice,
