@@ -27,11 +27,10 @@ import {
     mapDeviceMonthlyEnergyOverviewToCharLabels,
     mapDeviceMonthlyEnergyOverviewToChartData,
 } from '../../../../models/mapper/map-device-energy-overview-to-chart-data.mapper';
-import { SocketConnection } from '../../../../utils/socket-utils/socket-connection.util';
-import { resetDeviceView } from '../../../../redux/device-info/actions/reset-device.view.action';
 import { LoadingSpinner } from '../../../common/layout/loading-spinner/loading-spinner';
-import { useDevices } from '../../../../custom-hooks/use-devices.hook';
+import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hook';
 import { ModalView } from '../../../common/layout/modal/modal';
+import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -40,6 +39,8 @@ type DeviceViewRouteParams = {
 export const DeviceView: React.FC = () => {
     const { id } = useParams<DeviceViewRouteParams>();
     const { currentDevice, isDeviceActive, syncActive, loading } = useDevices(id);
+
+    useDeviceSync(id, syncActive, currentDevice);
 
     const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
     const [error, setError] = React.useState<boolean>(false);
@@ -57,28 +58,6 @@ export const DeviceView: React.FC = () => {
         dispatch(toggleDevicePowerState(currentDevice!.id!, isDeviceActive));
         setPowerToggleClicked(false);
     }, [currentDevice]);
-
-    const getDeviceInfo = React.useCallback(() => {
-        const socket = SocketConnection.getInstance();
-        dispatch(resetDeviceView());
-        if (id !== currentDevice?.id) {
-            if (currentDevice) {
-                socket.emit('stop-device-info', id);
-            }
-            socket.emit('device-info', id);
-        }
-    }, [id, syncActive]);
-
-    React.useEffect(() => {
-        getDeviceInfo();
-
-        return () => SocketConnection.getInstance().emit('device-info', id, false);
-    }, [id]);
-
-    React.useEffect(() => {
-        const socket = SocketConnection.getInstance();
-        return () => socket.emit('stop-device-info', id);
-    }, []);
 
     React.useEffect(() => {
         if ((!loading && currentDevice)) {

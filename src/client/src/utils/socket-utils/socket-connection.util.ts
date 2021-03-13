@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-type SocketEventNames = 'connection' | 'device-info' | 'device-info2' | 'discover' | 'stop-device-info';
+export type SocketEventNames = 'connection' | 'device-info' | 'device-info2' | 'discover' | 'stop-device-info';
 
 export class SocketConnection {
     private static instance: SocketConnection;
