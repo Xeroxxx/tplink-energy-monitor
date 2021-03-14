@@ -53,12 +53,12 @@ export const DeviceView: React.FC = () => {
         } else {
             handlePowerToggleModalAccept();
         }
-    }, [isDeviceActive, powerToggleClicked]);
+    }, [isDeviceActive, powerToggleClicked, currentDevice]);
 
     const handlePowerToggleModalAccept = React.useCallback(() => {
-        dispatch(toggleDevicePowerState(currentDevice!.id!, isDeviceActive));
+        dispatch(toggleDevicePowerState(currentDevice!.id!, !isDeviceActive));
         setPowerToggleClicked(false);
-    }, [currentDevice]);
+    }, [currentDevice, isDeviceActive, powerToggleClicked]);
 
     React.useEffect(() => {
         if ((!loading && currentDevice)) {

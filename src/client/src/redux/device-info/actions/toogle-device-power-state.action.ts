@@ -1,7 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { ApplicationState } from '../../store';
 import { Action } from 'redux';
-import { deviceLoading } from './loading.action';
 import { deviceErrorAction } from './error.action';
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
 import { ChangePowerStateDto } from '../../../models/devices/tp-link-plug-info.dto';
@@ -12,7 +11,6 @@ export const toggleDevicePowerState = (
     newPowerState: boolean,
 ): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
     try {
-        dispatch(deviceLoading());
         const devices = await setPowerState(id, newPowerState);
         dispatch(devices);
     } catch (error) {
