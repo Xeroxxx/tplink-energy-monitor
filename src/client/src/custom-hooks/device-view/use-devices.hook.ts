@@ -24,6 +24,7 @@ export const useDevices = (id?: string) => {
     }, [devicesState, deviceState]);
 
     return {
+        deviceCount: devicesState.devices.length || 0,
         currentDevice,
         isDeviceActive: currentDevice?.isActive || false,
         syncActive: deviceState.syncActive || true,

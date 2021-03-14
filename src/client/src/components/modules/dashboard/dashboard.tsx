@@ -1,18 +1,10 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { ApplicationState } from '../../../redux/store';
 import { Card } from '../../common/layout/card/card';
 import styles from './dashboard.module.scss';
+import { useDevices } from '../../../custom-hooks/device-view/use-devices.hook';
 
 export const Dashboard: React.FC = () => {
-    const deviceState = useSelector((appState: ApplicationState) => appState.devices);
-    const [deviceCount, setDeviceCount] = React.useState<number>(0);
-
-    React.useEffect(() => {
-        if (deviceState.status === 'OK') {
-            setDeviceCount(deviceState.devices?.length || 0);
-        }
-    }, [deviceState]);
+    const { deviceCount } = useDevices();
 
     return (
         <div className={styles.dashboard}>
