@@ -75,15 +75,17 @@ export const getLast30DaysUsage = async (device: FullTPLinkPlug): Promise<Device
 
             const neededDaysFor30Days = 30 - dailyThisMonth.length;
 
-            const priorDate = new Date(new Date().setDate(now.getDate() - dailyThisMonth.length - neededDaysFor30Days));
+            const startDateFor30Days = new Date(
+                new Date().setDate(now.getDate() - dailyThisMonth.length - neededDaysFor30Days),
+            );
 
             const lastMonthUsage = await plug.emeter
                 .getDayStats(now.getFullYear(), currentMonth - 1)
                 .then((response) => (response as DailyUsage).day_list);
 
             return fillFor30Days(
-                lastMonthUsage.filter((usage) => usage.day >= priorDate.getDate()).concat(dailyThisMonth),
-                priorDate,
+                lastMonthUsage.filter((usage) => usage.day >= startDateFor30Days.getDate()).concat(dailyThisMonth),
+                startDateFor30Days,
             );
         }),
     );
@@ -91,24 +93,23 @@ export const getLast30DaysUsage = async (device: FullTPLinkPlug): Promise<Device
 
 const fillForOneYear = (usages: TpLinkMonthlyEnergyOverview, priorDate: Date): TpLinkMonthlyEnergyOverview => {
     if (usages.length < 12) {
-        const monthsToFill = 12 - usages.length;
+        return new Array(12).fill({}).map((value, index) => {
+            const month = ((priorDate.getMonth() + index) % 12) + 1;
+            const year =
+                priorDate.getMonth() + 1 + index > 12 ? new Date(Date.now()).getFullYear() : priorDate.getFullYear();
 
-        return new Array(monthsToFill)
-            .fill({})
-            .map((value, index) => {
-                const month = ((priorDate.getMonth() + index) % 12) + 1;
-                const year =
-                    priorDate.getMonth() + 1 + index > 12
-                        ? new Date(Date.now()).getFullYear()
-                        : priorDate.getFullYear();
+            const usageIndex = usages.findIndex((usage) => usage.month === month && usage.year === year);
 
-                return {
-                    month,
-                    year,
-                    energy_wh: 0,
-                };
-            })
-            .concat(usages);
+            if (usageIndex !== -1) {
+                return usages[usageIndex];
+            }
+
+            return {
+                month,
+                year,
+                energy_wh: 0,
+            };
+        });
     }
 
     return usages;
@@ -117,15 +118,14 @@ const fillForOneYear = (usages: TpLinkMonthlyEnergyOverview, priorDate: Date): T
 export const getLast12MonthUsage = async (device: FullTPLinkPlug): Promise<DeviceMonthlyEnergyOverview> => {
     const plug = device.deviceHandle;
     const now = new Date(Date.now());
-    const month = now.getMonth() + 1;
 
     return mapToYearlyEnergyOverview(
         await plug.emeter.getMonthStats(now.getFullYear()).then(async (value) => {
             const powerUsageThisYear = (value as MonthlyUsage).month_list;
 
-            const neededForOneYear = 12 - month;
+            const neededForOneYear = 12 - powerUsageThisYear.length;
 
-            const priorDate = new Date(
+            const startDateForOneYearUsage = new Date(
                 new Date(new Date().setFullYear(now.getFullYear() - 1)).setMonth(12 - neededForOneYear),
             );
 
@@ -134,8 +134,10 @@ export const getLast12MonthUsage = async (device: FullTPLinkPlug): Promise<Devic
                 .then((response) => (response as MonthlyUsage).month_list);
 
             return fillForOneYear(
-                lastYearUsage.filter((usage) => usage.month >= priorDate.getMonth()).concat(powerUsageThisYear),
-                priorDate,
+                lastYearUsage
+                    .filter((usage) => usage.month >= startDateForOneYearUsage.getMonth())
+                    .concat(powerUsageThisYear),
+                startDateForOneYearUsage,
             );
         }),
     );
