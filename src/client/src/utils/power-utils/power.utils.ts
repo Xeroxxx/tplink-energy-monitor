@@ -1,20 +1,34 @@
 import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '../../models/devices/tp-link-plug-info.dto';
 
-export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string => {
+const getTodayPowerUsage = (energy: DeviceEnergyOverview): number => {
     const now = new Date(Date.now());
     const currentMonth = now.getMonth() + 1;
 
-    const todaysUsage = energy.find(
+    return energy.find(
         (value) => value.month === currentMonth && value.year === now.getFullYear() && value.day === now.getDate(),
-    );
+    )?.energyWh || 0;
+};
 
-    return `${todaysUsage ? transformMilliValueToFixed(todaysUsage.energyWh) : '-'} kWh`;
+export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string => {
+    return `${getTodayPowerUsage(energy) !== 0 ? transformMilliValueToFixed(getTodayPowerUsage(energy)) : '-'} kWh`;
 };
 
 export const getThisMonthPowerUsage = (energy: DeviceEnergyOverview): string => {
     const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
 
     return `${usageThisMonth ? transformMilliValueToFixed(usageThisMonth) : '-'} kWh`;
+};
+
+export const getThisMonthPowerCost =
+    (energy: DeviceEnergyOverview, cost: {energyCost: number, currency: string}): string => {
+        const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
+        const calculatedCost = ((usageThisMonth / 1000) * (cost.energyCost / 100)).toFixed(2);
+        return `${calculatedCost} ${cost.currency}`;
+};
+export const getTodaysPowerCost =
+    (energy: DeviceEnergyOverview, cost: {energyCost: number, currency: string}): string => {
+        const calculatedCost = ((getTodayPowerUsage(energy) / 1000) * (cost.energyCost / 100)).toFixed(2);
+        return `${calculatedCost} ${cost.currency}`;
 };
 
 export const transformMilliValueToFixed = (watthours: number) => (watthours / 1000).toFixed(2);

@@ -5,8 +5,8 @@ import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import {
     getDailyAverage,
     getMonthlyAverage,
-    getRealtimeAmperage,
-    getThisMonthPowerUsage,
+    getRealtimeAmperage, getThisMonthPowerCost,
+    getThisMonthPowerUsage, getTodaysPowerCost,
     getTodaysPowerUsage,
     getTotalLast12Month,
     getTotalLast30Days,
@@ -31,6 +31,7 @@ import { LoadingSpinner } from '../../../common/layout/loading-spinner/loading-s
 import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hook';
 import { ModalView } from '../../../common/layout/modal/modal';
 import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
+import { useUserSettings } from '../../../../custom-hooks/settings/settings.hook';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -41,6 +42,7 @@ export const DeviceView: React.FC = () => {
     const { currentDevice, isDeviceActive, syncActive, loading } = useDevices(id);
 
     useDeviceSync(id, syncActive, currentDevice);
+    const settings = useUserSettings();
 
     const [powerToggleClicked, setPowerToggleClicked] = React.useState<boolean>(false);
     const [error, setError] = React.useState<boolean>(false);
@@ -157,6 +159,26 @@ export const DeviceView: React.FC = () => {
                                         : '-'
                                 }
                                 subtitle="Monthly average"
+                            />
+                            <TextCard
+                                headline={
+                                    currentDevice!.last12Month
+                                        ? getThisMonthPowerCost(currentDevice!.dailyUsage,
+                                            { energyCost: settings!.energyCosts, currency: settings!.currency },
+                                            )
+                                        : '-'
+                                }
+                                subtitle="Total this month"
+                            />
+                            <TextCard
+                                headline={
+                                    currentDevice!.last12Month
+                                        ? getTodaysPowerCost(currentDevice!.dailyUsage,
+                                            { energyCost: settings!.energyCosts, currency: settings!.currency },
+                                            )
+                                        : '-'
+                                }
+                                subtitle="Total today"
                             />
                         </div>
                         <div className="flex-row">

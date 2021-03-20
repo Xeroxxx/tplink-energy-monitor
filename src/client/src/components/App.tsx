@@ -9,6 +9,7 @@ import { Sidebar } from './common/core/sidebar/sidebar';
 import { DeviceViewFooter } from './modules/devices/device-view/components/footer/device-view-footer';
 import { initApplication } from '../initApplication';
 import { useDevices } from '../custom-hooks/device-view/use-devices.hook';
+import { Settings } from './modules/settings/settings';
 
 export const App: React.FC = () => {
     const dispatch = useDispatch();
@@ -30,15 +31,15 @@ export const App: React.FC = () => {
                         <div className={styles.routerContent}>
                             <Switch>
                                 <Route path="/device/:id" component={DeviceView} />
+                                <Route path="/settings" component={Settings} />
                                 <Route path="/" component={Dashboard} />
                             </Switch>
                         </div>
                     </div>
                     <div>
-                        {!loading &&
-                        window.location.pathname.includes('device') &&
+                        {!loading && window.location.pathname.includes('device') && (
                             <DeviceViewFooter currentDevice={currentDevice} />
-                        }
+                        )}
                     </div>
                 </div>
             </BrowserRouter>

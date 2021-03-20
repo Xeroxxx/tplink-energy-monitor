@@ -7,7 +7,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "chart.js": "^2.9.4",
+    "chart.js": "^2.8.0",
     "chartjs-plugin-streaming": "^1.8.0",
     "classnames": "^2.2.6",
     "history": "^5.0.0",

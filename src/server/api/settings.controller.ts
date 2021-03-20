@@ -2,13 +2,14 @@ import { Controller, Get } from '@overnightjs/core';
 import { Request, Response } from 'express';
 import { Logger } from '@overnightjs/logger';
 import { StatusCodes } from 'http-status-codes';
-import { Service } from 'typedi';
+import { Container } from 'typedi';
 import SettingsService from '../services/settings.service';
 
 @Controller('api/settings')
-@Service()
 export default class SettingsController {
-    constructor(private readonly settings: SettingsService) {}
+    constructor(private readonly settings: SettingsService) {
+        this.settings = Container.get<SettingsService>(SettingsService);
+    }
 
     @Get('')
     private async get(_req: Request, res: Response) {

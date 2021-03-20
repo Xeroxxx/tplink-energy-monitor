@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { UserSettings } from '../types/user-settings/user-settings.type';
+import { UserSettings } from '../models/user-settings/user-settings.dto';
 
 const defaultUserSettings: UserSettings = {
     energyCosts: 29,
