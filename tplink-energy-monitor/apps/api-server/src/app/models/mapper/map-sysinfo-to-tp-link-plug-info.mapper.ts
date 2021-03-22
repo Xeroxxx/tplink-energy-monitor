@@ -1,6 +1,5 @@
 import {
     DeviceEnergyOverview,
-    DeviceMonthlyEnergyOverview,
     DeviceRealtimeData,
     TpLinkPlugInfoDto,
 } from '../devices/tp-link-plug-info.dto';

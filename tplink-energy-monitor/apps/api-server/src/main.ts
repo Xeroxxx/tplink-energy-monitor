@@ -1,18 +1,9 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import { Container } from 'typedi';
+import TpLinkServer from './app/tp-link-server';
+import * as path from 'path';
 
-import * as express from 'express';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(global as any).appRoot = path.resolve(__dirname);
 
-const app = express();
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api-server!' });
-});
-
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+const server = Container.get<TpLinkServer>(TpLinkServer);
+server.start(process.env.PORT || '3001');
