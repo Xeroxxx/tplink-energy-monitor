@@ -11,7 +11,7 @@
     "chartjs-plugin-streaming": "^1.8.0",
     "classnames": "^2.2.6",
     "history": "^5.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",
