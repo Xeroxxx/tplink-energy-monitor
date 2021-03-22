@@ -38,6 +38,6 @@
     "morgan": "^1.10.0",
     "socket.io": "^3.1.2",
     "tplink-smarthome-api": "^3.3.0",
-    "typedi": "^0.8.0"
+    "typedi": "^0.10.0"
   }
 }
