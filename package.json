@@ -36,7 +36,7 @@
     "express": "^4.17.1",
     "http-status-codes": "^2.1.4",
     "morgan": "^1.10.0",
-    "socket.io": "^3.1.2",
+    "socket.io": "^4.0.0",
     "tplink-smarthome-api": "^3.3.0",
     "typedi": "^0.8.0"
   }
