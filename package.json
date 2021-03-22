@@ -23,7 +23,7 @@
     "express-ws": "^4.0.0",
     "hbs": "^4.1.1",
     "http-errors": "^1.8.0",
-    "moment": "2.27.0",
+    "moment": "2.29.1",
     "morgan": "^1.10.0",
     "shelljs": "0.8.4",
     "tplink-smarthome-api": "3.3.0"
