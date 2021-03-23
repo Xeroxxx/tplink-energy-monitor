@@ -10,7 +10,7 @@ export class SocketConnection {
     private readonly reconnectInterval;
 
     private constructor() {
-        this.socket = io.io('ws://localhost:3001');
+        this.socket = io.io();
 
         this.reconnectInterval = setInterval(this.tryReconnect, 2000);
 
