@@ -1,0 +1,28 @@
+@import '../../../../../styles/colors';
+
+.syncStatus {
+  cursor: pointer;
+  width: 95px;
+  align-items: center;
+}
+
+.syncIcon {
+  margin-bottom: 5px;
+}
+
+.syncText {
+  text-transform: uppercase;
+  margin-right: 5px;
+  color: $card-subtitle;
+  font-size: 70%;
+  font-weight: 400;
+
+}
+
+.active {
+  color: $power-on-color;
+}
+
+.inActive {
+  color: $power-off-color;
+}
