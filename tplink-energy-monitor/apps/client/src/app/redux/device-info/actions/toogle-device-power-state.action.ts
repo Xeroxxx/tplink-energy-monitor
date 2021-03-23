@@ -3,7 +3,7 @@ import { ApplicationState } from '../../store';
 import { Action } from 'redux';
 import { deviceErrorAction } from './error.action';
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
-import { ChangePowerStateDto } from '../../../models/devices/tp-link-plug-info.dto';
+import { ChangePowerStateDto } from '@tplink-energy-monitor/data-access-devices';
 import { put } from '../../../utils/http.utils';
 
 export const toggleDevicePowerState = (

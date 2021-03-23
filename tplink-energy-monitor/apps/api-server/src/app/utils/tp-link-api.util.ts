@@ -1,12 +1,12 @@
 import { Client } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
-import { FullTPLinkPlug } from '../models/devices/tp-link-plug.dto';
 import {
-    DeviceEnergyOverview,
-    DeviceMonthlyEnergyOverview,
-    DeviceRealtimeData,
-    RealTimeData,
-} from '../models/devices/tp-link-plug-info.dto';
+  DeviceEnergyOverview,
+  DeviceMonthlyEnergyOverview,
+  DeviceRealtimeData,
+  RealTimeData,
+  FullTPLinkPlug,
+} from '@tplink-energy-monitor/data-access-devices';
 import {
     DailyUsage,
     mapToDailyEnergyOverview,

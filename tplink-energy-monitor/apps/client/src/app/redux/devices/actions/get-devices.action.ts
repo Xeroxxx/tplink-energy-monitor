@@ -1,4 +1,4 @@
-import { TPLinkPlug } from '../../../models/devices/tp-link-plug.dto';
+import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 import { DevicesAction, DevicesActionNames } from '../devices-state.type';
 import { ThunkAction } from 'redux-thunk';
 import { ApplicationState } from '../../store';

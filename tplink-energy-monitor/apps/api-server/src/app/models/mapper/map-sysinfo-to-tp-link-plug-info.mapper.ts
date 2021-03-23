@@ -2,7 +2,7 @@ import {
     DeviceEnergyOverview,
     DeviceRealtimeData,
     TpLinkPlugInfoDto,
-} from '../devices/tp-link-plug-info.dto';
+} from '@tplink-energy-monitor/data-access-devices';
 
 type PlugInfo = {
     sysInfo: Record<string, unknown>;

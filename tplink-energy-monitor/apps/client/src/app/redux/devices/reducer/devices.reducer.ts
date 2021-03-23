@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { DevicesAction, DevicesActionNames, DeviceState } from '../devices-state.type';
-import { TPLinkPlug } from '../../../models/devices/tp-link-plug.dto';
+import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 
 export const initialDeviceState: DeviceState = {
     status: 'PENDING',

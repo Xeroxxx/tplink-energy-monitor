@@ -1,4 +1,4 @@
-import { TPLinkPlug } from '../../../models/devices/tp-link-plug.dto';
+import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 import { NavBarItem } from '../../../components/common/core/sidebar/nav-bar/nav-bar';
 import { faPlug } from '@fortawesome/free-solid-svg-icons';
 

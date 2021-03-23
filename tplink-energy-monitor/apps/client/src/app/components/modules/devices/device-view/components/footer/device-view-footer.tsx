@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './device-view-footer.module.scss';
-import { TPLinkPlug } from '../../../../../../models/devices/tp-link-plug.dto';
+import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 
 type DeviceViewFooterProps = {
     currentDevice?: TPLinkPlug;

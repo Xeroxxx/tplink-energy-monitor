@@ -1,4 +1,4 @@
-import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '../../models/devices/tp-link-plug-info.dto';
+import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '@tplink-energy-monitor/data-access-devices';
 
 const getTodayPowerUsage = (energy: DeviceEnergyOverview): number => {
     const now = new Date(Date.now());

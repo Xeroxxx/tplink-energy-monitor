@@ -1,4 +1,4 @@
-import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '../devices/tp-link-plug-info.dto';
+import { DeviceEnergyOverview, DeviceMonthlyEnergyOverview } from '@tplink-energy-monitor/data-access-devices'
 
 export const mapDeviceEnergyOverviewToChartData = (deviceEnergy: DeviceEnergyOverview): number[] => {
     return deviceEnergy?.map((value) => value.energyWh / 1000);

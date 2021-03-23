@@ -1,6 +1,5 @@
 import { Plug, PlugSysinfo } from 'tplink-smarthome-api';
-import { TpLinkDeviceTypes } from '../../types/devices/device-type.enum';
-import { FullTPLinkPlug, TPLinkPlug } from '../devices/tp-link-plug.dto';
+import { TpLinkDeviceTypes, FullTPLinkPlug, TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 
 export const mapToFullTPLinkPlug = (device: Plug, info: PlugSysinfo): FullTPLinkPlug => ({
     id: device.deviceId,

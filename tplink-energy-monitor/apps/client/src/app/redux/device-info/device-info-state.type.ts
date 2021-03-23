@@ -1,5 +1,5 @@
 import { StateStatus } from '../types/state-status.type';
-import { TpLinkPlugInfoDto } from '../../models/devices/tp-link-plug-info.dto';
+import { TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 
 export type DeviceInfoState = {
     status: StateStatus;

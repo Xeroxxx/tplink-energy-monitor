@@ -1,4 +1,4 @@
-import { TPLinkPlug } from '../../models/devices/tp-link-plug.dto';
+import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
 import { StateStatus } from '../types/state-status.type';
 
 export type DeviceState = {

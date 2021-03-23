@@ -9,12 +9,17 @@ import {
 } from '../utils/tp-link-api.util';
 import { Plug } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
-import { TpLinkDeviceTypes } from '../types/devices/device-type.enum';
 import { Logger } from '@overnightjs/logger';
-import { FullTPLinkPlug, TPLinkPlug } from '../models/devices/tp-link-plug.dto';
+import {
+  TpLinkDeviceTypes,
+  FullTPLinkPlug,
+  TPLinkPlug,
+  ChangePowerStateDto,
+  DeviceEnergyOverview,
+  TpLinkPlugInfoDto
+} from '@tplink-energy-monitor/data-access-devices';
 import { mapFullTPLinkPlugToTPLinkPlug, mapToFullTPLinkPlug } from '../models/mapper/map-to-tp-link-plug.mapper';
 import { mapSysinfoToTPLinkPlugInfo } from '../models/mapper/map-sysinfo-to-tp-link-plug-info.mapper';
-import { ChangePowerStateDto, DeviceEnergyOverview, TpLinkPlugInfoDto } from '../models/devices/tp-link-plug-info.dto';
 
 @Service()
 export default class DevicesService {

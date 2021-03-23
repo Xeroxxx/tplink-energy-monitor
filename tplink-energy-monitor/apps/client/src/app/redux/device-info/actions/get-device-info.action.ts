@@ -3,7 +3,7 @@ import { ApplicationState } from '../../store';
 import { Action } from 'redux';
 import { get } from '../../../utils/http.utils';
 import { deviceLoading } from './loading.action';
-import { TpLinkPlugInfoDto } from '../../../models/devices/tp-link-plug-info.dto';
+import { TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
 import { deviceErrorAction } from './error.action';
 

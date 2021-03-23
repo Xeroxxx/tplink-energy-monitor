@@ -1,5 +1,5 @@
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
-import { TpLinkPlugInfoDto } from '../../../models/devices/tp-link-plug-info.dto';
+import { TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 
 export const updateDeviceInfo = (plugInfo: TpLinkPlugInfoDto): DeviceAction<TpLinkPlugInfoDto> => {
     return {

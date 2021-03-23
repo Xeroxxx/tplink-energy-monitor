@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
+  "cli": { "defaultCollection": "@nrwl/express" },
   "defaultProject": "api-server",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
     }
   },
   "projects": {
@@ -52,15 +41,11 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api-server:build"
-          }
+          "options": { "buildTarget": "api-server:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/api-server/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/api-server/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -123,9 +108,7 @@
             "proxyConfig": "apps/client/proxy.conf.json"
           },
           "configurations": {
-            "production": {
-              "buildTarget": "client:build:production"
-            }
+            "production": { "buildTarget": "client:build:production" }
           }
         },
         "lint": {
@@ -157,15 +140,53 @@
             "devServerTarget": "client:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "client:serve:production"
-            }
+            "production": { "devServerTarget": "client:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "data-access-user-settings": {
+      "root": "libs/data-access-user-settings",
+      "sourceRoot": "libs/data-access-user-settings/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-user-settings"],
+          "options": {
+            "jestConfig": "libs/data-access-user-settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-devices": {
+      "root": "libs/data-access-devices",
+      "sourceRoot": "libs/data-access-devices/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access-devices/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-devices"],
+          "options": {
+            "jestConfig": "libs/data-access-devices/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

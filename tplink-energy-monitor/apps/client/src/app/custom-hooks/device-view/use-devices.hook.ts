@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import { ApplicationState } from '../../redux/store';
 import * as React from 'react';
-import { TPLinkPlug } from '../../models/devices/tp-link-plug.dto';
-import { TpLinkPlugInfoDto } from '../../models/devices/tp-link-plug-info.dto';
+import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 
 export const useDevices = (id?: string) => {
     const [currentDevice, setCurrentDevice] = React.useState<TPLinkPlug & TpLinkPlugInfoDto>();

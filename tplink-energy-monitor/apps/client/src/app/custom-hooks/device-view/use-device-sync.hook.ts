@@ -1,5 +1,4 @@
-import { TPLinkPlug } from '../../models/devices/tp-link-plug.dto';
-import { TpLinkPlugInfoDto } from '../../models/devices/tp-link-plug-info.dto';
+import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 import { useDispatch } from 'react-redux';
 import * as React from 'react';
 import { resetDeviceView } from '../../redux/device-info/actions/reset-device.view.action';
