@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~normalize.css/normalize.css';
+@import '~typeface-roboto/index.css';
+@import './app/styles/container';
+
+body {
+  font-family: 'Roboto', serif;
+}
+
+code {
+}
+
+body > #root > div {
+  height: 100vh;
+}
