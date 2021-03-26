@@ -3,13 +3,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import {
-    getDailyAverage,
-    getMonthlyAverage,
-    getRealtimeAmperage, getThisMonthPowerCost,
-    getThisMonthPowerUsage, getTodaysPowerCost,
-    getTodaysPowerUsage,
-    getTotalLast12Month,
-    getTotalLast30Days,
+  getDailyAverage,
+  getMonthlyAverage,
+  getRealtimeAmperage, getThisMonthPowerCost,
+  getThisMonthPowerUsage, getTodaysPowerCost,
+  getTodaysPowerUsage,
+  getTotalLast12Month,
+  getTotalLast30Days, transformMilliValueToFixed, transformRealtimePower,
 } from '../../../../utils/power-utils/power.utils';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
@@ -29,6 +29,7 @@ import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hoo
 import { ModalView } from '../../../common/layout/modal/modal';
 import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
 import { useUserSettings } from '../../../../custom-hooks/settings/settings.hook';
+import {GaugeCard} from "../../../common/layout/card/gauge-chart/gauge-card";
 
 type DeviceViewRouteParams = {
     id: string;
@@ -87,16 +88,16 @@ export const DeviceView: React.FC = () => {
                     <div className="flex-row flex-wrap">
                         <div className={styles.realtime}>
                             <div>
-                                {/*<GaugeCard*/}
-                                {/*    id="power-gauge"*/}
-                                {/*    percent={currentDevice!.realTime.power / 3000}*/}
-                                {/*    leftString={`${transformMilliValueToFixed(*/}
-                                {/*        currentDevice!.realTime.currentMa!,*/}
-                                {/*    )} A`}*/}
-                                {/*    topString={transformRealtimePower(currentDevice!.realTime.power!)}*/}
-                                {/*    rightString={`${currentDevice!.realTime.voltage!.toFixed(0)} V`}*/}
-                                {/*    label="Realtime Usage"*/}
-                                {/*/>*/}
+                                <GaugeCard
+                                    id="power-gauge"
+                                    percent={currentDevice.realTime.power / 3000}
+                                    leftString={`${transformMilliValueToFixed(
+                                        currentDevice.realTime.currentMa,
+                                    )} A`}
+                                    topString={transformRealtimePower(currentDevice.realTime.power)}
+                                    rightString={`${currentDevice.realTime.voltage.toFixed(0)} V`}
+                                    label="Realtime Usage"
+                                />
                             </div>
                             <TimeLineChart
                                 currentValue={currentDevice.realTime.power || 0}
