@@ -2,9 +2,9 @@
   "name": "tplink-energy-monitor",
   "description": "An energy monitoring dashboard for TP-Link smart plugs",
   "version": "2.2.0",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "author": {
-    "name": "James Barnett"
+    "name": "nbxy"
   },
   "contributors": [
     {
@@ -12,9 +12,6 @@
     },
     {
       "name": "xeroxx"
-    },
-    {
-      "name": "nbyx"
     }
   ],
   "scripts": {
@@ -93,7 +90,7 @@
     "prettier": "2.2.1",
     "ts-jest": "26.4.0",
     "ts-node": "~9.1.1",
-    "typescript": "~4.0.3"
+    "typescript": "^4.2.3"
   },
   "_id": "tplink-energy-monitor@0.0.0",
   "dependencies": {

@@ -3,7 +3,7 @@ import { ApplicationState } from '../../store';
 import { Action } from 'redux';
 import { get } from '../../../utils/http.utils';
 import { SettingsAction, SettingsActionNames } from '../settings-state.type';
-import { UserSettings } from '../../../models/settings/user-settings.dto';
+import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
 
 export const loadSettings = (): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
     try {

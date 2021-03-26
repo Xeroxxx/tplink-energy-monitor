@@ -1,5 +1,5 @@
 import { StateStatus } from '../types/state-status.type';
-import { UserSettings } from '../../models/settings/user-settings.dto';
+import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
 
 export type SettingsState = {
     status: StateStatus;
