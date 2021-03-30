@@ -1,11 +1,14 @@
 # Dockerfiles
-Dockerfile*
-node_modules
-src/client/node_modules
+**/Dockerfile*
+**/node_modules
+**/dist
+
+**/.idea
+**/.vscode
 
 # Travis & Git
 .travis.yml
-.gitignore
+**/.gitignore
 
 # README
-README*.md
+**/README*.md
