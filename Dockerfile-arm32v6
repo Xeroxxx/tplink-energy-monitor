@@ -3,11 +3,11 @@ FROM arm32v6/node:alpine
 COPY qemu-arm-static /usr/bin
 WORKDIR /opt/tplink-monitor
 
-COPY tplink-energy-monitor/package.json .
-COPY tplink-energy-monitor/package-lock.json .
-
 # ---- Build Image ----
 FROM base AS src
+
+COPY tplink-energy-monitor/package.json .
+COPY tplink-energy-monitor/package-lock.json .
 
 # fix missing python for node-sass
 RUN apk --no-cache add --virtual native-deps \
@@ -28,7 +28,7 @@ FROM base as release
 
 COPY --from=src /opt/tplink-monitor/prod_node_modules ./node_modules
 COPY --from=src /opt/tplink-monitor/dist/apps/api-server/ .
-COPY --from=src /opt/tplink-monitor/dist/apps/client .
+COPY --from=src /opt/tplink-monitor/dist/apps/client/ client/
 
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE 3001
+CMD ["node", "main.js"]
