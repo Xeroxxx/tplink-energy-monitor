@@ -12,9 +12,6 @@ FROM base AS src
 RUN apk --no-cache add --virtual native-deps \
   g++ gcc libgcc libstdc++ linux-headers make python
 
-#RUN npm install typescript -g
-#RUN npm install --quiet node-gyp -g
-
 RUN npm set progress=false && npm config set depth 0
 RUN npm install --only=production --force
 RUN mv node_modules prod_node_modules
@@ -23,16 +20,14 @@ RUN npm install --quiet --force
 
 COPY tplink-energy-monitor/ .
 
-#RUN ls -la ./apps/client/src
-
-RUN npm run build-all -- --with-deps
+RUN npm run build-all -- --prod
 
 # ---- Release ----
 FROM base as release
 
 COPY --from=src /opt/tplink-monitor/prod_node_modules ./node_modules
-COPY --from=src /opt/tplink-monitor/dist/api-server/ .
-COPY --from=src /opt/tplink-monitor/dist/client .
+COPY --from=src /opt/tplink-monitor/dist/apps/api-server/ .
+COPY --from=src /opt/tplink-monitor/dist/apps/client .
 
 EXPOSE 3000
 CMD ["npm", "start"]
