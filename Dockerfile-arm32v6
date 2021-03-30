@@ -3,40 +3,32 @@ FROM arm32v6/node:alpine
 COPY qemu-arm-static /usr/bin
 WORKDIR /opt/tplink-monitor
 
-COPY package.json .
+COPY tplink-energy-monitor/package.json .
+COPY tplink-energy-monitor/package-lock.json .
 
-
-# --- Dependency image ---
-# install node prod modules etc.
-FROM base AS dependencies
-
-COPY tsconfig.json .
-COPY src/ src/
-
-RUN npm set progress=false && npm config set depth 0
-RUN npm install --only=production
-RUN cp -R node_modules prod_node_modules
+# ---- Build Image ----
+FROM base AS src
 
 # fix missing python for node-sass
 RUN apk --no-cache add --virtual native-deps \
-  g++ gcc libgcc libstdc++ linux-headers make python && \
-  npm install --quiet node-gyp -g &&\
-  npm install --quiet
+  g++ gcc libgcc libstdc++ linux-headers make python
 
-# build server
-RUN npm install typescript -g
-RUN tsc
+RUN npm set progress=false && npm config set depth 0
+RUN npm install --only=production --force
+RUN mv node_modules prod_node_modules
 
-# install and build client
-RUN cd src/client/ && npm install
-RUN cd src/client && npm run build
-RUN mv src/client/build/ /opt/tplink-monitor/build/client/
+RUN npm install --quiet --force
+
+COPY tplink-energy-monitor/ .
+
+RUN npm run build-all -- --prod
 
 # ---- Release ----
 FROM base as release
 
-COPY --from=dependencies /opt/tplink-monitor/prod_node_modules/ ./node_modules/
-COPY --from=dependencies /opt/tplink-monitor/build/ .
+COPY --from=src /opt/tplink-monitor/prod_node_modules ./node_modules
+COPY --from=src /opt/tplink-monitor/dist/apps/api-server/ .
+COPY --from=src /opt/tplink-monitor/dist/apps/client .
 
 EXPOSE 3000
 CMD ["npm", "start"]
