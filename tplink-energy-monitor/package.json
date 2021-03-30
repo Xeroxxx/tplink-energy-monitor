@@ -18,6 +18,7 @@
     "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
+    "build-all": "nx run-many --target=build --projects=api-server,client --parallel",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
@@ -39,8 +40,8 @@
   },
   "private": true,
   "devDependencies": {
-    "@babel/preset-env": "7.13.12",
     "@babel/core": "7.13.13",
+    "@babel/preset-env": "7.13.12",
     "@babel/preset-react": "7.13.13",
     "@babel/preset-typescript": "7.13.0",
     "@nrwl/cli": "11.5.2",
