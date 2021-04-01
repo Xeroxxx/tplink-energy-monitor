@@ -21,11 +21,11 @@ LICENSE changed to MIT License as no code of the previous project is reused.
 - [x] Rewrite Frontend and switch to ReactJS (Done)
 - [x] Rewrite Backend (Done)
 - [x] Show historical data (Done)
-- [ ] Responsiveness
+- [x] Responsiveness
 - [ ] Show cumulative energy usage (day/month/year) on device
 - [ ] Show cumulative energy usage form all devices
 - [ ] Device Grouping (e.g. Living Room, Kitchen, ...)
-- [ ] Add daily cost metrics
+- [x] Add daily cost metrics (partially)
 - [ ] Configurable realtime usage logging
 - [ ] Changeable card order in device view
 
