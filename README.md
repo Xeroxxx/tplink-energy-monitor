@@ -4,6 +4,9 @@ Complete recode of tplink-energy-monitor.
 
 Work in progress....
 
+![image](https://user-images.githubusercontent.com/1109954/113363236-a3d14600-9350-11eb-99f0-589a65a921a4.png)
+
+
 x86_64 only during development.
 
 LICENSE changed to MIT License as no code of the previous project is reused.
