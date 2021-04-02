@@ -35,5 +35,5 @@ COPY --from=builder /opt/tplink-monitor/dist/apps/api-server/ .
 COPY --from=builder /opt/tplink-monitor/dist/apps/client/ client/
 
 USER node
-EXPOSE 3001
+EXPOSE 3000
 CMD ["node", "main.js"]

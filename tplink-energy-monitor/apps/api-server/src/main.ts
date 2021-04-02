@@ -6,4 +6,4 @@ import * as path from 'path';
 (global as any).appRoot = path.resolve(__dirname);
 
 const server = Container.get<TpLinkServer>(TpLinkServer);
-server.start(process.env.PORT || '3001');
+server.start(process.env.PORT || '3000');
