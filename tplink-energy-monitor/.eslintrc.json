@@ -18,7 +18,6 @@
         },
         {
             "files": ["*.ts", "*.tsx"],
-            "excludedFiles": ["*.test.ts", "*.test.tsx"],
             "extends": [
                 "plugin:@nrwl/nx/typescript",
                 "eslint:recommended",
