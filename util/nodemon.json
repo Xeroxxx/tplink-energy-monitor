@@ -1,6 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "ignore": ["src/client"],
-  "exec": "ts-node src/start.ts dev"
-}
