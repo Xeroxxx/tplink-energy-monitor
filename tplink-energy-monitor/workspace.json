@@ -23,7 +23,7 @@
                         "outputPath": "dist/apps/api-server",
                         "main": "apps/api-server/src/main.ts",
                         "tsConfig": "apps/api-server/tsconfig.app.json",
-                        "assets": ["apps/api-server/src/assets"]
+                        "assets": []
                     },
                     "configurations": {
                         "production": {
