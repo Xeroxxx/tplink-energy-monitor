@@ -12,23 +12,21 @@ type GaugeCardProps = {
     label?: string;
 };
 
-export const GaugeCard: React.FC<GaugeCardProps> = (props: GaugeCardProps) => {
-    return (
-        <Card type="gauge-card">
-            <div className="flex-col">
-                <GaugeComponent
-                    id={props.id}
-                    className={props.className}
-                    percent={props.percent || 0}
-                    leftString={props.leftString}
-                    topString={props.topString}
-                    rightString={props.rightString}
-                    label={props.label}
-                />
-            </div>
-        </Card>
-    );
-};
+export const GaugeCard: React.FC<GaugeCardProps> = (props: GaugeCardProps) => (
+    <Card type="gauge-card">
+        <div className="flex-col">
+            <GaugeComponent
+                id={props.id}
+                className={props.className}
+                percent={props.percent || 0}
+                leftString={props.leftString}
+                topString={props.topString}
+                rightString={props.rightString}
+                label={props.label}
+            />
+        </div>
+    </Card>
+);
 
 GaugeCard.defaultProps = {
     className: '',

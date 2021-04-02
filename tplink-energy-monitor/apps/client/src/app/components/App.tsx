@@ -15,11 +15,8 @@ export const App: React.FC = () => {
     const dispatch = useDispatch();
     const { currentDevice, loading } = useDevices();
 
-    const init = React.useCallback(() => {
-        initApplication(dispatch);
-    }, []);
-
-    React.useEffect(() => init(), []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    React.useEffect(() => initApplication(dispatch), []);
 
     return (
         <div className={`${styles.mainContent} flex-row`}>

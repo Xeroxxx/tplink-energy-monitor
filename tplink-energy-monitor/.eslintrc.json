@@ -1,68 +1,59 @@
 {
-  "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": [
-        "plugin:@nrwl/nx/typescript",
-        "eslint:recommended",
-        "airbnb-base",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
-      ],
-      "rules": {
-        "no-console": "warn",
-        "max-len": ["error", { "code": 120, "tabWidth": 4 }],
-        "import/extensions": [
-          "error",
-          "ignorePackages",
-          {
-            "js": "never",
-            "jsx": "never",
-            "ts": "never",
-            "tsx": "never"
-          }
-        ],
-        "linebreak-style": "off",
-        "import/order": "off",
-        "comma-dangle": ["error", "always-multiline"],
-        "curly": ["error", "all"],
-        "no-confusing-arrow": ["error", { "allowParens": false }],
-        "no-unexpected-multiline": "error",
-        "no-useless-constructor": "off",
-        "class-methods-use-this": "off",
-        "quotes": [
-          "error",
-          "single",
-          { "avoidEscape": true, "allowTemplateLiterals": false }
-        ],
-        "import/prefer-default-export": "off"
-      }
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {
-      }
-    }
-  ]
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nrwl/nx"],
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": [
+                    "error",
+                    {
+                        "enforceBuildableLibDependency": true,
+                        "allow": [],
+                        "depConstraints": [{ "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }]
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "excludedFiles": ["*.test.ts", "*.test.tsx"],
+            "extends": [
+                "plugin:@nrwl/nx/typescript",
+                "eslint:recommended",
+                "airbnb-base",
+                "plugin:@typescript-eslint/eslint-recommended",
+                "plugin:@typescript-eslint/recommended",
+                "prettier"
+            ],
+            "rules": {
+                "no-console": "warn",
+                "max-len": ["error", { "code": 120, "tabWidth": 4 }],
+                "import/no-unresolved": "off",
+                "import/extensions": "off",
+                "@typescript-eslint/no-unused-vars": "off",
+                "linebreak-style": "off",
+                "import/order": "off",
+                "comma-dangle": ["error", "always-multiline"],
+                "curly": ["error", "all"],
+                "no-confusing-arrow": ["error", { "allowParens": false }],
+                "no-unexpected-multiline": "error",
+                "no-useless-constructor": "off",
+                "class-methods-use-this": "off",
+                "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": false }],
+                "import/prefer-default-export": "off",
+                "no-use-before-define": "off",
+                "@typescript-eslint/no-use-before-define": ["error"],
+                "import/no-extraneous-dependencies": "off",
+                "no-shadow": "off",
+                "@typescript-eslint/no-shadow": ["error"]
+            }
+        },
+        {
+            "files": ["*.js", "*.jsx"],
+            "extends": ["plugin:@nrwl/nx/javascript"],
+            "rules": {}
+        }
+    ]
 }

@@ -8,9 +8,9 @@ export const Header: React.FC = () => {
 
     return (
         <div className={`${styles.header} flex-end`}>
-            {window.location.pathname.includes('device') &&
-                <SyncStatus syncActive={!!syncActive} onSyncClick={toggleSync} />
-            }
+            {window.location.pathname.includes('device') && (
+                <SyncStatus syncActive={syncActive} onSyncClick={toggleSync} />
+            )}
         </div>
     );
 };

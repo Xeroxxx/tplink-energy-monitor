@@ -4,14 +4,16 @@ const getTodayPowerUsage = (energy: DeviceEnergyOverview): number => {
     const now = new Date(Date.now());
     const currentMonth = now.getMonth() + 1;
 
-    return energy.find(
-        (value) => value.month === currentMonth && value.year === now.getFullYear() && value.day === now.getDate(),
-    )?.energyWh || 0;
+    return (
+        energy.find(
+            (value) => value.month === currentMonth && value.year === now.getFullYear() && value.day === now.getDate(),
+        )?.energyWh || 0
+    );
 };
+export const transformMilliValueToFixed = (watthours: number): string => (watthours / 1000).toFixed(2);
 
-export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string => {
-    return `${getTodayPowerUsage(energy) !== 0 ? transformMilliValueToFixed(getTodayPowerUsage(energy)) : '-'} kWh`;
-};
+export const getTodaysPowerUsage = (energy: DeviceEnergyOverview): string =>
+    `${getTodayPowerUsage(energy) !== 0 ? transformMilliValueToFixed(getTodayPowerUsage(energy)) : '-'} kWh`;
 
 export const getThisMonthPowerUsage = (energy: DeviceEnergyOverview): string => {
     const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
@@ -19,19 +21,22 @@ export const getThisMonthPowerUsage = (energy: DeviceEnergyOverview): string => 
     return `${usageThisMonth ? transformMilliValueToFixed(usageThisMonth) : '-'} kWh`;
 };
 
-export const getThisMonthPowerCost =
-    (energy: DeviceEnergyOverview, cost: {energyCost: number, currency: string}): string => {
-        const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
-        const calculatedCost = ((usageThisMonth / 1000) * (cost.energyCost / 100)).toFixed(2);
-        return `${calculatedCost} ${cost.currency}`;
+export const getThisMonthPowerCost = (
+    energy: DeviceEnergyOverview,
+    cost: { energyCost: number; currency: string },
+): string => {
+    const usageThisMonth = energy.reduce((acc, prev) => acc + prev.energyWh, 0);
+    const calculatedCost = ((usageThisMonth / 1000) * (cost.energyCost / 100)).toFixed(2);
+    return `${calculatedCost} ${cost.currency}`;
 };
-export const getTodaysPowerCost =
-    (energy: DeviceEnergyOverview, cost: {energyCost: number, currency: string}): string => {
-        const calculatedCost = ((getTodayPowerUsage(energy) / 1000) * (cost.energyCost / 100)).toFixed(2);
-        return `${calculatedCost} ${cost.currency}`;
+export const getTodaysPowerCost = (
+    energy: DeviceEnergyOverview,
+    cost: { energyCost: number; currency: string },
+): string => {
+    const calculatedCost = ((getTodayPowerUsage(energy) / 1000) * (cost.energyCost / 100)).toFixed(2);
+    return `${calculatedCost} ${cost.currency}`;
 };
 
-export const transformMilliValueToFixed = (watthours: number) => (watthours / 1000).toFixed(2);
 export const transformMilliValue = (watthours: number): number => watthours / 1000;
 
 export const transformRealtimePower = (watt: number): string => {

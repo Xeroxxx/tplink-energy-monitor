@@ -10,31 +10,29 @@ type PowerOffModalProps = {
     handlePowerToggleModalDeclineClicked: () => void;
 };
 
-export const PowerOffModal: React.FC<PowerOffModalProps> = (props: PowerOffModalProps) => {
-    return (
-        <ModalView show={props.showModal}>
-            <div className={`${styles.powerOffHeadline} flex-col`}>
-                <h2>Power off</h2>
-                <div className={styles.powerOffText}>
-                    Are you sure that you want to power off &apos;{props.deviceAlias}&apos; ?
-                </div>
-                <div className="flex-end">
-                    <div className={styles.powerOffAcceptButton}>
-                        <Button
-                            buttonStyle="secondary"
-                            buttonLabel="Accept"
-                            type="button"
-                            onClick={props.handlePowerToggleModalAccept}
-                        />
-                    </div>
+export const PowerOffModal: React.FC<PowerOffModalProps> = (props: PowerOffModalProps) => (
+    <ModalView show={props.showModal}>
+        <div className={`${styles.powerOffHeadline} flex-col`}>
+            <h2>Power off</h2>
+            <div className={styles.powerOffText}>
+                Are you sure that you want to power off &apos;{props.deviceAlias}&apos; ?
+            </div>
+            <div className="flex-end">
+                <div className={styles.powerOffAcceptButton}>
                     <Button
-                        buttonStyle="primary"
-                        buttonLabel="Decline"
+                        buttonStyle="secondary"
+                        buttonLabel="Accept"
                         type="button"
-                        onClick={props.handlePowerToggleModalDeclineClicked}
+                        onClick={props.handlePowerToggleModalAccept}
                     />
                 </div>
+                <Button
+                    buttonStyle="primary"
+                    buttonLabel="Decline"
+                    type="button"
+                    onClick={props.handlePowerToggleModalDeclineClicked}
+                />
             </div>
-        </ModalView>
-    );
-};
+        </div>
+    </ModalView>
+);

@@ -1,41 +1,40 @@
 @import '../../../../styles/colors';
 
 .card {
-  margin-bottom: 1.25rem;
-  border: 1px solid $card-border;
-  box-shadow: 0 2px 3px rgba(0,0,0,.15);
-  border-radius: 5px;
-  padding: 40px 20px;
-  background: $card-background;
-  max-width: 300px;
+    margin-bottom: 1.25rem;
+    border: 1px solid $card-border;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 40px 20px;
+    background: $card-background;
+    max-width: 300px;
 }
 
-
 .powerCard {
-  margin-left: 20px;
-  min-width: 300px;
+    margin-left: 20px;
+    min-width: 300px;
 
-  h1 {
-    cursor: pointer;
-    margin-top: 0;
-    margin-bottom: 5px;
-    align-self: center;
-  }
+    h1 {
+        cursor: pointer;
+        margin-top: 0;
+        margin-bottom: 5px;
+        align-self: center;
+    }
 
-  small {
-    padding-left: 5px;
-    text-transform: uppercase;
-  }
+    small {
+        padding-left: 5px;
+        text-transform: uppercase;
+    }
 }
 
 .gaugeCard {
-  max-width: 300px;
-  margin-left: 20px;
-  padding-top: 60px;
+    max-width: 300px;
+    margin-left: 20px;
+    padding-top: 60px;
 }
 
 .chartCard {
-  margin-left: 20px;
-  max-width: 662px;
-  max-height: 320px;
+    margin-left: 20px;
+    max-width: 662px;
+    max-height: 320px;
 }

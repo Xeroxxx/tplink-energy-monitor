@@ -12,13 +12,11 @@ export type NavButtonProps = {
     isActive: boolean;
 };
 
-export const NavButton: React.FC<NavButtonProps> = (props: NavButtonProps) => {
-    return (
-        <li className={`${styles.navButton} ${props.className || ''}${props.isActive ? styles.active : ''}`}>
-            <Link to={props.url}>
-                <FontAwesomeIcon icon={props.icon} />
-                <span>{props.linkText}</span>
-            </Link>
-        </li>
-    );
-};
+export const NavButton: React.FC<NavButtonProps> = (props: NavButtonProps) => (
+    <li className={`${styles.navButton} ${props.className || ''}${props.isActive ? styles.active : ''}`}>
+        <Link to={props.url}>
+            <FontAwesomeIcon icon={props.icon} />
+            <span>{props.linkText}</span>
+        </Link>
+    </li>
+);

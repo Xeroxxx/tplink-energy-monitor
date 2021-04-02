@@ -9,15 +9,13 @@ type DeviceToggleProps = {
     handlePowerToggleClicked: () => void;
 };
 
-export const DeviceToggle: React.FC<DeviceToggleProps> = (props: DeviceToggleProps) => {
-    return (
-        <Card type="power-card" className={styles.powerCard}>
-            <div className="flex-col">
-                <h1 className={props.isActive ? styles.powerOn : styles.powerOff}>
-                    <FontAwesomeIcon icon={faPowerOff} onClick={props.handlePowerToggleClicked} />
-                </h1>
-                <small>{props.isActive ? 'on' : 'off'}</small>
-            </div>
-        </Card>
-    );
-};
+export const DeviceToggle: React.FC<DeviceToggleProps> = (props: DeviceToggleProps) => (
+    <Card type="power-card" className={styles.powerCard}>
+        <div className="flex-col">
+            <h1 className={props.isActive ? styles.powerOn : styles.powerOff}>
+                <FontAwesomeIcon icon={faPowerOff} onClick={props.handlePowerToggleClicked} />
+            </h1>
+            <small>{props.isActive ? 'on' : 'off'}</small>
+        </div>
+    </Card>
+);

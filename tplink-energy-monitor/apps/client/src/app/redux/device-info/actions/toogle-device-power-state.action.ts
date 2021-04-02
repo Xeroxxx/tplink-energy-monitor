@@ -6,18 +6,6 @@ import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
 import { ChangePowerStateDto } from '@tplink-energy-monitor/data-access-devices';
 import { put } from '../../../utils/http.utils';
 
-export const toggleDevicePowerState = (
-    id: string,
-    newPowerState: boolean,
-): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
-    try {
-        const devices = await setPowerState(id, newPowerState);
-        dispatch(devices);
-    } catch (error) {
-        dispatch(deviceErrorAction(error));
-    }
-};
-
 const setPowerState = async (id: string, newPowerState: boolean): Promise<DeviceAction<undefined>> => {
     const powerStateChangeDto = {
         id,
@@ -29,4 +17,19 @@ const setPowerState = async (id: string, newPowerState: boolean): Promise<Device
     return {
         type: DeviceActionNames.DEVICE_GET_OK,
     } as DeviceAction<undefined>;
+};
+
+export const toggleDevicePowerState = (
+    id: string,
+    newPowerState: boolean,
+): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
+    if (!id) {
+        return;
+    }
+    try {
+        const devices = await setPowerState(id, newPowerState);
+        dispatch(devices);
+    } catch (error) {
+        dispatch(deviceErrorAction(error));
+    }
 };

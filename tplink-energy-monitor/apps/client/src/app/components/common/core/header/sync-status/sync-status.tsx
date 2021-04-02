@@ -8,14 +8,12 @@ type SyncStatusProps = {
     onSyncClick: () => void;
 };
 
-export const SyncStatus: React.FC<SyncStatusProps> = (props: SyncStatusProps) => {
-    return (
-        <div className={`${styles.syncStatus} flex-col flex-center`} onClick={props.onSyncClick}>
-            <FontAwesomeIcon
-                className={`${props.syncActive ? styles.active : styles.inActive} ${styles.syncIcon}`}
-                icon={faSync}
-            />
-            <small className={styles.syncText}>Sync {props.syncActive ? 'active' : 'inactive'}</small>
-        </div>
-    );
-};
+export const SyncStatus: React.FC<SyncStatusProps> = (props: SyncStatusProps) => (
+    <div className={`${styles.syncStatus} flex-col flex-center`} onClick={props.onSyncClick}>
+        <FontAwesomeIcon
+            className={`${props.syncActive ? styles.active : styles.inActive} ${styles.syncIcon}`}
+            icon={faSync}
+        />
+        <small className={styles.syncText}>Sync {props.syncActive ? 'active' : 'inactive'}</small>
+    </div>
+);

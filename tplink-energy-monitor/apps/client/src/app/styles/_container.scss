@@ -1,31 +1,31 @@
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .flex-col {
-  @extend .flex;
-  flex-direction: column;
+    @extend .flex;
+    flex-direction: column;
 }
 .flex-row {
-  @extend .flex;
-  flex-direction: row;
+    @extend .flex;
+    flex-direction: row;
 }
 
 .flex-wrap {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .flex-center {
-  @extend .flex;
-  justify-content: center;
+    @extend .flex;
+    justify-content: center;
 }
 
 .flex-sb {
-  @extend .flex;
-  justify-content: space-between;
+    @extend .flex;
+    justify-content: space-between;
 }
 
 .flex-end {
-  @extend .flex;
-  justify-content: flex-end;
+    @extend .flex;
+    justify-content: flex-end;
 }

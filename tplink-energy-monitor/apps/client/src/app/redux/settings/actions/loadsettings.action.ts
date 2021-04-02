@@ -5,6 +5,15 @@ import { get } from '../../../utils/http.utils';
 import { SettingsAction, SettingsActionNames } from '../settings-state.type';
 import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
 
+const loadUserSettings = async (): Promise<SettingsAction<UserSettings>> => {
+    const settings = await get<UserSettings>('/api/settings');
+
+    return {
+        type: SettingsActionNames.SETTINGS_GET_ALL_OK,
+        payload: settings,
+    } as SettingsAction<UserSettings>;
+};
+
 export const loadSettings = (): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
     try {
         dispatch({
@@ -19,13 +28,4 @@ export const loadSettings = (): ThunkAction<void, ApplicationState, unknown, Act
             payload: error,
         });
     }
-};
-
-const loadUserSettings = async (): Promise<SettingsAction<UserSettings>> => {
-    const settings = await get<UserSettings>('/api/settings');
-
-    return {
-        type: SettingsActionNames.SETTINGS_GET_ALL_OK,
-        payload: settings,
-    } as SettingsAction<UserSettings>;
 };

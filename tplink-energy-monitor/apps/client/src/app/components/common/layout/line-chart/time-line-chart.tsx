@@ -18,7 +18,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
     });
     const [chartTitle, setChartTile] = React.useState<string>('');
     const rtChatOnRefresh = React.useCallback(
-        (chart: any) => {
+        (chart) => {
             if (props.syncActive) {
                 chart.data.datasets[0].data.push({
                     x: Date.now(),
@@ -26,7 +26,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
                 });
             }
         },
-        [props.currentValue],
+        [props.currentValue, props.syncActive],
     );
 
     const data = React.useMemo(
@@ -74,7 +74,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
                 intersect: false,
             },
         }),
-        [props],
+        [chartTitle, rtChatOnRefresh],
     );
 
     React.useEffect(() => {
@@ -83,6 +83,7 @@ export const TimeLineChart: React.FC<LineChartProps> = (props: LineChartProps) =
             height: props.height,
         });
         setChartTile(props.title);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

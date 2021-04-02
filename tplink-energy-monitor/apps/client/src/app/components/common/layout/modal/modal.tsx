@@ -19,26 +19,33 @@ export const ModalView: React.FC<PropsWithChildren<ModalViewProps>> = (props: Pr
         return () => clearTimeout(timeout);
     }, []);
 
-    return props.show ? ReactDOM.createPortal(
-        <div className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}>
-            <div className={`${styles.modalContent} flex-col${props.hideBackground ? ` ${styles.noBackground}` : ''}`}>
-                {props.children}
-                {props.onCloseRequest && props.hideBackground && loadingError && (
-                    <div className={`${styles.modalCloseRequest} flex-col flex-center`}>
-                        <div>
-                            <Button
-                                onClick={props.onCloseRequest}
-                                buttonLabel="Close"
-                                buttonStyle="secondary"
-                                type="button"
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
-        </div>,
-        document.getElementById('root')!,
-    ) : null;
+    return props.show
+        ? ReactDOM.createPortal(
+              <div className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}>
+                  <div
+                      className={`${styles.modalContent} flex-col${
+                          props.hideBackground ? ` ${styles.noBackground}` : ''
+                      }`}
+                  >
+                      {props.children}
+                      {props.onCloseRequest && props.hideBackground && loadingError && (
+                          <div className={`${styles.modalCloseRequest} flex-col flex-center`}>
+                              <div>
+                                  <Button
+                                      onClick={props.onCloseRequest}
+                                      buttonLabel="Close"
+                                      buttonStyle="secondary"
+                                      type="button"
+                                  />
+                              </div>
+                          </div>
+                      )}
+                  </div>
+              </div>,
+              // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+              document.getElementById('root')!,
+          )
+        : null;
 };
 
 ModalView.defaultProps = {

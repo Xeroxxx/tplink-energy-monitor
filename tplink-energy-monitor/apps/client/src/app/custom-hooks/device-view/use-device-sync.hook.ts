@@ -4,7 +4,11 @@ import * as React from 'react';
 import { resetDeviceView } from '../../redux/device-info/actions/reset-device.view.action';
 import { setSyncActive } from '../../redux/device-info/actions/set-sync-status.action';
 
-export const useDeviceSync = (id: string, syncActive: boolean, currentDevice?: TPLinkPlug & TpLinkPlugInfoDto) => {
+export const useDeviceSync = (
+    id: string,
+    syncActive: boolean,
+    currentDevice?: TPLinkPlug & TpLinkPlugInfoDto,
+): void => {
     const dispatch = useDispatch();
 
     const getDeviceInfo = React.useCallback(() => {
@@ -15,6 +19,7 @@ export const useDeviceSync = (id: string, syncActive: boolean, currentDevice?: T
             }
             dispatch(setSyncActive(true, id));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, syncActive]);
 
     React.useEffect(() => {
@@ -23,11 +28,13 @@ export const useDeviceSync = (id: string, syncActive: boolean, currentDevice?: T
         return () => {
             dispatch(setSyncActive(false));
         };
-    }, [id]);
+    }, [id, dispatch, getDeviceInfo]);
 
-    React.useEffect(() => {
-        return () => {
+    React.useEffect(
+        () => () => {
             dispatch(setSyncActive(false));
-        };
-    }, []);
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
 };

@@ -1,6 +1,6 @@
-import { DeviceActionNames } from '../device-info-state.type';
+import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
 
-export const deviceLoading = () => ({
+export const deviceLoading = (): DeviceAction<unknown> => ({
     type: DeviceActionNames.DEVICE_LOADING,
     payload: {},
 });

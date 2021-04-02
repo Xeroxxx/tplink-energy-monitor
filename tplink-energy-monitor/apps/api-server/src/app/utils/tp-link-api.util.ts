@@ -1,11 +1,11 @@
 import { Client } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
 import {
-  DeviceEnergyOverview,
-  DeviceMonthlyEnergyOverview,
-  DeviceRealtimeData,
-  RealTimeData,
-  FullTPLinkPlug,
+    DeviceEnergyOverview,
+    DeviceMonthlyEnergyOverview,
+    DeviceRealtimeData,
+    RealTimeData,
+    FullTPLinkPlug,
 } from '@tplink-energy-monitor/data-access-devices';
 import {
     DailyUsage,
@@ -37,7 +37,7 @@ export const getDaysInMonth = (month: number, year: number): number => new Date(
 
 const fillFor30Days = (usages: TpLinkEnergyOverview, priorDate: Date): TpLinkEnergyOverview => {
     if (usages.length < 30) {
-        return new Array(30).fill({}).map((value, index) => {
+        return new Array(30).fill({}).map((_value, index) => {
             const daysInMonth = getDaysInMonth(priorDate.getMonth() + 1, priorDate.getFullYear());
             const day = ((priorDate.getDate() + index) % daysInMonth) + 1;
             const month =
@@ -93,7 +93,7 @@ export const getLast30DaysUsage = async (device: FullTPLinkPlug): Promise<Device
 
 const fillForOneYear = (usages: TpLinkMonthlyEnergyOverview, priorDate: Date): TpLinkMonthlyEnergyOverview => {
     if (usages.length < 12) {
-        return new Array(12).fill({}).map((value, index) => {
+        return new Array(12).fill({}).map((_value, index) => {
             const month = ((priorDate.getMonth() + index) % 12) + 1;
             const year =
                 priorDate.getMonth() + 1 + index > 12 ? new Date(Date.now()).getFullYear() : priorDate.getFullYear();

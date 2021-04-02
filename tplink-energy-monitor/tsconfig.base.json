@@ -1,29 +1,32 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@tplink-energy-monitor/data-access-user-settings": [
-        "libs/data-access-user-settings/src/index.ts"
-      ],
-      "@tplink-energy-monitor/data-access-devices": [
-        "libs/data-access-devices/src/index.ts"
-      ]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es6",
+        "module": "esnext",
+        "removeComments": true,
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "alwaysStrict": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true,
+        "noUnusedParameters": true,
+        "paths": {
+            "@tplink-energy-monitor/data-access-user-settings": ["libs/data-access-user-settings/src/index.ts"],
+            "@tplink-energy-monitor/data-access-devices": ["libs/data-access-devices/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp", "./**/*.test.ts", "./**/*.spec.ts"]
 }

@@ -7,8 +7,10 @@ const syncActivationFuncs: SyncActiveFuncs = {
     start: 'device-info',
 };
 
-export const setSyncActive = (syncActive: boolean, id?: string): SetSyncActiveActionCreatorFunc =>
-    (dispatch, getState) => {
+export const setSyncActive = (syncActive: boolean, id?: string): SetSyncActiveActionCreatorFunc => (
+    dispatch,
+    getState,
+) => {
     const deviceId = id ?? getState().deviceInfo.device?.id;
     const socket = SocketConnection.getInstance();
 

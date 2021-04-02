@@ -4,7 +4,7 @@ import { updateAllDevices } from './redux/devices/actions/update-all-devices.act
 import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 import { updateDeviceInfo } from './redux/device-info/actions/update-device.action';
 
-export const initApplication = (dispatch: ReduxThunkDispatch) => {
+export const initApplication = (dispatch: ReduxThunkDispatch): void => {
     const socket = SocketConnection.getInstance();
 
     socket.on('discover', (devices: TPLinkPlug[]) => dispatch(updateAllDevices(devices)));

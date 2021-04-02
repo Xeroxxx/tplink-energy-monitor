@@ -3,13 +3,17 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { secondsToTimespan } from '../../../../utils/time-utils/time.utils';
 import {
-  getDailyAverage,
-  getMonthlyAverage,
-  getRealtimeAmperage, getThisMonthPowerCost,
-  getThisMonthPowerUsage, getTodaysPowerCost,
-  getTodaysPowerUsage,
-  getTotalLast12Month,
-  getTotalLast30Days, transformMilliValueToFixed, transformRealtimePower,
+    getDailyAverage,
+    getMonthlyAverage,
+    getRealtimeAmperage,
+    getThisMonthPowerCost,
+    getThisMonthPowerUsage,
+    getTodaysPowerCost,
+    getTodaysPowerUsage,
+    getTotalLast12Month,
+    getTotalLast30Days,
+    transformMilliValueToFixed,
+    transformRealtimePower,
 } from '../../../../utils/power-utils/power.utils';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
@@ -29,7 +33,7 @@ import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hoo
 import { ModalView } from '../../../common/layout/modal/modal';
 import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
 import { useUserSettings } from '../../../../custom-hooks/settings/settings.hook';
-import {GaugeCard} from "../../../common/layout/card/gauge-chart/gauge-card";
+import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 
 type DeviceViewRouteParams = {
     id: string;
@@ -47,20 +51,20 @@ export const DeviceView: React.FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const handlePowerToggleModalAccept = React.useCallback(() => {
-      dispatch(toggleDevicePowerState(currentDevice.id, !isDeviceActive));
-      setPowerToggleClicked(false);
+        dispatch(toggleDevicePowerState(currentDevice.id, !isDeviceActive));
+        setPowerToggleClicked(false);
     }, [dispatch, currentDevice, isDeviceActive]);
 
     const handlePowerToggleClicked = React.useCallback(() => {
-          if (isDeviceActive) {
-              setPowerToggleClicked(true);
-          } else {
-              handlePowerToggleModalAccept();
-          }
-      }, [isDeviceActive, handlePowerToggleModalAccept]);
+        if (isDeviceActive) {
+            setPowerToggleClicked(true);
+        } else {
+            handlePowerToggleModalAccept();
+        }
+    }, [isDeviceActive, handlePowerToggleModalAccept]);
 
     React.useEffect(() => {
-        if ((!loading && currentDevice)) {
+        if (!loading && currentDevice) {
             setError(false);
         }
     }, [loading, currentDevice]);
@@ -73,16 +77,12 @@ export const DeviceView: React.FC = () => {
 
     return (
         <>
-            {((loading || !currentDevice) && !error) && (
-                <ModalView
-                    hideBackground
-                    show={loading}
-                    onCloseRequest={() => setError(true)}
-                >
+            {(loading || !currentDevice) && !error && (
+                <ModalView hideBackground show={loading} onCloseRequest={() => setError(true)}>
                     <LoadingSpinner />
                 </ModalView>
             )}
-            {(!loading && currentDevice) && (
+            {!loading && currentDevice && currentDevice.id && (
                 <div className={`flex-col ${styles.deviceView}`}>
                     <h1 className="flex-center">{currentDevice?.alias}</h1>
                     <div className="flex-row flex-wrap">
@@ -91,9 +91,7 @@ export const DeviceView: React.FC = () => {
                                 <GaugeCard
                                     id="power-gauge"
                                     percent={currentDevice.realTime.power / 3000}
-                                    leftString={`${transformMilliValueToFixed(
-                                        currentDevice.realTime.currentMa,
-                                    )} A`}
+                                    leftString={`${transformMilliValueToFixed(currentDevice.realTime.currentMa)} A`}
                                     topString={transformRealtimePower(currentDevice.realTime.power)}
                                     rightString={`${currentDevice.realTime.voltage.toFixed(0)} V`}
                                     label="Realtime Usage"
@@ -114,54 +112,38 @@ export const DeviceView: React.FC = () => {
                                 title="Realtime Amperage (A)"
                             />
                         </div>
-                        <DeviceToggle
-                            isActive={isDeviceActive}
-                            handlePowerToggleClicked={handlePowerToggleClicked}
-                        />
+                        <DeviceToggle isActive={isDeviceActive} handlePowerToggleClicked={handlePowerToggleClicked} />
                         <TextCard
-                            headline={
-                               currentDevice.uptime ? secondsToTimespan(currentDevice.uptime) : '-'
-                            }
+                            headline={currentDevice.uptime ? secondsToTimespan(currentDevice.uptime) : '-'}
                             subtitle="uptime"
                         />
                         <TextCard
-                            headline={
-                                currentDevice.dailyUsage
-                                    ? getTodaysPowerUsage(currentDevice.dailyUsage)
-                                    : '-'
-                            }
+                            headline={currentDevice.dailyUsage ? getTodaysPowerUsage(currentDevice.dailyUsage) : '-'}
                             subtitle="Total today"
                         />
                         <TextCard
                             headline={
-                                currentDevice?.last30Days
-                                    ? `${getDailyAverage(currentDevice.last30Days)} kWh`
-                                    : '-'
+                                currentDevice?.last30Days ? `${getDailyAverage(currentDevice.last30Days)} kWh` : '-'
                             }
                             subtitle="Daily average"
                         />
                         <TextCard
-                            headline={
-                                currentDevice.dailyUsage
-                                    ? getThisMonthPowerUsage(currentDevice.dailyUsage)
-                                    : '-'
-                            }
+                            headline={currentDevice.dailyUsage ? getThisMonthPowerUsage(currentDevice.dailyUsage) : '-'}
                             subtitle="Total this month"
                         />
                         <TextCard
                             headline={
-                                currentDevice.last12Month
-                                    ? `${getMonthlyAverage(currentDevice.last12Month)} kWh`
-                                    : '-'
+                                currentDevice.last12Month ? `${getMonthlyAverage(currentDevice.last12Month)} kWh` : '-'
                             }
                             subtitle="Monthly average"
                         />
                         <TextCard
                             headline={
                                 currentDevice.last12Month
-                                    ? getThisMonthPowerCost(currentDevice.dailyUsage,
-                                        { energyCost: settings.energyCosts, currency: settings.currency },
-                                        )
+                                    ? getThisMonthPowerCost(currentDevice.dailyUsage, {
+                                          energyCost: settings?.energyCosts || 0,
+                                          currency: settings?.currency || 'EUR',
+                                      })
                                     : '-'
                             }
                             subtitle="Total this month"
@@ -169,9 +151,10 @@ export const DeviceView: React.FC = () => {
                         <TextCard
                             headline={
                                 currentDevice.last12Month
-                                    ? getTodaysPowerCost(currentDevice.dailyUsage,
-                                        { energyCost: settings.energyCosts, currency: settings.currency },
-                                        )
+                                    ? getTodaysPowerCost(currentDevice.dailyUsage, {
+                                          energyCost: settings?.energyCosts || 0,
+                                          currency: settings?.currency || 'EUR',
+                                      })
                                     : '-'
                             }
                             subtitle="Total today"

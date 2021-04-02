@@ -10,16 +10,14 @@ type ButtonProps = {
     onClick: () => void;
 };
 
-export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
-    return (
-        <label className="button-label">
-            {props.hasTextlabel && props.label}
-            <button className={styles[props.buttonStyle]} type={props.type} onClick={props.onClick}>
-                {props.buttonLabel}
-            </button>
-        </label>
-    );
-};
+export const Button: React.FC<ButtonProps> = (props: ButtonProps) => (
+    <label className="button-label">
+        {props.hasTextlabel && props.label}
+        <button className={styles[props.buttonStyle]} type={props.type} onClick={props.onClick}>
+            {props.buttonLabel}
+        </button>
+    </label>
+);
 
 Button.defaultProps = {
     hasTextlabel: false,

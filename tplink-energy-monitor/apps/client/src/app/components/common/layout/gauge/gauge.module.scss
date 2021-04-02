@@ -1,38 +1,38 @@
 .gauge {
-  position: relative;
+    position: relative;
 
-  svg {
-    filter: drop-shadow( 2px 2px 0px rgba(0, 0, 0, .25));
-  }
+    svg {
+        filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25));
+    }
 }
 
 .decorationString {
-  font-weight: bold;
-  position: absolute;
-  font-size: 1.3em;
+    font-weight: bold;
+    position: absolute;
+    font-size: 1.3em;
 }
 
 .leftString {
-  @extend .decorationString;
-  top: 120px;
-  left: -5px;
+    @extend .decorationString;
+    top: 120px;
+    left: -5px;
 }
 
 .rightString {
-  @extend .decorationString;
-  top: 120px;
-  left: 245px;
+    @extend .decorationString;
+    top: 120px;
+    left: 245px;
 }
 
 .topString {
-  @extend .decorationString;
-  top: -25px;
-  left: 120px;
+    @extend .decorationString;
+    top: -25px;
+    left: 120px;
 }
 
 .label {
-  position: absolute;
-  top: 150px;
-  left: 100px;
-  text-transform: uppercase;
+    position: absolute;
+    top: 150px;
+    left: 100px;
+    text-transform: uppercase;
 }

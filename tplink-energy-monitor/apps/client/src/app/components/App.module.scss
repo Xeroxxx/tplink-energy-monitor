@@ -2,28 +2,23 @@
 @import '../styles/sizes';
 
 .app {
-
 }
 
 .mainContent,
 .routerContent {
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  background: $background-color;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background: $background-color;
 }
 
 .routerContent {
-  margin-top: 20px;
-  overflow-y: visible;
+    margin-top: 20px;
+    overflow-y: visible;
 }
 
 .contentRight {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
 }
-
-
-
-

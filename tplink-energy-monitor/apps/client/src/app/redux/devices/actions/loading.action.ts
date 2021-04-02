@@ -1,6 +1,6 @@
-import { DevicesActionNames } from '../devices-state.type';
+import { DevicesAction, DevicesActionNames } from '../devices-state.type';
 
-export const devicesLoading = () => ({
+export const devicesLoading = (): DevicesAction<unknown> => ({
     type: DevicesActionNames.DEVICES_LOADING,
     payload: {},
 });

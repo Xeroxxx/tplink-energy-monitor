@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../../redux/store';
 import { setSyncActive } from '../../redux/device-info/actions/set-sync-status.action';
 
-export const useDeviceSyncStatus = () => {
-    const syncActive = useSelector((appState: ApplicationState) => appState.deviceInfo.syncActive);
+type DeviceSyncStatus = {
+    syncActive: boolean;
+    toggleSync: () => void;
+};
+
+export const useDeviceSyncStatus = (): DeviceSyncStatus => {
+    const syncActive = useSelector((appState: ApplicationState) => appState.deviceInfo.syncActive) || false;
     const dispatch = useDispatch();
 
     const toggleSync = React.useCallback(() => {

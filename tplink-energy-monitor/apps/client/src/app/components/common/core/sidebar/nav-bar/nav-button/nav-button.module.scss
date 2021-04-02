@@ -1,24 +1,24 @@
 @import '../../../../../../styles/colors';
 
 .navButton {
-  white-space: nowrap;
-  margin-bottom: 10px;
-  a {
-    color: $sidebar-header;
-    text-decoration: none;
-    span {
-      margin-left: 10px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    a {
+        color: $sidebar-header;
+        text-decoration: none;
+        span {
+            margin-left: 10px;
+        }
     }
-  }
 }
 
 .active {
-  a {
-    svg {
-      color: $link-image-active-color;
+    a {
+        svg {
+            color: $link-image-active-color;
+        }
+        span {
+            color: $link-text-active-color;
+        }
     }
-    span {
-      color: $link-text-active-color;
-    }
-  }
 }

@@ -51,6 +51,7 @@ export const BarChart: React.FC<LineChartProps> = (props: LineChartProps) => {
                 intersect: false,
             },
         }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 
@@ -59,6 +60,7 @@ export const BarChart: React.FC<LineChartProps> = (props: LineChartProps) => {
             width: props.width,
             height: props.height,
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

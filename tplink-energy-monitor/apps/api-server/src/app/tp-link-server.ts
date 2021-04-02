@@ -33,7 +33,7 @@ class TpLinkServer extends Server {
         if (process.env.NODE_ENV !== 'production') {
             Logger.Info('Starting server in development mode');
             const msg = this.DEV_MSG;
-            this.app.get('*', (req, res) => res.send(msg));
+            this.app.get('*', (_req, res) => res.send(msg));
         } else {
             this.serveFrontend();
         }
@@ -57,7 +57,7 @@ class TpLinkServer extends Server {
         this.app.set('views', dir);
         this.app.use(express.static(dir));
 
-        this.app.get('*', (req: Request, res: Response) => {
+        this.app.get('*', (_req: Request, res: Response) => {
             res.sendFile('index.html', { root: dir });
         });
     }

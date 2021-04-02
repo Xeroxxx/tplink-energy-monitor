@@ -11,12 +11,12 @@ import { Plug } from 'tplink-smarthome-api';
 import { AnyDevice } from 'tplink-smarthome-api/lib/client';
 import { Logger } from '@overnightjs/logger';
 import {
-  TpLinkDeviceTypes,
-  FullTPLinkPlug,
-  TPLinkPlug,
-  ChangePowerStateDto,
-  DeviceEnergyOverview,
-  TpLinkPlugInfoDto
+    TpLinkDeviceTypes,
+    FullTPLinkPlug,
+    TPLinkPlug,
+    ChangePowerStateDto,
+    DeviceEnergyOverview,
+    TpLinkPlugInfoDto,
 } from '@tplink-energy-monitor/data-access-devices';
 import { mapFullTPLinkPlugToTPLinkPlug, mapToFullTPLinkPlug } from '../models/mapper/map-to-tp-link-plug.mapper';
 import { mapSysinfoToTPLinkPlugInfo } from '../models/mapper/map-sysinfo-to-tp-link-plug-info.mapper';
@@ -46,15 +46,17 @@ export default class DevicesService {
 
         const realtimeData = await getRealtimeData(tpDevice);
 
-        return plug.getInfo().then((info) => {
-            return mapSysinfoToTPLinkPlugInfo(
-                info,
-                Boolean(info.sysInfo.relay_state),
-                tpDevice.id,
-                dailyUsage,
-                realtimeData,
+        return plug
+            .getInfo()
+            .then((info) =>
+                mapSysinfoToTPLinkPlugInfo(
+                    info,
+                    Boolean(info.sysInfo.relay_state),
+                    tpDevice.id,
+                    dailyUsage,
+                    realtimeData,
+                ),
             );
-        });
     }
 
     public async setPowerState(id: string, changePowerStateDto: ChangePowerStateDto): Promise<void> {

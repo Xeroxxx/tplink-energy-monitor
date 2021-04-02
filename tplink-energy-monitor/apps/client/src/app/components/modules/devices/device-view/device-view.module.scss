@@ -1,20 +1,18 @@
 @import '../../../../styles/colors';
 
 .deviceView {
-  padding: 10px 60px;
+    padding: 10px 60px;
 }
 
 .realtime {
-  width: 100%;
-  flex-wrap: wrap;
-  display: flex;
-  margin-top: 40px;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    margin-top: 40px;
 
-  @media (max-width: 2160px) {
-
-    >div:first-child {
-      width: 100%;
+    @media (max-width: 2160px) {
+        > div:first-child {
+            width: 100%;
+        }
     }
-  }
 }
-

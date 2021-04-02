@@ -17,7 +17,7 @@ export class SocketConnection {
         this.socket.on('connect', () => clearInterval(this.reconnectInterval));
     }
 
-    public static getInstance() {
+    public static getInstance(): SocketConnection {
         if (!this.instance) {
             this.instance = new SocketConnection();
         }
@@ -40,6 +40,7 @@ export class SocketConnection {
     }
 
     private tryReconnect(): void {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         if (!this.socket.connected && !this.socket.connecting) {
             this.socket.connect();

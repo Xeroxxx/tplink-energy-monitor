@@ -1,36 +1,34 @@
 @import '../../../../styles/colors';
 
 .baseButton {
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  transition: background-color 250ms ease-out;
-  border: 1px solid $tp-grey;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 250ms ease-out;
+    border: 1px solid $tp-grey;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    outline: none;
 
-  &:active {
-    transform: translateY(2px);
-  }
+    &:active {
+        transform: translateY(2px);
+    }
 }
 
 .primary {
-  @extend .baseButton;
-  background: $background-color;
-  &:hover {
-    background: $tp-white;
-  }
-
-
+    @extend .baseButton;
+    background: $background-color;
+    &:hover {
+        background: $tp-white;
+    }
 }
 
 .secondary {
-  @extend .baseButton;
-  background: $power-off-color;
-  color: $background-color;
+    @extend .baseButton;
+    background: $power-off-color;
+    color: $background-color;
 
-  &:hover {
-    background: $background-color;
-    color: $power-off-color;
-  }
+    &:hover {
+        background: $background-color;
+        color: $power-off-color;
+    }
 }

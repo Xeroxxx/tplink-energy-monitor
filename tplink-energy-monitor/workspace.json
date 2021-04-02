@@ -1,195 +1,195 @@
 {
-  "version": 2,
-  "cli": { "defaultCollection": "@nrwl/express" },
-  "defaultProject": "api-server",
-  "generators": {
-    "@nrwl/react": {
-      "application": { "style": "scss", "linter": "eslint", "babel": true },
-      "component": { "style": "scss" },
-      "library": { "style": "scss", "linter": "eslint" }
-    }
-  },
-  "projects": {
-    "api-server": {
-      "root": "apps/api-server",
-      "sourceRoot": "apps/api-server/src",
-      "projectType": "application",
-      "prefix": "api-server",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/api-server",
-            "main": "apps/api-server/src/main.ts",
-            "tsConfig": "apps/api-server/tsconfig.app.json",
-            "assets": ["apps/api-server/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api-server/src/environments/environment.ts",
-                  "with": "apps/api-server/src/environments/environment.prod.ts"
+    "version": 2,
+    "cli": { "defaultCollection": "@nrwl/express" },
+    "defaultProject": "api-server",
+    "generators": {
+        "@nrwl/react": {
+            "application": { "style": "scss", "linter": "eslint", "babel": true },
+            "component": { "style": "scss" },
+            "library": { "style": "scss", "linter": "eslint" }
+        }
+    },
+    "projects": {
+        "api-server": {
+            "root": "apps/api-server",
+            "sourceRoot": "apps/api-server/src",
+            "projectType": "application",
+            "prefix": "api-server",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/node:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/api-server",
+                        "main": "apps/api-server/src/main.ts",
+                        "tsConfig": "apps/api-server/tsconfig.app.json",
+                        "assets": ["apps/api-server/src/assets"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/api-server/src/environments/environment.ts",
+                                    "with": "apps/api-server/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/node:execute",
+                    "options": { "buildTarget": "api-server:build" }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["apps/api-server/**/*.ts"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/api-server"],
+                    "options": {
+                        "jestConfig": "apps/api-server/jest.config.js",
+                        "passWithNoTests": true
+                    }
                 }
-              ]
             }
-          }
         },
-        "serve": {
-          "executor": "@nrwl/node:execute",
-          "options": { "buildTarget": "api-server:build" }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/api-server/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api-server"],
-          "options": {
-            "jestConfig": "apps/api-server/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "client": {
-      "root": "apps/client",
-      "sourceRoot": "apps/client/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/client",
-            "index": "apps/client/src/index.html",
-            "main": "apps/client/src/main.tsx",
-            "polyfills": "apps/client/src/polyfills.ts",
-            "tsConfig": "apps/client/tsconfig.app.json",
-            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
-            "styles": ["apps/client/src/styles.scss"],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/client/src/environments/environment.ts",
-                  "with": "apps/client/src/environments/environment.prod.ts"
+        "client": {
+            "root": "apps/client",
+            "sourceRoot": "apps/client/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/web:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/client",
+                        "index": "apps/client/src/index.html",
+                        "main": "apps/client/src/main.tsx",
+                        "polyfills": "apps/client/src/polyfills.ts",
+                        "tsConfig": "apps/client/tsconfig.app.json",
+                        "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+                        "styles": ["apps/client/src/styles.scss"],
+                        "scripts": [],
+                        "webpackConfig": "@nrwl/react/plugins/webpack"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/client/src/environments/environment.ts",
+                                    "with": "apps/client/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/web:dev-server",
+                    "options": {
+                        "buildTarget": "client:build",
+                        "proxyConfig": "apps/client/proxy.conf.json"
+                    },
+                    "configurations": {
+                        "production": { "buildTarget": "client:build:production" }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/client"],
+                    "options": {
+                        "jestConfig": "apps/client/jest.config.js",
+                        "passWithNoTests": true
+                    }
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
             }
-          }
         },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "client:build",
-            "proxyConfig": "apps/client/proxy.conf.json"
-          },
-          "configurations": {
-            "production": { "buildTarget": "client:build:production" }
-          }
+        "client-e2e": {
+            "root": "apps/client-e2e",
+            "sourceRoot": "apps/client-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/client-e2e/cypress.json",
+                        "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "client:serve"
+                    },
+                    "configurations": {
+                        "production": { "devServerTarget": "client:serve:production" }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"] }
+                }
+            }
         },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
-          }
+        "data-access-user-settings": {
+            "root": "libs/data-access-user-settings",
+            "sourceRoot": "libs/data-access-user-settings/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/data-access-user-settings"],
+                    "options": {
+                        "jestConfig": "libs/data-access-user-settings/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
         },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/client"],
-          "options": {
-            "jestConfig": "apps/client/jest.config.js",
-            "passWithNoTests": true
-          }
+        "data-access-devices": {
+            "root": "libs/data-access-devices",
+            "sourceRoot": "libs/data-access-devices/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/data-access-devices/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/data-access-devices"],
+                    "options": {
+                        "jestConfig": "libs/data-access-devices/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
         }
-      }
-    },
-    "client-e2e": {
-      "root": "apps/client-e2e",
-      "sourceRoot": "apps/client-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/client-e2e/cypress.json",
-            "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
-            "devServerTarget": "client:serve"
-          },
-          "configurations": {
-            "production": { "devServerTarget": "client:serve:production" }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"] }
-        }
-      }
-    },
-    "data-access-user-settings": {
-      "root": "libs/data-access-user-settings",
-      "sourceRoot": "libs/data-access-user-settings/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data-access-user-settings"],
-          "options": {
-            "jestConfig": "libs/data-access-user-settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "data-access-devices": {
-      "root": "libs/data-access-devices",
-      "sourceRoot": "libs/data-access-devices/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/data-access-devices/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data-access-devices"],
-          "options": {
-            "jestConfig": "libs/data-access-devices/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
     }
-  }
 }
