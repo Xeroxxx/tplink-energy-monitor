@@ -1,0 +1,13 @@
+@import 'apps/client/src/app/styles/colors';
+
+.powerOn {
+    svg {
+        color: $power-on-color;
+    }
+}
+
+.powerOff {
+    svg {
+        color: $power-off-color;
+    }
+}

@@ -23,6 +23,9 @@
         "data-access-devices": { "tags": [] },
         "ui-shared": { "tags": [] },
         "user-settings-feature-settings": { "tags": [] },
-        "shared-utils-shared": { "tags": [] }
+        "shared-utils-shared": { "tags": [] },
+        "devices-feature-devices": { "tags": [] },
+        "client-store": { "tags": [] },
+        "devices-utils": { "tags": [] }
     }
 }

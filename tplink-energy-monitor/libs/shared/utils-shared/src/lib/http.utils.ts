@@ -1,4 +1,4 @@
-import { HttpFetchError } from '../../../../../apps/client/src/app/types/http-fetch-error.class';
+import { HttpFetchError } from './types/http-fetch-error.class';
 
 export type CustomHeader = {
     [key: string]: string;

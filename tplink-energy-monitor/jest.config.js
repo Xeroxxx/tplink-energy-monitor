@@ -7,5 +7,8 @@ module.exports = {
         '<rootDir>/libs/shared/ui-shared',
         '<rootDir>/libs/user-settings/feature-settings',
         '<rootDir>/libs/shared/utils-shared',
+        '<rootDir>/libs/devices/feature-devices',
+        '<rootDir>/libs/client/store',
+        '<rootDir>/libs/devices/utils',
     ],
 };

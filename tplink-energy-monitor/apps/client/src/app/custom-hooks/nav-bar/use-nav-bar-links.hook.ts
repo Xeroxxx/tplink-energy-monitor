@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { ApplicationState } from '../../redux/store';
+import { ApplicationState } from '@tplink-energy-monitor/client/store';
 import * as React from 'react';
 import { NavBarItem } from '../../components/common/core/sidebar/nav-bar/nav-bar';
 import { useLocation } from 'react-router-dom';

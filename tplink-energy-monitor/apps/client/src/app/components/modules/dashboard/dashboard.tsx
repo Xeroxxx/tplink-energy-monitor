@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card } from '@tplink-energy-monitor/ui-shared';
 import styles from './dashboard.module.scss';
-import { useDevices } from '../../../custom-hooks/device-view/use-devices.hook';
+import { useDevices } from '@tplink-energy-monitor/data-access-devices';
 
 export const Dashboard: React.FC = () => {
     const { deviceCount } = useDevices();

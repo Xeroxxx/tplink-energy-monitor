@@ -210,6 +210,54 @@
                     "options": { "jestConfig": "libs/shared/utils-shared/jest.config.js", "passWithNoTests": true }
                 }
             }
+        },
+        "devices-feature-devices": {
+            "root": "libs/devices/feature-devices",
+            "sourceRoot": "libs/devices/feature-devices/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/devices/feature-devices/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/devices/feature-devices"],
+                    "options": { "jestConfig": "libs/devices/feature-devices/jest.config.js", "passWithNoTests": true }
+                }
+            }
+        },
+        "client-store": {
+            "root": "libs/client/store",
+            "sourceRoot": "libs/client/store/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/client/store/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/client/store"],
+                    "options": { "jestConfig": "libs/client/store/jest.config.js", "passWithNoTests": true }
+                }
+            }
+        },
+        "devices-utils": {
+            "root": "libs/devices/utils",
+            "sourceRoot": "libs/devices/utils/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/devices/utils/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/devices/utils"],
+                    "options": { "jestConfig": "libs/devices/utils/jest.config.js", "passWithNoTests": true }
+                }
+            }
         }
     }
 }

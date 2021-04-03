@@ -1,8 +1,7 @@
-import { SocketConnection } from './utils/socket-utils/socket-connection.util';
-import { ReduxThunkDispatch } from './redux/types/thunk-dispatch.type';
-import { updateAllDevices } from './redux/devices/actions/update-all-devices.action';
-import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
-import { updateDeviceInfo } from './redux/device-info/actions/update-device.action';
+import { SocketConnection } from '@tplink-energy-monitor/shared/utils-shared';
+import { ReduxThunkDispatch } from '@tplink-energy-monitor/client/store';
+import {TPLinkPlug, TpLinkPlugInfoDto, updateDeviceInfo} from '@tplink-energy-monitor/data-access-devices';
+import { updateAllDevices } from "@tplink-energy-monitor/data-access-devices";
 
 export const initApplication = (dispatch: ReduxThunkDispatch): void => {
     const socket = SocketConnection.getInstance();

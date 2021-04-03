@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { App } from './app/components/App';
-import configureStore, { initialAppState } from './app/redux/store';
+import configureStore, { initialAppState } from '../../../libs/client/store/src/lib/store';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import reportWebVitals from './app/reportWebVitals';
