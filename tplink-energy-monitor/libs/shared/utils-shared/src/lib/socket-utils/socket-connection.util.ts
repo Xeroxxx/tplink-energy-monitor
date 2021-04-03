@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 export type SocketEventNames = 'connection' | 'device-info' | 'device-info2' | 'discover' | 'stop-device-info';
 
@@ -10,7 +10,7 @@ export class SocketConnection {
     private readonly reconnectInterval;
 
     private constructor() {
-        this.socket = io.io();
+        this.socket = io();
 
         this.reconnectInterval = setInterval(this.tryReconnect, 2000);
 

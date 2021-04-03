@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { App } from './app/components/App';
-import configureStore, { initialAppState } from '../../../libs/client/store/src/lib/store';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import reportWebVitals from './app/reportWebVitals';
+import { configureStore, initialAppState } from "@tplink-energy-monitor/client/store";
 
 const history = createBrowserHistory();
 const store = configureStore(history, initialAppState);
