@@ -175,6 +175,25 @@
                     "options": { "jestConfig": "libs/ui-shared/jest.config.js", "passWithNoTests": true }
                 }
             }
+        },
+        "user-settings-feature-settings": {
+            "root": "libs/user-settings/feature-settings",
+            "sourceRoot": "libs/user-settings/feature-settings/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/user-settings/feature-settings/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/user-settings/feature-settings"],
+                    "options": {
+                        "jestConfig": "libs/user-settings/feature-settings/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
         }
     }
 }

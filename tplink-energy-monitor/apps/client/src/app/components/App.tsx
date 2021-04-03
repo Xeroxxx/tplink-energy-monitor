@@ -9,7 +9,7 @@ import { Sidebar } from './common/core/sidebar/sidebar';
 import { DeviceViewFooter } from './modules/devices/device-view/components/footer/device-view-footer';
 import { initApplication } from '../initApplication';
 import { useDevices } from '../custom-hooks/device-view/use-devices.hook';
-import { Settings } from './modules/settings/settings';
+import { Settings } from '@tplink-energy-monitor/user-settings/feature-settings';
 
 export const App: React.FC = () => {
     const dispatch = useDispatch();

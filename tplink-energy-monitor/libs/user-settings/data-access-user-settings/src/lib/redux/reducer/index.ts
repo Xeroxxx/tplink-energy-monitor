@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { SettingsAction, SettingsActionNames, SettingsState } from '../settings-state.type';
-import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
+import { UserSettings } from '../../dto/user-settings.dto';
 
 export const initialSettingsState: SettingsState = {
     status: 'PENDING',

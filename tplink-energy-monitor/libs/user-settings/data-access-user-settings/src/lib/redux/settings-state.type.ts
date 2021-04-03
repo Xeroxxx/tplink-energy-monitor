@@ -1,5 +1,5 @@
-import { StateStatus } from '../types/state-status.type';
-import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
+import { StateStatus } from '../../../../../../apps/client/src/app/redux/types/state-status.type';
+import { UserSettings } from '../dto/user-settings.dto';
 
 export type SettingsState = {
     status: StateStatus;

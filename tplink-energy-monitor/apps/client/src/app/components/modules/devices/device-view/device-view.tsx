@@ -37,7 +37,7 @@ import {
 import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hook';
 
 import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
-import { useUserSettings } from '../../../../custom-hooks/settings/settings.hook';
+import { useUserSettings } from '@tplink-energy-monitor/user-settings/data-access-user-settings';
 
 type DeviceViewRouteParams = {
     id: string;

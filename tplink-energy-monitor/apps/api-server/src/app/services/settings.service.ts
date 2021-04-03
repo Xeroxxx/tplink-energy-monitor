@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
+import { UserSettings } from '@tplink-energy-monitor/user-settings/data-access-user-settings';
 
 const defaultUserSettings: UserSettings = {
     energyCosts: 29,

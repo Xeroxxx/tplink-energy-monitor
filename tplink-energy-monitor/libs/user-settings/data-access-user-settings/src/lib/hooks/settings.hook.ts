@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationState } from '../../redux/store';
-import { loadSettings } from '../../redux/settings/actions/loadsettings.action';
-import { UserSettings } from '@tplink-energy-monitor/data-access-user-settings';
+import { ApplicationState } from '../../../../../../apps/client/src/app/redux/store';
+import { loadSettings } from '../redux/actions/loadsettings.action';
+import { UserSettings } from '../dto/user-settings.dto';
 
 export const useUserSettings = (): UserSettings | undefined => {
     const settings = useSelector((appState: ApplicationState) => appState.settings);

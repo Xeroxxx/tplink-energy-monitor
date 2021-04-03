@@ -7,8 +7,12 @@ import deviceReducer, { initialDeviceState } from './devices/reducer/devices.red
 import { DeviceState } from './devices/devices-state.type';
 import deviceInfoReducer, { initialDeviceInfoState } from './device-info/reducer/device-info.reducer';
 import { DeviceInfoState } from './device-info/device-info-state.type';
-import { SettingsState } from './settings/settings-state.type';
-import settingsReducer, { initialSettingsState } from './settings/reducer/settings.reducer';
+import {
+  SettingsState,
+  initialSettingsState,
+  settingsReducer,
+} from '@tplink-energy-monitor/user-settings/data-access-user-settings';
+
 
 export type ApplicationState = {
     devices: DeviceState;
