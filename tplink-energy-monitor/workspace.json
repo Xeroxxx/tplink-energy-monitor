@@ -39,10 +39,7 @@
                         }
                     }
                 },
-                "serve": {
-                    "executor": "@nrwl/node:execute",
-                    "options": { "buildTarget": "api-server:build" }
-                },
+                "serve": { "executor": "@nrwl/node:execute", "options": { "buildTarget": "api-server:build" } },
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
                     "options": { "lintFilePatterns": ["apps/api-server/**/*.ts"] }
@@ -50,10 +47,7 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/apps/api-server"],
-                    "options": {
-                        "jestConfig": "apps/api-server/jest.config.js",
-                        "passWithNoTests": true
-                    }
+                    "options": { "jestConfig": "apps/api-server/jest.config.js", "passWithNoTests": true }
                 }
             }
         },
@@ -91,39 +85,23 @@
                             "namedChunks": false,
                             "extractLicenses": true,
                             "vendorChunk": false,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "budgets": [{ "type": "initial", "maximumWarning": "2mb", "maximumError": "5mb" }]
                         }
                     }
                 },
                 "serve": {
                     "executor": "@nrwl/web:dev-server",
-                    "options": {
-                        "buildTarget": "client:build",
-                        "proxyConfig": "apps/client/proxy.conf.json"
-                    },
-                    "configurations": {
-                        "production": { "buildTarget": "client:build:production" }
-                    }
+                    "options": { "buildTarget": "client:build", "proxyConfig": "apps/client/proxy.conf.json" },
+                    "configurations": { "production": { "buildTarget": "client:build:production" } }
                 },
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
-                    }
+                    "options": { "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/apps/client"],
-                    "options": {
-                        "jestConfig": "apps/client/jest.config.js",
-                        "passWithNoTests": true
-                    }
+                    "options": { "jestConfig": "apps/client/jest.config.js", "passWithNoTests": true }
                 }
             }
         },
@@ -139,9 +117,7 @@
                         "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
                         "devServerTarget": "client:serve"
                     },
-                    "configurations": {
-                        "production": { "devServerTarget": "client:serve:production" }
-                    }
+                    "configurations": { "production": { "devServerTarget": "client:serve:production" } }
                 },
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
@@ -150,15 +126,13 @@
             }
         },
         "data-access-user-settings": {
-            "root": "libs/data-access-user-settings",
-            "sourceRoot": "libs/data-access-user-settings/src",
+            "root": "libs/user-settings/data-access-user-settings",
+            "sourceRoot": "libs/user-settings/data-access-user-settings/src",
             "projectType": "library",
             "targets": {
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"]
-                    }
+                    "options": { "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
@@ -171,23 +145,34 @@
             }
         },
         "data-access-devices": {
-            "root": "libs/data-access-devices",
-            "sourceRoot": "libs/data-access-devices/src",
+            "root": "libs/devices/data-access-devices",
+            "sourceRoot": "libs/devices/data-access-devices/src",
             "projectType": "library",
             "targets": {
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/data-access-devices/**/*.ts"]
-                    }
+                    "options": { "lintFilePatterns": ["libs/data-access-devices/**/*.ts"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/libs/data-access-devices"],
-                    "options": {
-                        "jestConfig": "libs/data-access-devices/jest.config.js",
-                        "passWithNoTests": true
-                    }
+                    "options": { "jestConfig": "libs/data-access-devices/jest.config.js", "passWithNoTests": true }
+                }
+            }
+        },
+        "ui-shared": {
+            "root": "libs/shared/ui-shared",
+            "sourceRoot": "libs/shared/ui-shared/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/ui-shared/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui-shared"],
+                    "options": { "jestConfig": "libs/ui-shared/jest.config.js", "passWithNoTests": true }
                 }
             }
         }

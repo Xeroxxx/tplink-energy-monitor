@@ -24,8 +24,11 @@
         "noImplicitAny": true,
         "noUnusedParameters": true,
         "paths": {
-            "@tplink-energy-monitor/data-access-user-settings": ["libs/data-access-user-settings/src/index.ts"],
-            "@tplink-energy-monitor/data-access-devices": ["libs/data-access-devices/src/index.ts"]
+            "@tplink-energy-monitor/data-access-user-settings": [
+                "libs/user-settings/data-access-user-settings/src/index.ts"
+            ],
+            "@tplink-energy-monitor/data-access-devices": ["libs/devices/data-access-devices/src/index.ts"],
+            "@tplink-energy-monitor/ui-shared": ["libs/shared/ui-shared/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp", "./**/*.test.ts", "./**/*.spec.ts"]

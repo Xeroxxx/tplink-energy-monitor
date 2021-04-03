@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-declare module 'react-gaugejs' {
+declare module 'libs/shared/ui-shared/src/lib/layout/gauge/react-gaugejs' {
     type GaugeOptions = {
         angle: number;
         lineWidth: number;

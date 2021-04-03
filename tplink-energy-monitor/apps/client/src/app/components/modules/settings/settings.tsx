@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useUserSettings } from '../../../custom-hooks/settings/settings.hook';
-import { TextCard } from '../../common/layout/card/text-card/text-card';
+import { TextCard } from '@tplink-energy-monitor/ui-shared';
 import styles from './settings.module.scss';
 
 export const Settings: React.FC = () => {

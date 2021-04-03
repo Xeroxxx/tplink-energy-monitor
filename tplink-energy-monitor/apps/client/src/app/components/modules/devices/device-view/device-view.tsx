@@ -17,23 +17,27 @@ import {
 } from '../../../../utils/power-utils/power.utils';
 import { toggleDevicePowerState } from '../../../../redux/device-info/actions/toogle-device-power-state.action';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
-import { TextCard } from '../../../common/layout/card/text-card/text-card';
+import {
+    TextCard,
+    TimeLineChart,
+    BarChart,
+    LoadingSpinner,
+    ModalView,
+    GaugeCard,
+} from '@tplink-energy-monitor/ui-shared';
 import { PowerOffModal } from './components/power-off-modal/power-off-modal';
 import styles from './device-view.module.scss';
-import { TimeLineChart } from '../../../common/layout/line-chart/time-line-chart';
-import { BarChart } from '../../../common/layout/bar-chart/bar-chart';
 import {
     mapDeviceEnergyOverviewToCharLabels,
     mapDeviceEnergyOverviewToChartData,
     mapDeviceMonthlyEnergyOverviewToCharLabels,
     mapDeviceMonthlyEnergyOverviewToChartData,
 } from '../../../../models/mapper/map-device-energy-overview-to-chart-data.mapper';
-import { LoadingSpinner } from '../../../common/layout/loading-spinner/loading-spinner';
+
 import { useDevices } from '../../../../custom-hooks/device-view/use-devices.hook';
-import { ModalView } from '../../../common/layout/modal/modal';
+
 import { useDeviceSync } from '../../../../custom-hooks/device-view/use-device-sync.hook';
 import { useUserSettings } from '../../../../custom-hooks/settings/settings.hook';
-import { GaugeCard } from '../../../common/layout/card/gauge-chart/gauge-card';
 
 type DeviceViewRouteParams = {
     id: string;

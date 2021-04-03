@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card } from '../../common/layout/card/card';
+import { Card } from '@tplink-energy-monitor/ui-shared';
 import styles from './dashboard.module.scss';
 import { useDevices } from '../../../custom-hooks/device-view/use-devices.hook';
 

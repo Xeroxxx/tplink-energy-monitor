@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './power-off-modal.module.scss';
-import { Button } from '../../../../../common/controls/button/button';
-import { ModalView } from '../../../../../common/layout/modal/modal';
+import { Button, ModalView } from '@tplink-energy-monitor/ui-shared';
 
 type PowerOffModalProps = {
     showModal: boolean;

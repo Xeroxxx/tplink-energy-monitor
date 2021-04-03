@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
-import { Card } from '../../../../../common/layout/card/card';
+import { Card } from '@tplink-energy-monitor/ui-shared';
 import styles from './device-toggle.module.scss';
 
 type DeviceToggleProps = {

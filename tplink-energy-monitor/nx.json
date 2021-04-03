@@ -20,6 +20,7 @@
         "client": { "tags": [] },
         "client-e2e": { "tags": [], "implicitDependencies": ["client"] },
         "data-access-user-settings": { "tags": [] },
-        "data-access-devices": { "tags": [] }
+        "data-access-devices": { "tags": [] },
+        "ui-shared": { "tags": [] }
     }
 }
