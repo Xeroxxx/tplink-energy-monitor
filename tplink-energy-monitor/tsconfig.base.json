@@ -31,7 +31,8 @@
             "@tplink-energy-monitor/ui-shared": ["libs/shared/ui-shared/src/index.ts"],
             "@tplink-energy-monitor/user-settings/feature-settings": [
                 "libs/user-settings/feature-settings/src/index.ts"
-            ]
+            ],
+            "@tplink-energy-monitor/shared/utils-shared": ["libs/shared/utils-shared/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp", "./**/*.test.ts", "./**/*.spec.ts"]

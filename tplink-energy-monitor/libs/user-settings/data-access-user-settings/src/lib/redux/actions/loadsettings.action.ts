@@ -1,9 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
-import { ApplicationState } from '../../../../../../../apps/client/src/app/redux/store';
 import { Action } from 'redux';
-import { get } from '../../../../../../../apps/client/src/app/utils/http.utils';
-import { SettingsAction, SettingsActionNames } from '../settings-state.type';
-import { UserSettings } from "../../dto/user-settings.dto";
+import { AppSettingsState, SettingsAction, SettingsActionNames } from '../settings-state.type';
+import { UserSettings } from '../../dto/user-settings.dto';
+import { get } from '@tplink-energy-monitor/shared/utils-shared';
 
 const loadUserSettings = async (): Promise<SettingsAction<UserSettings>> => {
     const settings = await get<UserSettings>('/api/settings');
@@ -14,7 +13,7 @@ const loadUserSettings = async (): Promise<SettingsAction<UserSettings>> => {
     } as SettingsAction<UserSettings>;
 };
 
-export const loadSettings = (): ThunkAction<void, ApplicationState, unknown, Action> => async (dispatch) => {
+export const loadSettings = (): ThunkAction<void, AppSettingsState, unknown, Action> => async (dispatch) => {
     try {
         dispatch({
             type: SettingsActionNames.SETTINGS_LOADING,

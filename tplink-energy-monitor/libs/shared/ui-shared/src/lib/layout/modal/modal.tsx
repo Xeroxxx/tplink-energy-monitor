@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './modal.module.scss';
 import { PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from '@tplink-energy-monitor/ui-shared';
+import { Button } from '../../controls/';
 
 type ModalViewProps = {
     show: boolean;

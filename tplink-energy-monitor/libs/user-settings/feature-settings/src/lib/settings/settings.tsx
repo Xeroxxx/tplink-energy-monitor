@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TextCard } from '@tplink-energy-monitor/ui-shared';
 import styles from './settings.module.scss';
-import { useUserSettings } from "@tplink-energy-monitor/user-settings/data-access-user-settings";
+import { useUserSettings } from '@tplink-energy-monitor/user-settings/data-access-user-settings';
 
 export const Settings: React.FC = () => {
     const userSettings = useUserSettings();

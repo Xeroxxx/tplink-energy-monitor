@@ -4,7 +4,7 @@ import { Action } from 'redux';
 import { deviceErrorAction } from './error.action';
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';
 import { ChangePowerStateDto } from '@tplink-energy-monitor/data-access-devices';
-import { put } from '../../../utils/http.utils';
+import { put } from '@tplink-energy-monitor/shared/utils-shared';
 
 const setPowerState = async (id: string, newPowerState: boolean): Promise<DeviceAction<undefined>> => {
     const powerStateChangeDto = {

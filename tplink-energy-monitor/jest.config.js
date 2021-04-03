@@ -6,5 +6,6 @@ module.exports = {
         '<rootDir>/libs/devices/data-access-devices',
         '<rootDir>/libs/shared/ui-shared',
         '<rootDir>/libs/user-settings/feature-settings',
+        '<rootDir>/libs/shared/utils-shared',
     ],
 };

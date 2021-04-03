@@ -1,11 +1,11 @@
 {
-    "extends": ["../../../.eslintrc.json"],
+    "extends": ["plugin:@nrwl/nx/react", "../../../.eslintrc.json"],
     "ignorePatterns": ["!**/*"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
             "parserOptions": {
-                "project": ["libs/data-access-user-settings/tsconfig.*?.json"]
+                "project": ["libs/shared/utils-shared/tsconfig.*?.json"]
             },
             "rules": {}
         },

@@ -22,6 +22,7 @@
         "data-access-user-settings": { "tags": [] },
         "data-access-devices": { "tags": [] },
         "ui-shared": { "tags": [] },
-        "user-settings-feature-settings": { "tags": [] }
+        "user-settings-feature-settings": { "tags": [] },
+        "shared-utils-shared": { "tags": [] }
     }
 }

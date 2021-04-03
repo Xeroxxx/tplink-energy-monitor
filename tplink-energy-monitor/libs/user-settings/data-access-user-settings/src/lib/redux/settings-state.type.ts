@@ -1,5 +1,10 @@
-import { StateStatus } from '../../../../../../apps/client/src/app/redux/types/state-status.type';
 import { UserSettings } from '../dto/user-settings.dto';
+
+export type StateStatus = 'OK' | 'LOADING' | 'ERROR' | 'PENDING';
+
+export type AppSettingsState = {
+  settings: SettingsState;
+};
 
 export type SettingsState = {
     status: StateStatus;
