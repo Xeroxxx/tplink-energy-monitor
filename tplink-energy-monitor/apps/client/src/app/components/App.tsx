@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styles from './App.module.scss';
-import { Dashboard } from './modules/dashboard/dashboard';
+import { Dashboard } from './dashboard/dashboard';
 import { DeviceView, DeviceViewFooter } from '@tplink-energy-monitor/devices/feature-devices';
 import { useDispatch } from 'react-redux';
-import { Header } from './common/core/header/header';
-import { Sidebar } from './common/core/sidebar/sidebar';
+import { Header } from './core/header/header';
+import { Sidebar } from './core/sidebar/sidebar';
 import { initApplication } from '../initApplication';
 import { useDevices } from '@tplink-energy-monitor/data-access-devices';
 import { Settings } from '@tplink-energy-monitor/user-settings/feature-settings';

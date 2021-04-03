@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './sidebar.module.scss';
 import { NavBar } from './nav-bar/nav-bar';
-import { useNavBarLinks } from '../../../../custom-hooks/nav-bar/use-nav-bar-links.hook';
+import { useNavBarLinks } from '../../../custom-hooks/nav-bar/use-nav-bar-links.hook';
 
 export const Sidebar: React.FC = () => {
     const { mainNavigationItems, deviceNavigationItems } = useNavBarLinks();

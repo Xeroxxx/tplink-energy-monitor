@@ -1,4 +1,4 @@
-import { NavBarItem } from '../../../components/common/core/sidebar/nav-bar/nav-bar';
+import { NavBarItem } from '../../../components/core/sidebar/nav-bar/nav-bar';
 import { faHome, faTools } from '@fortawesome/free-solid-svg-icons';
 
 export const mainNavbarItems: NavBarItem[] = [
