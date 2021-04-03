@@ -10,8 +10,8 @@ COPY tplink-energy-monitor/package-lock.json .
 
 # fix missing python for node-sass
 # do we really need this after migration?
-#RUN apk --no-cache add --virtual native-deps \
-#  g++ gcc libgcc libstdc++ linux-headers make python
+RUN apk --no-cache add --virtual native-deps \
+  g++ gcc libgcc libstdc++ linux-headers make python
 
 RUN npm set progress=false && npm config set depth 0
 RUN npm install --only=production --force && npm cache clean --force
