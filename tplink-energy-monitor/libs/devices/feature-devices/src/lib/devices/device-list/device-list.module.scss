@@ -1,0 +1,21 @@
+@import 'apps/client/src/app/styles/colors';
+.deviceList {
+  padding: 20px 40px;
+  .deviceListLink {
+    list-style-type: none;
+    margin: 10px;
+
+    a {
+      svg {
+        display: inline-block;
+        color: $card-subtitle;
+        font-size: 20px;
+      }
+
+      span {
+        color: $sidebar-brown;
+        display: inline-block;
+      }
+    }
+  }
+}

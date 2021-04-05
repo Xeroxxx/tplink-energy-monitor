@@ -5,6 +5,7 @@ import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-acces
 import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 type DeviceInfo = {
+    allDevices: TPLinkPlug[];
     deviceCount: number;
     currentDevice: TPLinkPlug & TpLinkPlugInfoDto;
     isDeviceActive: boolean;
@@ -41,6 +42,7 @@ export const useDevices = (id?: string): DeviceInfo => {
     }, [devicesState, deviceState, id]);
 
     return {
+        allDevices: devicesState.devices || [],
         deviceCount: devicesState.devices.length || 0,
         currentDevice,
         isDeviceActive: currentDevice?.isActive || false,

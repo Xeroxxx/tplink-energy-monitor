@@ -9,7 +9,7 @@ type DeviceViewFooterProps = {
 
 export const DeviceViewFooter: React.FC<DeviceViewFooterProps> = (props: DeviceViewFooterProps) => (
     <div className={`${styles.footer} flex-row`}>
-        <DeviceDetails currentDevice={props.currentDevice} />
+        <DeviceDetails currentDevice={props.currentDevice} className={'flex-row'} />
     </div>
 );
 

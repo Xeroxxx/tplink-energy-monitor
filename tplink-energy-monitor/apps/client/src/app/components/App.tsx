@@ -2,13 +2,14 @@ import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styles from './App.module.scss';
 import { Dashboard } from './dashboard/dashboard';
-import { DeviceView, DeviceViewFooter } from '@tplink-energy-monitor/devices/feature-devices';
+import { DeviceView, DeviceViewFooter, DeviceList } from '@tplink-energy-monitor/devices/feature-devices';
 import { useDispatch } from 'react-redux';
 import { Header } from './core/header/header';
 import { Sidebar } from './core/sidebar/sidebar';
 import { initApplication } from '../initApplication';
 import { useDevices } from '@tplink-energy-monitor/data-access-devices';
 import { Settings } from '@tplink-energy-monitor/user-settings/feature-settings';
+
 
 export const App: React.FC = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export const App: React.FC = () => {
                             <Switch>
                                 <Route path="/device/:id" component={DeviceView} />
                                 <Route path="/settings" component={Settings} />
+                                <Route path="/device-list" component={DeviceList} />
                                 <Route path="/" component={Dashboard} />
                             </Switch>
                         </div>

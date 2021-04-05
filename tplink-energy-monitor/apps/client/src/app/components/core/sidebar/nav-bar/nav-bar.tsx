@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { NavButton, NavButtonProps } from './nav-button/nav-button';
+import { NavButton } from '@tplink-energy-monitor/ui-shared';
+import type { NavButtonProps } from '@tplink-energy-monitor/ui-shared';
 
 export type NavBarItem = NavButtonProps;
 

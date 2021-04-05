@@ -2,9 +2,8 @@ import { useSelector } from 'react-redux';
 import * as React from 'react';
 import { NavBarItem } from '../../components/core/sidebar/nav-bar/nav-bar';
 import { useLocation } from 'react-router-dom';
-import { mapToNavBarItem } from './mapper/nav-bar-item.mapper';
+import { mapToNavBarItem , NavButtonProps } from '@tplink-energy-monitor/ui-shared';
 import { mainNavbarItems } from './const/main-navigation-items.const';
-import { NavButtonProps } from '../../components/core/sidebar/nav-bar/nav-button/nav-button';
 import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 type NavBarLinks = {
