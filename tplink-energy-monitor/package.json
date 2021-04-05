@@ -53,7 +53,7 @@
         "@nrwl/jest": "11.5.2",
         "@nrwl/linter": "11.6.1",
         "@nrwl/node": "11.6.1",
-        "@nrwl/react": "^11.5.2",
+        "@nrwl/react": "^11.6.1",
         "@nrwl/tao": "11.5.2",
         "@nrwl/web": "11.5.2",
         "@nrwl/workspace": "11.5.2",
