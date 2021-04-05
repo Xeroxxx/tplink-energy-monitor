@@ -59,3 +59,40 @@
         }
     }
 }
+
+.navigationCard {
+  border: 1px solid $card-border;
+  min-width: 130px;
+  background: $card-background;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+
+  margin: 10px 5px;
+
+  .navIcon {
+    align-self: center;
+    margin-bottom: 5px;
+    width: 20px;
+    min-width: unset;
+    padding: 15px;
+    font-size: 25px;
+    color: $card-subtitle;
+  }
+
+  .navLinkText {
+    align-self: center;
+    max-width: 130px;
+    span {
+      word-break: break-all;
+    }
+  }
+
+  &:active {
+    transform: translateY(3px);
+    box-shadow: none;
+
+    .navIcon {
+      color: $link-image-active-color;
+    }
+  }
+}

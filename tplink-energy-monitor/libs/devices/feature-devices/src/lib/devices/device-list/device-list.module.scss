@@ -1,6 +1,9 @@
 @import 'apps/client/src/app/styles/colors';
 .deviceList {
-  padding: 20px 40px;
+  h2 {
+    padding-left: 20px;
+  }
+  padding: 20px 0;
   .deviceListLink {
     list-style-type: none;
     margin: 10px;

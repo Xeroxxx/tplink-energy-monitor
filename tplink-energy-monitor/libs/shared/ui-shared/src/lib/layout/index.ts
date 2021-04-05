@@ -1,5 +1,6 @@
 export { BarChart } from './bar-chart/bar-chart';
 export { Card } from './card/card';
+export { NavigationCard } from './card/navigation-card/navigation-card';
 export { GaugeCard } from './card/gauge-chart/gauge-card';
 export { TextCard } from './card/text-card/text-card';
 export { GaugeComponent as Gauge } from './gauge/gauge';
