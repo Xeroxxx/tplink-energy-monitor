@@ -55,7 +55,7 @@
         "@nrwl/node": "11.6.1",
         "@nrwl/react": "^11.6.1",
         "@nrwl/tao": "11.5.2",
-        "@nrwl/web": "11.5.2",
+        "@nrwl/web": "11.6.1",
         "@nrwl/workspace": "11.5.2",
         "@testing-library/jest-dom": "^5.11.10",
         "@testing-library/react": "^11.2.6",
