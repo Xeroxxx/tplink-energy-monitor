@@ -126,7 +126,7 @@
         "redux-devtools-extension": "^2.13.9",
         "redux-thunk": "^2.3.0",
         "socket.io": "^3.1.2",
-        "socket.io-client": "^4.0.0",
+        "socket.io-client": "^4.0.1",
         "tplink-smarthome-api": "^3.3.0",
         "tslib": "^2.0.0",
         "typedi": "^0.8.0",
