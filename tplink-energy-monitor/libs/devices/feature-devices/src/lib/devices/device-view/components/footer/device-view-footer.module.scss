@@ -6,6 +6,10 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+
+    @media (max-width: 850px) {
+        display: none;
+    }
 }
 
 .label {
@@ -14,6 +18,16 @@
     margin-right: 10px;
 }
 
+.infoLine {
+    @media (max-width: 850px) {
+        margin-bottom: 10px;
+    }
+}
+
 .value {
     margin-right: 20px;
+
+    @media (max-width: 850px) {
+        white-space: nowrap;
+    }
 }

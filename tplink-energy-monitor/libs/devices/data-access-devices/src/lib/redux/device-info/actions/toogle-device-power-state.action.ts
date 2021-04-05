@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { ApplicationState } from '@tplink-energy-monitor/client/store';
+import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 import { Action } from 'redux';
 import { deviceErrorAction } from './error.action';
 import { DeviceAction, DeviceActionNames } from '../device-info-state.type';

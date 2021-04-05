@@ -35,7 +35,8 @@
             "@tplink-energy-monitor/shared/utils-shared": ["libs/shared/utils-shared/src/index.ts"],
             "@tplink-energy-monitor/devices/feature-devices": ["libs/devices/feature-devices/src/index.ts"],
             "@tplink-energy-monitor/client/store": ["libs/client/store/src/index.ts"],
-            "@tplink-energy-monitor/devices/utils": ["libs/devices/utils/src/index.ts"]
+            "@tplink-energy-monitor/devices/utils": ["libs/devices/utils/src/index.ts"],
+            "@tplink-energy-monitor/client/store-types": ["libs/client/store-types/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp", "./**/*.test.ts", "./**/*.spec.ts"]

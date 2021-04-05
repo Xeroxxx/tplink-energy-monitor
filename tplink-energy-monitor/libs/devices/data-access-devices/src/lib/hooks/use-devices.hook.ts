@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { ApplicationState } from '@tplink-energy-monitor/client/store';
 import * as React from 'react';
 import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
+import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 type DeviceInfo = {
     deviceCount: number;

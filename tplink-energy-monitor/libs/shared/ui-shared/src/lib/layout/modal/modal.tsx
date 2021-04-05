@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './modal.module.scss';
 import { PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from '../../controls/';
+import { Button } from '../../controls';
 
 type ModalViewProps = {
     show: boolean;
@@ -21,11 +21,15 @@ export const ModalView: React.FC<PropsWithChildren<ModalViewProps>> = (props: Pr
 
     return props.show
         ? ReactDOM.createPortal(
-              <div className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}>
+              <div
+                  className={`${styles.backdrop} ${props.show ? styles.visible : styles.hidden}`}
+                  onClick={props.onCloseRequest}
+              >
                   <div
                       className={`${styles.modalContent} flex-col${
                           props.hideBackground ? ` ${styles.noBackground}` : ''
                       }`}
+                      onClick={(event) => event.stopPropagation()}
                   >
                       {props.children}
                       {props.onCloseRequest && props.hideBackground && loadingError && (

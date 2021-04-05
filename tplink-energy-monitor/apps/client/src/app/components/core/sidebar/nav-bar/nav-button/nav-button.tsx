@@ -10,13 +10,23 @@ export type NavButtonProps = {
     className?: string;
     linkText: string;
     isActive: boolean;
+    isMobileButton?: boolean;
+    mainButtonClass?: string;
 };
 
 export const NavButton: React.FC<NavButtonProps> = (props: NavButtonProps) => (
-    <li className={`${styles.navButton} ${props.className || ''}${props.isActive ? styles.active : ''}`}>
+    <li
+        className={`${styles.navButton} ${props.className || ''}${props.isActive ? styles.active : ''} ${
+            props.isMobileButton ? props.mainButtonClass : ''
+        }`}
+    >
         <Link to={props.url}>
             <FontAwesomeIcon icon={props.icon} />
-            <span>{props.linkText}</span>
+            <span className={styles.linkText}>{props.linkText}</span>
         </Link>
     </li>
 );
+
+NavButton.defaultProps = {
+    isMobileButton: false,
+};

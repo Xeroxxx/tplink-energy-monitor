@@ -3,6 +3,13 @@
 .dashboard {
     height: 100%;
     width: 100%;
+    @media (max-width: 850px) {
+        > div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
 }
 
 .deviceCount {

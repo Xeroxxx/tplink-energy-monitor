@@ -258,6 +258,22 @@
                     "options": { "jestConfig": "libs/devices/utils/jest.config.js", "passWithNoTests": true }
                 }
             }
+        },
+        "client-store-types": {
+            "root": "libs/client/store-types",
+            "sourceRoot": "libs/client/store-types/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": { "lintFilePatterns": ["libs/client/store-types/**/*.{ts,tsx,js,jsx}"] }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/client/store-types"],
+                    "options": { "jestConfig": "libs/client/store-types/jest.config.js", "passWithNoTests": true }
+                }
+            }
         }
     }
 }

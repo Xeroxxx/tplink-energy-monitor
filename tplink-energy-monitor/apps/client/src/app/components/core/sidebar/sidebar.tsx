@@ -5,7 +5,6 @@ import { useNavBarLinks } from '../../../custom-hooks/nav-bar/use-nav-bar-links.
 
 export const Sidebar: React.FC = () => {
     const { mainNavigationItems, deviceNavigationItems } = useNavBarLinks();
-
     return (
         <div className={styles.sidebar}>
             <div className={styles.sidebarTitle}>
@@ -13,12 +12,16 @@ export const Sidebar: React.FC = () => {
                 <small className={styles.subtitle}>Energy Monitor</small>
             </div>
             <div className={styles.mainNavigation}>
-                <NavBar className={styles.navbar} items={mainNavigationItems} />
+                <NavBar className={styles.navbar} items={mainNavigationItems} mainButtonClass={styles.mainButton} />
             </div>
             {deviceNavigationItems && (
                 <div className={styles.deviceNavigation}>
                     <div className={styles.sidebarHeader}>Devices</div>
-                    <NavBar className={styles.navbar} items={deviceNavigationItems} />
+                    <NavBar
+                        className={styles.navbar}
+                        items={deviceNavigationItems}
+                        mainButtonClass={styles.mainButton}
+                    />
                 </div>
             )}
         </div>

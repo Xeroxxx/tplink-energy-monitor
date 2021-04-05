@@ -8,6 +8,16 @@
         text-decoration: none;
         span {
             margin-left: 10px;
+
+            @media (max-width: 850px) {
+                display: none;
+            }
+        }
+
+        svg {
+            @media (max-width: 850px) {
+                font-size: 30px;
+            }
         }
     }
 }

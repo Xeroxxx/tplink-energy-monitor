@@ -11,10 +11,20 @@
     width: 100%;
     background: $background-color;
 }
+@media (max-width: 850px) {
+    .mainContent {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
 
 .routerContent {
     margin-top: 20px;
     overflow-y: visible;
+
+    @media (max-width: 850px) {
+        margin-top: 70px;
+    }
 }
 
 .contentRight {

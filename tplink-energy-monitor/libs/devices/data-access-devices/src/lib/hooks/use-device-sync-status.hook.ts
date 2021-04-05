@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationState } from '@tplink-energy-monitor/client/store';
 import { setSyncActive } from '../redux/device-info/actions/set-sync-status.action';
+import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 type DeviceSyncStatus = {
     syncActive: boolean;

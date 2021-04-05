@@ -1,4 +1,4 @@
-import { StateStatus } from '@tplink-energy-monitor/client/store';
+import { StateStatus } from '@tplink-energy-monitor/client/store-types';
 import { TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
 
 export type DeviceInfoState = {

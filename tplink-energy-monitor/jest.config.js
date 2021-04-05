@@ -10,5 +10,6 @@ module.exports = {
         '<rootDir>/libs/devices/feature-devices',
         '<rootDir>/libs/client/store',
         '<rootDir>/libs/devices/utils',
+        '<rootDir>/libs/client/store-types',
     ],
 };

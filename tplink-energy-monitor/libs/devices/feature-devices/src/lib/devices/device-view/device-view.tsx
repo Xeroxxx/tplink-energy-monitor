@@ -15,7 +15,14 @@ import {
     transformMilliValueToFixed,
     transformRealtimePower,
 } from '@tplink-energy-monitor/devices/utils';
-import { toggleDevicePowerState } from '@tplink-energy-monitor/data-access-devices';
+import { toggleDevicePowerState,
+    mapDeviceEnergyOverviewToCharLabels,
+    mapDeviceEnergyOverviewToChartData,
+    mapDeviceMonthlyEnergyOverviewToCharLabels,
+    mapDeviceMonthlyEnergyOverviewToChartData,
+  useDevices,
+  useDeviceSync,
+} from '@tplink-energy-monitor/data-access-devices';
 import { DeviceToggle } from './components/device-toggle/device-toggle';
 import {
     TextCard,
@@ -26,14 +33,8 @@ import {
     GaugeCard,
 } from '@tplink-energy-monitor/ui-shared';
 import { PowerOffModal } from './components/power-off-modal/power-off-modal';
-import {
-    mapDeviceEnergyOverviewToCharLabels,
-    mapDeviceEnergyOverviewToChartData,
-    mapDeviceMonthlyEnergyOverviewToCharLabels,
-    mapDeviceMonthlyEnergyOverviewToChartData,
-} from '@tplink-energy-monitor/data-access-devices';
-import { useDevices, useDeviceSync } from '@tplink-energy-monitor/data-access-devices';
 import { useUserSettings } from '@tplink-energy-monitor/user-settings/data-access-user-settings';
+import { DeviceInfo } from './components/device-info/device-info';
 
 import styles from './device-view.module.scss';
 
@@ -86,7 +87,10 @@ export const DeviceView: React.FC = () => {
             )}
             {!loading && currentDevice && currentDevice.id && (
                 <div className={`flex-col ${styles.deviceView}`}>
-                    <h1 className="flex-center">{currentDevice?.alias}</h1>
+                    <h2 className="flex-center">{currentDevice?.alias}</h2>
+                    <div className={styles.deviceInfo}>
+                        <DeviceInfo />
+                    </div>
                     <div className="flex-row flex-wrap">
                         <div className={styles.realtime}>
                             <div>
@@ -162,7 +166,7 @@ export const DeviceView: React.FC = () => {
                             subtitle="Total today"
                         />
                     </div>
-                    <div className="flex-row">
+                    <div className="flex-row flex-wrap">
                         <BarChart
                             width={672}
                             height={200}

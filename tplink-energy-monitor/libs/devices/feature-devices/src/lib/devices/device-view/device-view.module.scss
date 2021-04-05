@@ -2,6 +2,21 @@
 
 .deviceView {
     padding: 10px 60px;
+
+    @media (max-width: 850px) {
+        padding: 0;
+
+        > div {
+            display: flex;
+            justify-content: center;
+        }
+
+        .deviceInfo {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 10px;
+        }
+    }
 }
 
 .realtime {
@@ -13,6 +28,15 @@
     @media (max-width: 2160px) {
         > div:first-child {
             width: 100%;
+        }
+    }
+
+    @media (max-width: 850px) {
+        margin-top: 10px;
+        justify-content: center;
+        > div {
+            display: flex;
+            justify-content: center;
         }
     }
 }

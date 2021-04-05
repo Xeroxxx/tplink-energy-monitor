@@ -6,6 +6,7 @@ export type NavBarItem = NavButtonProps;
 type NavBarProps = {
     className: string;
     items: NavBarItem[];
+    mainButtonClass: string;
 };
 
 export const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => (
@@ -16,8 +17,10 @@ export const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => (
                 url={item.url}
                 icon={item.icon}
                 className={item.className}
+                mainButtonClass={props.mainButtonClass}
                 linkText={item.linkText}
                 isActive={item.isActive}
+                isMobileButton={item.isMobileButton}
             />
         ))}
     </ul>

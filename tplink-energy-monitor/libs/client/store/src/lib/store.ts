@@ -3,21 +3,14 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'react-router-redux';
 import { History } from 'history';
-import deviceReducer, { initialDeviceState } from '../../../../devices/data-access-devices/src/lib/redux/devices/reducer/devices.reducer';
-import { DeviceState } from '../../../../devices/data-access-devices/src/lib/redux/devices/devices-state.type';
-import deviceInfoReducer, { initialDeviceInfoState } from '../../../../devices/data-access-devices/src/lib/redux/device-info/reducer/device-info.reducer';
-import { DeviceInfoState } from '../../../../devices/data-access-devices/src/lib/redux/device-info/device-info-state.type';
 import {
-    SettingsState,
-    initialSettingsState,
-    settingsReducer,
-} from '@tplink-energy-monitor/user-settings/data-access-user-settings';
-
-export type ApplicationState = {
-    devices: DeviceState;
-    deviceInfo: DeviceInfoState;
-    settings: SettingsState;
-};
+    deviceReducer,
+    initialDeviceState,
+    deviceInfoReducer,
+    initialDeviceInfoState,
+} from '@tplink-energy-monitor/data-access-devices';
+import { initialSettingsState, settingsReducer } from '@tplink-energy-monitor/user-settings/data-access-user-settings';
+import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 export const initialAppState: ApplicationState = {
     devices: initialDeviceState,

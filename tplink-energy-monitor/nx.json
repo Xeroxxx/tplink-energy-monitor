@@ -26,6 +26,7 @@
         "shared-utils-shared": { "tags": [] },
         "devices-feature-devices": { "tags": [] },
         "client-store": { "tags": [] },
-        "devices-utils": { "tags": [] }
+        "devices-utils": { "tags": [] },
+        "client-store-types": { "tags": [] }
     }
 }
