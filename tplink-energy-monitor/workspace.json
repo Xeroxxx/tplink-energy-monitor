@@ -132,13 +132,13 @@
             "targets": {
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": { "lintFilePatterns": ["libs/data-access-user-settings/**/*.ts"] }
+                    "options": { "lintFilePatterns": ["libs/user-settings/data-access-user-settings/**/*.ts"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/libs/data-access-user-settings"],
                     "options": {
-                        "jestConfig": "libs/data-access-user-settings/jest.config.js",
+                        "jestConfig": "libs/user-settings/data-access-user-settings/jest.config.js",
                         "passWithNoTests": true
                     }
                 }
@@ -151,12 +151,12 @@
             "targets": {
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": { "lintFilePatterns": ["libs/data-access-devices/**/*.ts"] }
+                    "options": { "lintFilePatterns": ["libs/devices/data-access-devices/**/*.ts"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/libs/data-access-devices"],
-                    "options": { "jestConfig": "libs/data-access-devices/jest.config.js", "passWithNoTests": true }
+                    "options": { "jestConfig": "libs/devices/data-access-devices/jest.config.js", "passWithNoTests": true }
                 }
             }
         },
@@ -167,12 +167,12 @@
             "targets": {
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
-                    "options": { "lintFilePatterns": ["libs/ui-shared/**/*.{ts,tsx,js,jsx}"] }
+                    "options": { "lintFilePatterns": ["libs/shared/ui-shared/**/*.{ts,tsx,js,jsx}"] }
                 },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "outputs": ["coverage/libs/ui-shared"],
-                    "options": { "jestConfig": "libs/ui-shared/jest.config.js", "passWithNoTests": true }
+                    "options": { "jestConfig": "libs/shared/ui-shared/jest.config.js", "passWithNoTests": true }
                 }
             }
         },

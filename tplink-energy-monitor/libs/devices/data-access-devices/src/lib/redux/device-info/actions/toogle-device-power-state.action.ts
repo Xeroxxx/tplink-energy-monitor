@@ -1,4 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
+// eslint-disable-next-line
 import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 import { Action } from 'redux';
 import { deviceErrorAction } from './error.action';

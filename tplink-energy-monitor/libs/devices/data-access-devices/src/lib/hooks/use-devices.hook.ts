@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import * as React from 'react';
 import { TPLinkPlug, TpLinkPlugInfoDto } from '@tplink-energy-monitor/data-access-devices';
+// eslint-disable-next-line
 import { ApplicationState } from '@tplink-energy-monitor/client/store-types';
 
 type DeviceInfo = {

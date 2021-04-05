@@ -19,7 +19,6 @@ export const useDeviceSync = (
             }
             dispatch(setSyncActive(true, id));
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, syncActive]);
 
     React.useEffect(() => {
@@ -34,7 +33,6 @@ export const useDeviceSync = (
         () => () => {
             dispatch(setSyncActive(false));
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 };

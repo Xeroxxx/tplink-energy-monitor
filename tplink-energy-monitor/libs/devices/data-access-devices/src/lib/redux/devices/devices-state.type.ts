@@ -1,4 +1,5 @@
 import { TPLinkPlug } from '@tplink-energy-monitor/data-access-devices';
+// eslint-disable-next-line
 import { StateStatus } from '@tplink-energy-monitor/client/store-types';
 
 export type DeviceState = {
