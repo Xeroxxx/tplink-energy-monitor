@@ -20,7 +20,13 @@ const appControllers = { ...controllers } as TpLinkController;
 class TpLinkServer extends Server {
     private readonly SERVER_START_MSG = 'TP-Link server started on port: ';
 
+    private readonly SERVER_CLOSE_MSG = 'TP-Link server stopped';
+
+    private readonly SERVER_CLOSE_NO_SERVER_MSG = 'TP-Link server was not started';
+
     private readonly DEV_MSG = 'Express Server is running in development mode.';
+
+    private server?: http.Server = undefined;
 
     constructor(private socketService: SocketService) {
         super(true);
@@ -63,11 +69,22 @@ class TpLinkServer extends Server {
     }
 
     public start(port: string): void {
-        const server: http.Server = this.app.listen(port, () => {
+        this.server = this.app.listen(port, () => {
             Logger.Imp(this.SERVER_START_MSG + port);
         });
 
-        this.socketService.startServer(server);
+        this.socketService.startServer(this.server);
+    }
+
+    public close(): void {
+      if (!this.server) {
+        Logger.Imp(this.SERVER_CLOSE_NO_SERVER_MSG);
+        process.exit(1);
+      }
+
+      Logger.Imp(this.SERVER_CLOSE_MSG);
+      this.server.close(err => Logger.Imp(err));
+      process.exit(0);
     }
 }
 

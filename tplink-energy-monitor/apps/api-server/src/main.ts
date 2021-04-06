@@ -6,4 +6,13 @@ import * as path from 'path';
 (global as any).appRoot = path.resolve(__dirname);
 
 const server = Container.get<TpLinkServer>(TpLinkServer);
+
+process.on('SIGINT', () => {
+  server.close();
+});
+
+process.on('SIGTERM', () => {
+  server.close();
+});
+
 server.start(process.env.PORT || '3000');
