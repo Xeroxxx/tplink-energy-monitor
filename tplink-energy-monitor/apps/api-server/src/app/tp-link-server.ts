@@ -20,7 +20,7 @@ const appControllers = { ...controllers } as TpLinkController;
 class TpLinkServer extends Server {
     private readonly SERVER_START_MSG = 'TP-Link server started on port: ';
 
-    private readonly SERVER_CLOSE_MSG = 'TP-Link server stopped';
+    private readonly SERVER_CLOSE_MSG = 'CLosing TP-Link server';
 
     private readonly SERVER_CLOSE_NO_SERVER_MSG = 'TP-Link server was not started';
 
@@ -77,14 +77,22 @@ class TpLinkServer extends Server {
     }
 
     public close(): void {
+      process.exitCode = 0;
+
       if (!this.server) {
         Logger.Imp(this.SERVER_CLOSE_NO_SERVER_MSG);
-        process.exit(1);
+        process.exitCode = 1;
       }
 
-      Logger.Imp(this.SERVER_CLOSE_MSG);
-      this.server.close(err => Logger.Imp(err));
-      process.exit(0);
+      if (this.server){
+        Logger.Imp(this.SERVER_CLOSE_MSG);
+        this.server.close(err => {
+          Logger.Imp(err);
+          process.exitCode = 2;
+        });
+      }
+
+      process.exit();
     }
 }
 
