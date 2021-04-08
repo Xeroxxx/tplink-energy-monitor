@@ -10,7 +10,7 @@ FROM base AS src
 RUN apk --no-cache add --virtual native-deps \
   g++ gcc libgcc libstdc++ linux-headers make python
 
-COPY tplink-energy-monitor/package*.json .
+COPY tplink-energy-monitor/package*.json ./
 
 RUN npm set progress=false && npm config set depth 0
 RUN npm install --only=production --force && npm cache clean --force
