@@ -107,7 +107,7 @@
     "chart.js": "^2.8.0",
     "chartjs-plugin-streaming": "^1.8.0",
     "classnames": "^2.2.6",
-    "core-js": "^3.10.0",
+    "core-js": "^3.10.1",
     "document-register-element": "1.14.10",
     "express": "4.17.1",
     "history": "^5.0.0",
