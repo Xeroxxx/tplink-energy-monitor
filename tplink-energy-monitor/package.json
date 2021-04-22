@@ -46,7 +46,7 @@
     "@babel/preset-env": "7.13.12",
     "@babel/preset-react": "7.13.13",
     "@babel/preset-typescript": "7.13.0",
-    "@nrwl/cli": "11.6.1",
+    "@nrwl/cli": "12.0.7",
     "@nrwl/cypress": "11.6.1",
     "@nrwl/eslint-plugin-nx": "11.6.1",
     "@nrwl/express": "11.6.1",
