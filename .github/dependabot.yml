@@ -1,0 +1,82 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "12:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: moment
+    versions:
+    - 2.29.1
+  - dependency-name: debug
+    versions:
+    - 4.3.1
+  - dependency-name: tplink-smarthome-api
+    versions:
+    - 3.3.0
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "12:00"
+  open-pull-requests-limit: 10
+  target-branch: dev
+  ignore:
+  - dependency-name: debug
+    versions:
+    - 4.3.1
+- package-ecosystem: npm
+  directory: "/tplink-energy-monitor"
+  schedule:
+    interval: weekly
+    time: "12:00"
+  open-pull-requests-limit: 10
+  target-branch: dev-v2.0
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: "@nrwl/node"
+    versions:
+    - 12.0.1
+    - 12.0.7
+  - dependency-name: "@nrwl/eslint-plugin-nx"
+    versions:
+    - 12.0.1
+    - 12.0.7
+  - dependency-name: "@nrwl/cli"
+    versions:
+    - 12.0.1
+    - 12.0.7
+  - dependency-name: "@nrwl/express"
+    versions:
+    - 12.0.7
+  - dependency-name: "@testing-library/user-event"
+    versions:
+    - 13.1.4
+  - dependency-name: "@nrwl/tao"
+    versions:
+    - 12.0.1
+    - 12.0.7
+  - dependency-name: "@nrwl/react"
+    versions:
+    - 12.0.7
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.22
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.13.10
+  - dependency-name: react-dom
+    versions:
+    - 17.0.2
+  - dependency-name: typedi
+    versions:
+    - 0.10.0
+  - dependency-name: eslint-config-prettier
+    versions:
+    - 8.1.0
+  - dependency-name: socket.io
+    versions:
+    - 4.0.0
