@@ -29,7 +29,7 @@
     "tplink-smarthome-api": "3.0.0-beta.0"
   },
   "devDependencies": {
-    "pkg": "4.4.9"
+    "pkg": "5.1.0"
   },
   "bin": {
     "tplink-monitor": "./src/app.js"
