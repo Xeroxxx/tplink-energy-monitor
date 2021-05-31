@@ -49,7 +49,7 @@
     "@nrwl/cli": "11.6.1",
     "@nrwl/cypress": "11.6.1",
     "@nrwl/eslint-plugin-nx": "11.6.1",
-    "@nrwl/express": "11.6.1",
+    "@nrwl/express": "12.3.5",
     "@nrwl/jest": "11.6.1",
     "@nrwl/linter": "11.6.1",
     "@nrwl/node": "11.6.1",
