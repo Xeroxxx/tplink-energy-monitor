@@ -28,5 +28,6 @@ LICENSE changed to MIT License as no code of the previous project is reused.
 - [x] Add daily cost metrics (partially)
 - [ ] Configurable realtime usage logging
 - [ ] Changeable card order in device view
+- [ ] Add alerts for specific values
 
 Feature request? https://github.com/Xeroxxx/tplink-energy-monitor/issues
