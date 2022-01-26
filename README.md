@@ -1,3 +1,9 @@
+# :warning:	:bangbang::bangbang:	Project archived/discontinued :bangbang::bangbang: :warning:	
+
+There are enough alternatives to monitor TP-Link HS110 or TP-Link Kasa devices with smart home software like Home Assistant, ioBroker or OpenHAB with full functionality like power measurement, cumulative measurement and switching. So we decided to discontinue the project from our side as there is no reason to run a standalone application anymore.
+
+Feel free to fork and continue the project while honoring the license.
+
 # Supported tags for Docker Images
 
 [latest, latest-arm32v6, latest-arm32v7, latest-arm64v8](https://hub.docker.com/r/xeroxxx/tplink-energy-monitor/tags) || [Branch - Master](https://github.com/xeroxxx/tplink-energy-monitor/tree/master)
